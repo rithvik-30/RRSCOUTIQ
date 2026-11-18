@@ -1,13 +1,7 @@
 # RR ScoutIQ: A Hierarchical Bayesian Framework for Contextual Pressure Quantification and Player Evaluation in T20 Cricket
 
-**Document Type:** Formal Technical & Analytical Research Report  
-**Target Competition:** Rajasthan Royals CRP SupeRR Selector Season 2 (Round 1)  
-**Author:** Quantitative Research & Cricket Analytics Group  
-**Date:** November 2026  
-**Canonical Dataset Baseline Hash:** `ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4`  
-**Official Frozen Report Hash:** `0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d`  
-**Interactive Scouting Platform:** https://taupe-dodol-c84063.netlify.app/  
-**Verified Source Code Repository:** https://github.com/rithvik-30/RRSCOUTIQ  
+*Rajasthan Royals CRP SupeRR Selector Season 2 — Round 1 Technical Research Report*  
+*Quantitative Research & Cricket Analytics Group — November 2026*  
 
 ---
 
@@ -35,13 +29,13 @@
 4. [Chapter 4 — Batter Performance Measurement](#chapter-4--batter-performance-measurement)
    - 4.1 Boundary-Rate Value-Add as the Primary Batting Metric
    - 4.2 Contextual Baseline Expectation Modeling
-   - 4.3 Formulating Contextual Value-Add (Delta_EB)
+   - 4.3 Formulating Contextual Value-Add ($\Delta_{\text{EB}}$)
    - 4.4 Strike Rate as an External Validation Metric
    - 4.5 Worked Numerical Example for Batting Evaluation
 5. [Chapter 5 — Bowler Performance Measurement](#chapter-5--bowler-performance-measurement)
    - 5.1 Contextual Economy Suppression as the Primary Bowling Metric
    - 5.2 Contextual Expected Economy Baselines
-   - 5.3 Formulating Contextual Economy Delta (Delta_EB in RPO)
+   - 5.3 Formulating Contextual Economy Delta ($\Delta_{\text{EB}}$ in RPO)
    - 5.4 Worked Numerical Example for Bowling Evaluation
    - 5.5 Flaws of Unadjusted Economy Rates Across Match Phases
 6. [Chapter 6 — Hierarchical Empirical Bayes and Statistical Reliability](#chapter-6--hierarchical-empirical-bayes-and-statistical-reliability)
@@ -49,7 +43,7 @@
    - 6.2 Crossed-Effects Empirical Bayes Shrinkage Architecture
    - 6.3 Observation Variance and Match-Clustering Shocks
    - 6.4 Eligibility Screening Thresholds
-   - 6.5 Conservative Uncertainty Bounds (LB90 and UB90)
+   - 6.5 Conservative Uncertainty Bounds ($\text{LB}_{90\%}$ and $\text{UB}_{90\%}$)
    - 6.6 The Mathematical Meaning of 1.645 SE Bounds
    - 6.7 Interpreting Positive Bowler Upper Bounds
 7. [Chapter 7 — Complete Selection Pipeline](#chapter-7--complete-selection-pipeline)
@@ -108,7 +102,7 @@ However, modern cricket recruitment continues to be plagued by crude, uncontextu
 ### 1.2 The Pathology of Conventional Cricket Statistics
 Traditional cricket metrics suffer from three fatal methodological pathologies:
 
-1. **Context Blindness:** Standard aggregates ignore the game state. A batter who accumulates 45 runs off 35 deliveries in a dead rubber against depleted bowling attack is credited with an attractive 128.5 strike rate, while a finisher who scores 18 off 8 deliveries to win a high-leverage chase receives minimal aggregate volume credit despite generating massive win equity.
+1. **Context Blindness:** Standard aggregates ignore the game state. A batter who accumulates 45 runs off 35 deliveries in a dead rubber against a depleted bowling attack is credited with an attractive 128.5 strike rate, while a finisher who scores 18 off 8 deliveries to win a high-leverage chase receives minimal aggregate volume credit despite generating massive win equity.
 2. **Phase and Resource Conflation:** Bowling economy rates conflate distinct match phases. A middle-overs spinner who bowls overs 7–11 conceding 7.50 runs per over (RPO) appears numerically superior to a death bowler conceding 8.50 RPO in overs 18–20. In reality, the tournament baseline par for middle overs is approximately 8.00 RPO (yielding a modest suppression of $-0.50$ RPO), whereas death-over par exceeds 11.20 RPO (meaning the death bowler achieves a world-class suppression of $-2.70$ RPO relative to context). Gross economy directly penalizes bowlers who shoulder the highest-leverage responsibilities.
 3. **Small-Sample Volatility and Fluke Risk:** Unregularized sample means are notoriously erratic over small sample horizons ($N < 500$ balls). A volatile power-hitter may experience a fortunate sequence of dropped catches or mistimed edges that clear the boundary over 80 pressure balls, producing an unsustainable strike rate of 210.0. Without formal Bayesian shrinkage, naive decision-makers overpay for short-term variance.
 
@@ -163,7 +157,7 @@ Each delivery record in the canonical modeling database (`data/processed/m5_3/ma
 - `pre_balls_rem`: Legal deliveries remaining in the regulation innings (120 to 1) evaluated strictly prior to the delivery.
 - `pre_wkts_hand`: Wickets remaining in hand (10 to 1) evaluated prior to the delivery.
 - `pre_crr`: Progressive Current Run Rate of the batting team.
-- `pre_rrr`: Required Run Rate in the 2nd innings chase ($RRR = \frac{\text{Runs Required}}{\text{Legal Overs Remaining}}$).
+- `pre_rrr`: Required Run Rate in the 2nd innings chase ($\text{RRR} = \frac{\text{Runs Required}}{\text{Legal Overs Remaining}}$).
 - `pre_dli`: Calculated Dynamic Delivery Leverage Index.
 - `pre_pressure_tier`: Assigned categorical pressure tier (T1 to T4).
 
@@ -212,7 +206,7 @@ The delivery outcome $Y_t$ has zero mathematical influence on $\text{DLI}_t$.
 ### 3.3 Chase Pressure Formulation (Innings 2)
 In the second innings, the win condition is explicit: score the target runs before losing 10 wickets or exhausting 120 legal balls. Inspecting the production code in `src/m5_state/match_state_engine.py`, the chase leverage equation is implemented as:
 
-$$\text{DLI}_{\text{chase}} = \text{Clamp}\left[ \left( \frac{\text{RRR}}{\text{CRR}_{\text{phase}}} \right) \times \left( \frac{10}{W_{\text{hand}} + 1} \right)^{0.50} \times \left( 1 + \frac{24}{B_{\text{rem}} + 12} \right)^{0.50}, \; 0.10, \; 5.00 \right] \tag{1}$$
+$$\text{DLI}_{\text{chase}} = \text{Clamp}\left[ \left( \frac{\text{RRR}}{\text{CRR}_{\text{phase}}} \right) \times \left( \frac{10}{W_{\text{hand}} + 1} \right)^{0.50} \times \left( 1 + \frac{24}{B_{\text{rem}} + 12} \right)^{0.50}, \; 0.10, \; 5.00 \right] \tag{EQ-01}$$
 
 Where:
 - $\text{RRR} = \frac{\text{Runs Required}}{\max(1, B_{\text{rem}}) / 6.0}$: The instantaneous required run rate.
@@ -222,7 +216,7 @@ Where:
   - Death (Overs 16–20): $9.30$ RPO
 - $W_{\text{hand}}$: Wickets currently in hand ($10 - \text{wickets lost}$), clamped $\ge 1$.
 - $B_{\text{rem}}$: Legal balls remaining in the regulation 120-ball allocation.
-- $\text{Clamp}[x, a, b]$: Clamps the raw value within $[0.10, 5.00]$ to prevent asymptotic numerical explosion when $B_{\text{rem}} \to 0$.
+- $\text{Clamp}[x, 0.10, 5.00]$: Clamps the raw value within $[0.10, 5.00]$ to prevent asymptotic numerical explosion when $B_{\text{rem}} \to 0$.
 
 **Component Rationale:**
 - **Tempo Term $\left(\frac{\text{RRR}}{\text{CRR}_{\text{phase}}}\right)$:** Normalizes required scoring speed against contextual expectation. If RRR is 12.0 in the middle overs where par is 8.0, the tempo multiplier is $1.50\times$.
@@ -230,11 +224,11 @@ Where:
 - **Time Decay Term $\left(1 + \frac{24}{B_{\text{rem}} + 12}\right)^{0.50}$:** Governs urgency. With 108 balls remaining ($B_{\text{rem}}=108$), the term is $(1 + 24/120)^{0.50} = 1.095\times$. With only 6 balls remaining ($B_{\text{rem}}=6$), it escalates to $(1 + 24/18)^{0.50} = 1.527\times$.
 
 ### 3.4 Target Setting Pressure Formulation (Innings 1)
-In the first innings, there is no fixed run target; the objective is to maximize the final total while conserving wickets against par. The setting leverage equation is formulated as:
+In the first innings, there is no fixed run target; the objective is to maximize the final total while conserving wickets against par. The setting leverage equations are formulated as:
 
-$$\Phi(t) = 0.80 + 0.70 \times \left( \frac{t}{120} \right)^{1.20} \tag{2}$$
+$$\Phi(t) = 0.80 + 0.70 \times \left( \frac{t}{120} \right)^{1.20} \tag{EQ-02}$$
 
-$$\text{DLI}_{\text{setting}} = \text{Clamp}\left[ \Phi(t) \times \left( \frac{10}{W_{\text{hand}} + 1} \right)^{0.60} \times \left( 1 + \text{stag} \right)^{0.50}, \; 0.20, \; 3.50 \right] \tag{3}$$
+$$\text{DLI}_{\text{setting}} = \text{Clamp}\left[ \Phi(t) \times \left( \frac{10}{W_{\text{hand}} + 1} \right)^{0.60} \times \left( 1 + \text{stag} \right)^{0.50}, \; 0.20, \; 3.50 \right] \tag{EQ-03}$$
 
 Where:
 - $t$: Elapsed legal deliveries in the innings ($120 - B_{\text{rem}}$).
@@ -242,7 +236,7 @@ Where:
 - $W_{\text{hand}}$: Wickets in hand ($10 - \text{wickets lost}$), weighted with exponent $0.60$.
 - $\text{stag}$: Progressive stagnation penalty. If $t \ge 6$:
   $$\text{stag} = \max\left( 0, \; \frac{\text{CRR}_{\text{phase}} - \text{CRR}}{6.0} \right)$$
-  If the progressive scoring rate lags below phase par, stagnation penalty increases leverage.
+  If the progressive scoring rate lags below phase par, the stagnation penalty increases leverage.
 - Clamping bounds: Clamped within $[0.20, 3.50]$.
 
 ### 3.5 Discrete Pressure Tiers and Operational Cutoffs
@@ -258,7 +252,7 @@ To aggregate player performance across comparable match states, continuous DLI v
 ### 3.6 Worked Numerical Examples
 
 #### Example 1: Innings 2 Run Chase (Terminal Crunch)
-*Match Scenario:* Over 18.2 (10 balls remaining, $B_{\text{rem}} = 10$). The batting team requires 24 runs ($RRR = 24 / (10/6) = 14.40$ RPO). Current wickets lost = 6 ($W_{\text{hand}} = 4$). Match phase = Death ($\text{CRR}_{\text{phase}} = 9.30$ RPO).
+*Match Scenario:* Over 18.2 (10 balls remaining, $B_{\text{rem}} = 10$). The batting team requires 24 runs ($\text{RRR} = 24 / (10/6) = 14.40$ RPO). Current wickets lost = 6 ($W_{\text{hand}} = 4$). Match phase = Death ($\text{CRR}_{\text{phase}} = 9.30$ RPO).
 
 1. **Tempo Multiplier:**
    $$\frac{\text{RRR}}{\text{CRR}_{\text{phase}}} = \frac{14.40}{9.30} = 1.5484$$
@@ -299,7 +293,7 @@ While DLI represents an objective, causal pre-delivery proxy for situational ten
 # Chapter 4 — Batter Performance Measurement
 
 ### 4.1 Boundary-Rate Value-Add as the Primary Batting Metric
-In high-pressure T20 scenarios, the mathematical primary driver of win probability is boundary conversion. Singles, twos, and dot-ball rotations are insufficient to keep pace with escalating required rates ($RRR > 11.0$). A batter who scores 14 runs off 10 balls through continuous singles often depresses win equity during a steep chase, whereas a batter who hits two boundaries ($4, 6$) and absorbs dot balls generates positive win expectancy.
+In high-pressure T20 scenarios, the mathematical primary driver of win probability is boundary conversion. Singles, twos, and dot-ball rotations are insufficient to keep pace with escalating required rates ($\text{RRR} > 11.0$). A batter who scores 14 runs off 10 balls through continuous singles often depresses win equity during a steep chase, whereas a batter who hits two boundaries ($4, 6$) and absorbs dot balls generates positive win expectancy.
 
 Therefore, RR ScoutIQ selects **Contextual Boundary-Rate Value-Add ($\Delta_{\text{EB}}$)** as the primary selection objective for batters.
 
@@ -318,15 +312,15 @@ Across the canonical league corpus, expected boundary baselines range from $\app
 ### 4.3 Formulating Contextual Value-Add ($\Delta_{\text{EB}}$)
 For each eligible batter, observed boundary outcomes under pressure (Tiers 2–4) are aggregated:
 
-$$Y_{i, \text{bnd}} = \frac{\sum_{t \in \text{Press}} \mathbb{I}(\text{RunsBatter}_t \ge 4)}{N_{i, \text{press}}} \tag{4}$$
+$$Y_{i, \text{bnd}} = \frac{\sum_{t \in \text{Press}} \mathbb{I}(\text{RunsBatter}_t \ge 4)}{N_{i, \text{press}}} \tag{EQ-04a}$$
 
 The contextual value-add represents the percentage-point elevation above situational expectation:
 
-$$\Delta_{\text{raw}, i} = Y_{i, \text{bnd}} - \bar{p}_{\text{base}, i}$$
+$$\Delta_{\text{raw}, i} = Y_{i, \text{bnd}} - \bar{p}_{\text{base}, i} \tag{EQ-04b}$$
 
-Applying Empirical Bayes shrinkage (formally detailed in Chapter 6), we obtain the posterior mean estimate:
+Applying Empirical Bayes shrinkage (formally detailed in Chapter 6), we obtain the regularized posterior mean estimate:
 
-$$\Delta_{\text{EB}, i} = \lambda_i \Delta_{\text{raw}, i} + (1 - \lambda_i) \mu_0 \tag{5}$$
+$$\Delta_{\text{EB}, i} = \lambda_i \Delta_{\text{raw}, i} + (1 - \lambda_i) \mu_{\text{LPMO}} \tag{EQ-04c}$$
 
 - **Cricket Meaning of $\Delta_{\text{EB}} > 0$:** The batter converts boundaries at a rate strictly exceeding the league expectation for those exact match contexts. A $\Delta_{\text{EB}} = +6.70\%$ (e.g. Abhishek Sharma) signifies that for every 100 high-pressure deliveries faced, the player generates $6.7$ more boundaries than an average qualified league batter operating in identical game states.
 - **Cricket Meaning of $\Delta_{\text{EB}} < 0$:** The batter's boundary generation under pressure falls below contextual expectation, indicating boundary suppression or defensive accumulation.
@@ -344,7 +338,7 @@ Consider an elite top-order batter who faces $N = 400$ pressure deliveries acros
   $$\bar{p}_{\text{base}} = 0.1925 \; (19.25\%)$$
 - Raw Contextual Value-Add:
   $$\Delta_{\text{raw}} = 0.2600 - 0.1925 = +0.0675 \; (+6.75\%)$$
-- Bayesian Regularization: Given $N = 400$ balls and prior shrinkage parameters ($\lambda = 0.88$, prior $\mu_0 = 0.0$):
+- Bayesian Regularization: Given $N = 400$ balls and prior shrinkage parameters ($\lambda = 0.88$, prior $\mu_{\text{LPMO}} = 0.0$):
   $$\Delta_{\text{EB}} = 0.88 \times (+6.75\%) + (1 - 0.88) \times 0.0\% = \mathbf{+5.94\%}$$
 The model confirms the batter delivers $+5.94$ percentage points of boundary value-add above situational par.
 
@@ -370,15 +364,15 @@ Standard tournament baselines:
 ### 5.3 Formulating Contextual Economy Delta ($\Delta_{\text{EB}}$ in RPO)
 For an eligible bowler $j$, we aggregate runs conceded (including bowler-debited extras: wides and no-balls) and legal deliveries across pressure situations (Tiers 2–4):
 
-$$\text{Econ}_{\text{obs}, j} = \frac{\text{RunsConceded}_{j, \text{press}}}{\text{LegalBalls}_{j, \text{press}} / 6.0} \tag{6}$$
+$$\text{Econ}_{\text{obs}, j} = \frac{\text{RunsConceded}_{j, \text{press}}}{\text{LegalBalls}_{j, \text{press}} / 6.0} \tag{EQ-05a}$$
 
 The raw contextual economy delta is:
 
-$$\Delta_{\text{raw}, j} = \text{Econ}_{\text{obs}, j} - \bar{\text{Econ}}_{\text{base}, j} \tag{7}$$
+$$\Delta_{\text{raw}, j} = \text{Econ}_{\text{obs}, j} - \bar{\text{Econ}}_{\text{base}, j} \tag{EQ-05b}$$
 
 Applying Empirical Bayes shrinkage:
 
-$$\Delta_{\text{EB}, j} = \lambda_j \Delta_{\text{raw}, j} + (1 - \lambda_j) \mu_0 \tag{8}$$
+$$\Delta_{\text{EB}, j} = \lambda_j \Delta_{\text{raw}, j} + (1 - \lambda_j) \mu_{\text{LPMO}} \tag{EQ-05c}$$
 
 - **Cricket Meaning of $\Delta_{\text{EB}} < 0$ (Negative Delta):** A negative value represents **superior performance (economy suppression)**. For example, Sunil Narine's $\Delta_{\text{EB}} = -0.605$ RPO indicates that Narine concedes $0.605$ fewer runs per over than expected across his exact pressure match contexts.
 - **Cricket Meaning of $\Delta_{\text{EB}} > 0$ (Positive Delta):** The bowler concedes runs at a rate above contextual expectation (run leakage).
@@ -392,12 +386,14 @@ Consider a specialist death bowler who delivers 30 overs ($N = 180$ legal balls)
   $$\bar{\text{Econ}}_{\text{base}} = 10.80 \text{ RPO}$$
 - Raw Economy Suppression:
   $$\Delta_{\text{raw}} = 8.70 - 10.80 = -2.10 \text{ RPO}$$
-- Regularized Posterior Mean: With $\lambda = 0.75$ and league prior $\mu_0 = 0.0$:
+- Regularized Posterior Mean: With $\lambda = 0.75$ and league prior $\mu_{\text{LPMO}} = 0.0$:
   $$\Delta_{\text{EB}} = 0.75 \times (-2.10) + 0.25 \times 0.0 = \mathbf{-1.575 \text{ RPO}}$$
 The bowler saves $+1.575$ runs per over below match expectations, despite an unadjusted economy (8.70) that naive scouts would dismiss as mediocre.
 
 ### 5.5 Flaws of Unadjusted Economy Rates Across Match Phases
 Table 5.1 demonstrates why comparing unadjusted economy rates across bowler archetypes is analytically fatal:
+
+Table 5.1: Flaws of Unadjusted Economy Rates Across Match Phases
 
 | Bowler Archetype | Primary Phase Allocation | Raw Economy | Phase Par | Contextual Economy Delta ($\Delta_{\text{EB}}$) | True Recruitment Assessment |
 | :--- | :--- | :---: | :---: | :---: | :--- |
@@ -425,31 +421,31 @@ When $n=40$, the standard error is $\sqrt{(0.25 \times 0.75)/40} = 0.0685$ ($6.8
 RR ScoutIQ implements a Joint Conjugate Gaussian Bayesian Model utilizing Leave-Player-and-Matches-Out (LPMO) priors (inspecting `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`).
 
 1. **Prior Distribution:** Before observing player $i$'s context performance $Y_{i, c}$, the player's true latent talent $\theta_i$ is distributed according to the population prior:
-   $$\theta_i \sim \mathcal{N}\left( \mu_{\text{LPMO}}, \; \tau^2_{\text{total}} \right) \tag{9}$$
+   $$\theta_i \sim \mathcal{N}\left( \mu_{\text{LPMO}}, \; \tau^2_{\text{total}} \right) \tag{EQ-09a}$$
    Where $\tau^2_{\text{total}} = \tau^2_{\text{player}} + \sigma^2_{\mu, \text{LPMO}}$ represents the sum of cross-player talent heterogeneity and prior mean uncertainty.
 2. **Likelihood Model:** Given latent talent $\theta_i$, observed performance $Y_{i, c}$ follows:
-   $$Y_{i, c} \mid \theta_i \sim \mathcal{N}\left( \theta_i, \; V_{i, c} \right) \tag{10}$$
+   $$Y_{i, c} \mid \theta_i \sim \mathcal{N}\left( \theta_i, \; V_{i, c} \right) \tag{EQ-09b}$$
    Where $V_{i, c}$ is the cluster-aware observation variance.
 3. **Bayesian Shrinkage Weight ($\lambda_{\text{Bayes}}$):**
-   $$\lambda_{i} = \frac{\tau^2_{\text{total}}}{\tau^2_{\text{total}} + V_{i, c}} \tag{11}$$
+   $$\lambda_{i} = \frac{\tau^2_{\text{total}}}{\tau^2_{\text{total}} + V_{i, c}} \tag{EQ-09}$$
 4. **Posterior Mean Formulation:**
-   $$\mu_{\text{post}, i} = \lambda_i Y_{i, c} + (1 - \lambda_i) \mu_{\text{LPMO}} \tag{12}$$
+   $$\Delta_{\text{EB}, i} = \lambda_i Y_{i, c} + (1 - \lambda_i) \mu_{\text{LPMO}} \tag{EQ-10}$$
    - When exposure is massive ($N_i \to \infty$), $V_{i, c} \to 0$, causing $\lambda_i \to 1.0$. The model trusts the player's observed data completely.
    - When exposure is minimal ($N_i \to 0$), $V_{i, c} \to \infty$, causing $\lambda_i \to 0.0$. The posterior estimate is shrunk completely toward the population prior $\mu_{\text{LPMO}}$, preventing flukes from dominating.
 
 ### 6.3 Observation Variance and Match-Clustering Shocks
 Crucially, sports data is not independent and identically distributed (i.i.d.). Deliveries within a single match share environmental shocks (pitch deterioration, dew, boundary dimensions, weather). RR ScoutIQ incorporates match-clustering variance through the Herfindahl-Hirschman Concentration Index ($H_{i, c}$):
 
-$$H_{i, c} = \sum_{m=1}^{M} \left( \frac{n_{i, m}}{n_{i, c}} \right)^2 \tag{13}$$
+$$H_{i, c} = \sum_{m=1}^{M} \left( \frac{n_{i, m}}{n_{i, c}} \right)^2 \tag{EQ-06}$$
 
 The observation variance $V_{i, c}$ is formulated separately by domain:
 
 - **Bowlers (Economy RPO scale):**
-  $$V_{i, c} = \frac{6.0 \times \sigma^2_{\text{within}}}{n_{i, c}} + H_{i, c} \times \sigma^2_{\text{match}} \tag{14}$$
+  $$V_{i, c}^{\text{bowl}} = \frac{6.0 \times \sigma^2_{\text{within}}}{n_{i, c}} + H_{i, c} \times \sigma^2_{\text{match}} \tag{EQ-07}$$
   Where $\sigma^2_{\text{within}} = 22.84$ and $\sigma^2_{\text{match}} = 1.45$.
 - **Batters (Boundary Probability scale $[0, 1]$):**
-  $$V_{i, c} = \frac{p_{\text{obs}}(1 - p_{\text{obs}})}{n_{i, c}} + H_{i, c} \times \sigma^2_{\text{match, batter}} \tag{15}$$
-  Where $\sigma^2_{\text{match, batter}} = 0.00075$ on the true probability scale.
+  $$V_{i, c}^{\text{bat}} = \frac{p_{\text{obs}}(1 - p_{\text{obs}})}{n_{i, c}} + H_{i, c} \times \sigma^2_{\text{match, bat}} \tag{EQ-08}$$
+  Where $\sigma^2_{\text{match, bat}} = 0.00075$ on the true probability scale.
 
 **Finite Exposure Floor:** Even if an athlete faces 500 balls in only 2 matches ($H_{i, c} \approx 0.50$), $V_{i, c}$ cannot collapse to zero; the match shock prevents false certainty.
 
@@ -468,20 +464,20 @@ To ensure that only candidates with genuine franchise-caliber sample durability 
 3. **Latent Standard Error:** $se_{\text{latent}} \le 0.65$ RPO.
 *Screened Population:* 109 qualified bowlers.
 
-### 6.5 Conservative Uncertainty Bounds (LB90 and UB90)
+### 6.5 Conservative Uncertainty Bounds ($\text{LB}_{90\%}$ and $\text{UB}_{90\%}$)
 Ranking players by raw point estimates ($\Delta_{\text{EB}}$) fails to protect against downside risk. In a franchise auction, the recruitment desk is interested in the **guaranteed performance floor** (for batters) and the **worst-case run ceiling** (for bowlers).
 
 RR ScoutIQ ranks candidates strictly by **Conservative Credibility Bounds**:
 
-$$\text{Posterior Latent Variance: } \text{Var}(\theta_i \mid \text{data}) = (1 - \lambda_i) \tau^2_{\text{total}} = \frac{\tau^2_{\text{total}} V_{i, c}}{\tau^2_{\text{total}} + V_{i, c}} \tag{16}$$
+$$\text{Var}(\theta_i \mid \text{data}) = (1 - \lambda_i) \tau^2_{\text{total}} = \frac{\tau^2_{\text{total}} V_{i, c}}{\tau^2_{\text{total}} + V_{i, c}} \tag{EQ-11a}$$
 
-$$se_{\text{latent}, i} = \sqrt{\text{Var}(\theta_i \mid \text{data})} \tag{17}$$
+$$se_{\text{latent}, i} = \sqrt{\text{Var}(\theta_i \mid \text{data})} = \sqrt{(1 - \lambda_i) \tau^2_{\text{total}}} \tag{EQ-11}$$
 
 - **Batters Ranked Descending by Lower Bound ($\text{LB}_{90\%}$):**
-  $$\text{LB}_{90\%, i} = \Delta_{\text{EB}, i} - 1.645 \times se_{\text{latent}, i} \tag{18}$$
+  $$\text{LB}_{90\%, i} = \Delta_{\text{EB}, i} - 1.645 \times se_{\text{latent}, i} \tag{EQ-12}$$
   *Higher is superior.* Maximizes the guaranteed floor of boundary value-add.
 - **Bowlers Ranked Ascending by Upper Bound ($\text{UB}_{90\%}$):**
-  $$\text{UB}_{90\%, j} = \Delta_{\text{EB}, j} + 1.645 \times se_{\text{latent}, j} \tag{19}$$
+  $$\text{UB}_{90\%, j} = \Delta_{\text{EB}, j} + 1.645 \times se_{\text{latent}, j} \tag{EQ-13}$$
   *Lower is superior.* Minimizes the worst-case ceiling on contextual run leakage.
 
 ### 6.6 The Mathematical Meaning of 1.645 SE Bounds
@@ -513,70 +509,28 @@ The complete RR ScoutIQ selection system operates in an automated, twelve-stage 
 5. **Contextual Observation Aggregation:** Map player delivery outcomes across phase, tier, and venue environments.
 6. **Contextual Performance Extraction:** Compute raw boundary conversion rate for batters and raw runs conceded per over for bowlers.
 7. **Empirical Bayes Prior Fitting:** Fit crossed-effects population priors ($\mu_{\text{LPMO}}, \tau^2_{\text{total}}$) using Leave-Player-and-Matches-Out cross-validation.
-8. **Posterior Shrinkage & Latent Variance Computation:** Calculate Bayesian shrinkage weights $\lambda_i$ (Eq. 11), posterior means $\Delta_{\text{EB}}$ (Eq. 12), and latent standard errors $se_{\text{latent}}$ (Eq. 17).
+8. **Posterior Shrinkage & Latent Variance Computation:** Calculate Bayesian shrinkage weights $\lambda_i$ (Eq. 9), posterior means $\Delta_{\text{EB}}$ (Eq. 10), and latent standard errors $se_{\text{latent}}$ (Eq. 11).
 9. **Eligibility Screening Enforcement:** Apply gates ($N_{\text{balls}} \ge 500$, $N_{\text{press}} \ge 100$, $se \le \text{threshold}$).
-10. **Conservative Credibility Bound Derivation:** Compute $\text{LB}_{90\%} = \Delta_{\text{EB}} - 1.645 \times se$ for batters and $\text{UB}_{90\%} = \Delta_{\text{EB}} + 1.645 \times se$ for bowlers.
+10. **Conservative Credibility Bound Derivation:** Compute $\text{LB}_{90\%} = \Delta_{\text{EB}} - 1.645 \times se$ for batters (Eq. 12) and $\text{UB}_{90\%} = \Delta_{\text{EB}} + 1.645 \times se$ for bowlers (Eq. 13).
 11. **Final Cohort Selection:** Sort eligible batters descending by $\text{LB}_{90\%}$ and bowlers ascending by $\text{UB}_{90\%}$; extract the official Top 10 from each cohort.
 12. **Audit Verification & Reporting:** Validate against frozen hashes and export synchronized dashboard payloads.
 
 ### 7.2 Formula Flow and Methodological Mapping
 Table 7.1 maps the progression of mathematical formulas through the selection architecture:
 
+Table 7.1: Methodological Mapping across Pipeline
+
 | Pipeline Stage | Input Variables | Governing Equation | Primary Output Metric |
 | :--- | :--- | :---: | :--- |
-| **Leverage Modeling** | $\text{RRR}, W_{\text{hand}}, B_{\text{rem}}, \text{Phase}$ | Eq. 1 (Chase), Eq. 2–3 (Setting) | Pre-delivery $\text{DLI}$ |
+| **Leverage Modeling** | $\text{RRR}, W_{\text{hand}}, B_{\text{rem}}, \text{Phase}$ | EQ-01 (Chase), EQ-02 & EQ-03 (Setting) | Pre-delivery $\text{DLI}$ |
 | **Situational Framing** | $\text{DLI}$ | Section 3.5 | Pressure Tier (T1 to T4) |
-| **Batting Metric** | Fours, Sixes, $N_{\text{press}}, \bar{p}_{\text{base}}$ | Eq. 4–5 | Raw Batting Delta $\Delta_{\text{raw}}$ |
-| **Bowling Metric** | Runs Conceded, Overs, $\bar{\text{Econ}}_{\text{base}}$ | Eq. 6–8 | Raw Bowling Delta $\Delta_{\text{raw}}$ (RPO) |
-| **Prior Calibration** | League Population | Eq. 9–10 | $\mu_{\text{LPMO}}, \tau^2_{\text{total}}$ |
-| **Variance Modeling** | $n_{i, c}, H_{i, c}, \sigma^2_{\text{match}}$ | Eq. 13, 14, 15 | Observation Variance $V_{i, c}$ |
-| **Bayesian Shrinkage** | $V_{i, c}, \tau^2_{\text{total}}, \Delta_{\text{raw}}$ | Eq. 11–12 | Posterior Mean $\Delta_{\text{EB}}$ |
-| **Latent Standard Error**| $\lambda_i, \tau^2_{\text{total}}$ | Eq. 16–17 | $se_{\text{latent}}$ |
-| **Final Ranking** | $\Delta_{\text{EB}}, se_{\text{latent}}$ | Eq. 18 (Batters), Eq. 19 (Bowlers) | $\text{LB}_{90\%}$ / $\text{UB}_{90\%}$ |
-
-### 7.3 Architectural Flowchart
-```
-[ 744 Clean Tournament Matches (2022–2026) ]
-                    │
-                    ▼
-[ Ball-by-Ball Match State Reconstruction ]
-  ├── Innings 1: Pre-Delivery Score, Phase, CRR, Wickets
-  └── Innings 2: Target, Runs Required, Balls Remaining, RRR
-                    │
-                    ▼
-[ Pre-Delivery Dynamic Leverage Index (DLI) Engine ]
-  ├── Innings 1: Par-Deficit Setting Leverage (Eq. 2–3)
-  └── Innings 2: Chase Urgency & Decay Leverage (Eq. 1)
-                    │
-                    ▼
-[ Pressure Tier Partitioning ]
-  ├── T1: Low (< 0.90)  ├── T2: Moderate (0.90–1.35)
-  ├── T3: High (1.35–2.25) └── T4: Extreme Crunch (≥ 2.25)
-                    │
-                    ▼
-[ Contextual Baseline Removal (CSPM) ]
-  ├── Batters: Contextual Boundary-Rate Value-Add (Eq. 4–5)
-  └── Bowlers: Contextual Economy Suppression (Eq. 6–8)
-                    │
-                    ▼
-[ Hierarchical Empirical Bayes Engine ]
-  ├── Leave-Player-and-Matches-Out (LPMO) Priors (Eq. 9)
-  ├── Cluster-Aware Likelihood Observation Variance (Eq. 13–15)
-  └── Posterior Mean Shrinkage (λ_Bayes) & Latent SE (Eq. 11–17)
-                    │
-                    ▼
-[ Eligibility Screening Gates ]
-  ├── Career Balls ≥ 500  ├── Pressure Balls ≥ 100 / Spells ≥ 20
-  └── Standard Error Gate (se_latent ≤ Threshold)
-                    │
-                    ▼
-[ Conservative Credibility Bound Calculation ]
-  ├── Batters: Descending LB90 = Δ_EB - 1.645 * se_latent (Eq. 18)
-  └── Bowlers: Ascending  UB90 = Δ_EB + 1.645 * se_latent (Eq. 19)
-                    │
-                    ▼
-[ Official Frozen Top 10 Shortlists (Tables 8.1 & 9.1) ]
-```
+| **Batting Metric** | Fours, Sixes, $N_{\text{press}}, \bar{p}_{\text{base}}$ | EQ-04 | Raw Batting Delta $\Delta_{\text{raw}}$ |
+| **Bowling Metric** | Runs Conceded, Overs, $\bar{\text{Econ}}_{\text{base}}$ | EQ-05 | Raw Bowling Delta $\Delta_{\text{raw}}$ (RPO) |
+| **Prior Calibration** | League Population | EQ-09a | $\mu_{\text{LPMO}}, \tau^2_{\text{total}}$ |
+| **Variance Modeling** | $n_{i, c}, H_{i, c}, \sigma^2_{\text{match}}$ | EQ-06, EQ-07, EQ-08 | Observation Variance $V_{i, c}$ |
+| **Bayesian Shrinkage** | $V_{i, c}, \tau^2_{\text{total}}, \Delta_{\text{raw}}$ | EQ-09, EQ-10 | Posterior Mean $\Delta_{\text{EB}}$ |
+| **Latent Standard Error**| $\lambda_i, \tau^2_{\text{total}}$ | EQ-11 | $se_{\text{latent}}$ |
+| **Final Ranking** | $\Delta_{\text{EB}}, se_{\text{latent}}$ | EQ-12 (Batters), EQ-13 (Bowlers) | $\text{LB}_{90\%}$ / $\text{UB}_{90\%}$ |
 
 ---
 
@@ -831,6 +785,7 @@ A naive scouting department relying purely on point estimates would conclude tha
 However, RR ScoutIQ recognizes that sports performance is a random variable subject to measurement noise. Axar Patel's sample size is **$38.8\%$ larger** than Hasaranga's, encompassing over 414 overs of high-stakes execution. Because Axar's latent standard error is substantially smaller ($0.4868$ vs. $0.5293$), his 95% posterior ceiling on run leakage is compressed downward:
 
 $$\text{UB}_{90\%}(\text{Axar}) = -0.150 + 1.645 \times 0.4868 = \mathbf{+0.651 \text{ RPO}}$$
+
 $$\text{UB}_{90\%}(\text{Hasaranga}) = -0.219 + 1.645 \times 0.5293 = \mathbf{+0.652 \text{ RPO}}$$
 
 RR ScoutIQ places Axar Patel strictly at **#5** and Wanindu Hasaranga at **#6**. This demonstrates that our Bayesian ranking engine properly rewards **sample durability and operational certainty** over volatile small-sample point estimates.
@@ -924,16 +879,18 @@ Acquire **Vaibhav Sooryavanshi** (#3, $\text{LB}_{90\%} = +0.78\%$) and **Finn A
 
 Table A.1 catalogs every governing mathematical equation implemented across the RR ScoutIQ production repository:
 
-| Formula ID | Mathematical Formulation | Variables Defined | Source Code Implementation | Pipeline Usage | Operational Purpose |
+Table A.1: Comprehensive Mathematical Formula Register
+
+| Formula ID | Mathematical Formulation | Variable Definitions | Source Code Implementation | Pipeline Usage | Operational Purpose |
 | :---: | :--- | :--- | :--- | :--- | :--- |
 | **EQ-01** | $\text{DLI}_{\text{chase}} = \text{Clamp}\left[ \left(\frac{\text{RRR}}{\text{CRR}_{\text{phase}}}\right) \left(\frac{10}{W_{\text{hand}}+1}\right)^{0.5} \left(1 + \frac{24}{B_{\text{rem}}+12}\right)^{0.5}, 0.1, 5.0 \right]$ | $\text{RRR}$: Required run rate<br/>$\text{CRR}_{\text{phase}}$: Phase par<br/>$W_{\text{hand}}$: Wickets in hand<br/>$B_{\text{rem}}$: Balls remaining | `src/m5_state/match_state_engine.py`<br/>Line 97 (`compute_dli_chase`) | Stage 3 (Leverage Modeling) | Pre-delivery pressure quantification in 2nd innings run chases. |
 | **EQ-02** | $\Phi(t) = 0.80 + 0.70 \times \left( \frac{t}{120} \right)^{1.20}$ | $t$: Elapsed legal balls ($120 - B_{\text{rem}}$) | `src/m5_state/match_state_engine.py`<br/>Line 87 (`compute_phi_setting`) | Stage 3 (Leverage Modeling) | Continuous power-law time progression factor for target setting. |
 | **EQ-03** | $\text{DLI}_{\text{setting}} = \text{Clamp}\left[ \Phi(t) \left(\frac{10}{W_{\text{hand}}+1}\right)^{0.6} \left(1 + \text{stag}\right)^{0.5}, 0.2, 3.5 \right]$ | $\text{stag} = \max(0, (\text{CRR}_{\text{phase}}-\text{CRR})/6.0)$ for $t \ge 6$ | `src/m5_state/match_state_engine.py`<br/>Line 110 (`compute_dli_setting`) | Stage 3 (Leverage Modeling) | Pre-delivery pressure quantification in 1st innings target setting. |
-| **EQ-04** | $\Delta_{\text{raw}, i} = \frac{\sum_{t} \mathbb{I}(\text{Runs}_t \ge 4)}{N_{i, \text{press}}} - \bar{p}_{\text{base}, i}$ | $\text{Runs}_t$: Runs off bat<br/>$\bar{p}_{\text{base}}$: Contextual baseline expectation | `src/models/cspm/pipeline.py`<br/>`research/phase5_14/` | Stage 6 (Performance Extraction) | Measures observed batter boundary-rate elevation above context par. |
-| **EQ-05** | $\Delta_{\text{raw}, j} = \frac{\text{RunsConceded}_j}{\text{LegalBalls}_j / 6.0} - \bar{\text{Econ}}_{\text{base}, j}$ | Runs conceded includes wides/no-balls; balls are legal | `src/models/cspm/pipeline.py`<br/>`research/phase5_14/` | Stage 6 (Performance Extraction) | Measures observed bowler contextual economy suppression in RPO. |
+| **EQ-04** | $\Delta_{\text{raw}, i} = \frac{\sum_{t \in \text{Press}} \mathbb{I}(\text{Runs}_t \ge 4)}{N_{i, \text{press}}} - \bar{p}_{\text{base}, i}$ | $\text{Runs}_t$: Runs off bat<br/>$\bar{p}_{\text{base}}$: Contextual baseline expectation | `src/models/cspm/pipeline.py` | Stage 6 (Performance Extraction) | Measures observed batter boundary-rate elevation above context par. |
+| **EQ-05** | $\Delta_{\text{raw}, j} = \frac{\text{RunsConceded}_j}{\text{LegalBalls}_j / 6.0} - \bar{\text{Econ}}_{\text{base}, j}$ | Runs conceded includes wides/no-balls; balls are legal | `src/models/cspm/pipeline.py` | Stage 6 (Performance Extraction) | Measures observed bowler contextual economy suppression in RPO. |
 | **EQ-06** | $H_{i, c} = \sum_{m=1}^{M} \left( \frac{n_{i, m}}{n_{i, c}} \right)^2$ | $n_{i, m}$: Balls in match $m$<br/>$n_{i, c}$: Total context balls | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 38 | Stage 7 (Variance Modeling) | Herfindahl index capturing match concentration to penalize cluster shocks. |
-| **EQ-07** | $V_{i, c}^{\text{bowl}} = \frac{6.0 \cdot \sigma^2_{\text{within}}}{n_{i, c}} + H_{i, c} \sigma^2_{\text{match}}$ | $\sigma^2_{\text{within}} = 22.84$<br/>$\sigma^2_{\text{match}} = 1.45$ | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 18 | Stage 7 (Variance Modeling) | Cluster-aware likelihood observation variance for bowling economy. |
-| **EQ-08** | $V_{i, c}^{\text{bat}} = \frac{p(1-p)}{n_{i, c}} + H_{i, c} \sigma^2_{\text{match, bat}}$ | $\sigma^2_{\text{match, bat}} = 0.00075$ on probability scale | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 21 | Stage 7 (Variance Modeling) | Cluster-aware likelihood observation variance for batting boundary rate. |
+| **EQ-07** | $V_{i, c}^{\text{bowl}} = \frac{6.0 \cdot \sigma^2_{\text{within}}}{n_{i, c}} + H_{i, c} \cdot \sigma^2_{\text{match}}$ | $\sigma^2_{\text{within}} = 22.84$<br/>$\sigma^2_{\text{match}} = 1.45$ | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 18 | Stage 7 (Variance Modeling) | Cluster-aware likelihood observation variance for bowling economy. |
+| **EQ-08** | $V_{i, c}^{\text{bat}} = \frac{p_{\text{obs}}(1-p_{\text{obs}})}{n_{i, c}} + H_{i, c} \cdot \sigma^2_{\text{match, bat}}$ | $\sigma^2_{\text{match, bat}} = 0.00075$ on probability scale | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 21 | Stage 7 (Variance Modeling) | Cluster-aware likelihood observation variance for batting boundary rate. |
 | **EQ-09** | $\lambda_i = \frac{\tau^2_{\text{total}}}{\tau^2_{\text{total}} + V_{i, c}}$ | $\tau^2_{\text{total}} = \tau^2_{\text{player}} + \sigma^2_{\mu, \text{LPMO}}$ | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 12 | Stage 8 (Bayesian Shrinkage) | Empirical Bayes shrinkage weight balancing sample signal vs. cohort prior. |
 | **EQ-10** | $\Delta_{\text{EB}, i} = \lambda_i \Delta_{\text{raw}, i} + (1 - \lambda_i) \mu_{\text{LPMO}}$ | $\mu_{\text{LPMO}}$: Leave-player/match-out prior mean | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 13 | Stage 8 (Posterior Mean) | Regularized posterior mean performance estimate. |
 | **EQ-11** | $se_{\text{latent}, i} = \sqrt{(1 - \lambda_i) \tau^2_{\text{total}}}$ | Posterior latent conditional standard error | `src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py`<br/>Line 14 | Stage 8 (Uncertainty) | Quantifies residual latent estimation error for conservative bound derivation. |

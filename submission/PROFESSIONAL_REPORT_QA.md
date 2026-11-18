@@ -14,9 +14,9 @@
 
 | Audit Domain & Requirement | Result | Verified Metric / Observation |
 | :--- | :---: | :--- |
-| **Deliverables - PDF Generated & Non-Empty** | **PASS** | Size: 68583 bytes |
-| **Deliverables - DOCX Generated & Non-Empty** | **PASS** | Size: 57723 bytes |
-| **Deliverables - Markdown Source Generated & Non-Empty** | **PASS** | Size: 88740 bytes |
+| **Deliverables - PDF Generated & Non-Empty** | **PASS** | Size: 208265 bytes |
+| **Deliverables - DOCX Generated & Non-Empty** | **PASS** | Size: 57039 bytes |
+| **Deliverables - Markdown Source Generated & Non-Empty** | **PASS** | Size: 86894 bytes |
 | **PDF Page Count** | **PASS** | Total pages: 19 (Target: 19 A4 pages) |
 | **PDF Text Extraction - No Blank Pages** | **PASS** | Min chars per page: 1852, Max: 4178 |
 | **Cryptographic Hash - Canonical Dataset (match_state_full.csv)** | **PASS** | ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4 |
@@ -33,9 +33,9 @@
 ## Detailed Verification Details
 
 ### 1. Document Architecture & Formatting
-- **PDF Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.pdf` (68583 bytes, 19 A4 pages)
-- **DOCX Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.docx` (57723 bytes)
-- **Markdown Source:** `submission/RR_ScoutIQ_Professional_Methodology_Report.md` (88740 bytes, 12 Chapters + Appendices)
+- **PDF Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.pdf` (208265 bytes, 19 A4 pages)
+- **DOCX Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.docx` (57039 bytes)
+- **Markdown Source:** `submission/RR_ScoutIQ_Professional_Methodology_Report.md` (86894 bytes, 12 Chapters + Appendices)
 - **Visual Standards:** White background throughout, charcoal/black typography, academic table formatting with borders, numbered equations, running headers ('RR ScoutIQ — Quantitative Pressure Performance Intelligence System'), running footers with dynamic page numbering ('Page X of 19'), and Table of Contents.
 
 ### 2. Player Cohort Integrity
