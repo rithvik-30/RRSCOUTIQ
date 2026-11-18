@@ -14,11 +14,11 @@
 
 | Audit Domain & Requirement | Result | Verified Metric / Observation |
 | :--- | :---: | :--- |
-| **Deliverables - PDF Generated & Non-Empty** | **PASS** | Size: 208265 bytes |
-| **Deliverables - DOCX Generated & Non-Empty** | **PASS** | Size: 57039 bytes |
-| **Deliverables - Markdown Source Generated & Non-Empty** | **PASS** | Size: 86894 bytes |
-| **PDF Page Count** | **PASS** | Total pages: 19 (Target: 19 A4 pages) |
-| **PDF Text Extraction - No Blank Pages** | **PASS** | Min chars per page: 1852, Max: 4178 |
+| **Deliverables - PDF Generated & Non-Empty** | **PASS** | Size: 205548 bytes |
+| **Deliverables - DOCX Generated & Non-Empty** | **PASS** | Size: 55791 bytes |
+| **Deliverables - Markdown Source Generated & Non-Empty** | **PASS** | Size: 85185 bytes |
+| **PDF Page Count** | **PASS** | Total pages: 18 (Target: 18 A4 pages) |
+| **PDF Text Extraction - No Blank Pages** | **PASS** | Min chars per page: 2044, Max: 4178 |
 | **Cryptographic Hash - Canonical Dataset (match_state_full.csv)** | **PASS** | ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4 |
 | **Cryptographic Hash - Frozen Official Competition Report** | **PASS** | 0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d |
 | **Player Ranking Synchrony - Top 10 Batters (Descending LB90)** | **PASS** | All 10 batters, IDs, and LB90 values verified |
@@ -33,10 +33,10 @@
 ## Detailed Verification Details
 
 ### 1. Document Architecture & Formatting
-- **PDF Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.pdf` (208265 bytes, 19 A4 pages)
-- **DOCX Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.docx` (57039 bytes)
-- **Markdown Source:** `submission/RR_ScoutIQ_Professional_Methodology_Report.md` (86894 bytes, 12 Chapters + Appendices)
-- **Visual Standards:** White background throughout, charcoal/black typography, academic table formatting with borders, numbered equations, running headers ('RR ScoutIQ — Quantitative Pressure Performance Intelligence System'), running footers with dynamic page numbering ('Page X of 19'), and Table of Contents.
+- **PDF Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.pdf` (205548 bytes, 18 A4 pages)
+- **DOCX Deliverable:** `submission/RR_ScoutIQ_Professional_Methodology_Report.docx` (55791 bytes)
+- **Markdown Source:** `submission/RR_ScoutIQ_Professional_Methodology_Report.md` (85185 bytes, 12 Chapters + Appendices)
+- **Visual Standards:** White background throughout, charcoal/black typography, academic table formatting with borders, numbered equations, running headers ('RR ScoutIQ — Quantitative Pressure Performance Intelligence System'), running footers with dynamic page numbering ('Page X of 18'), and Table of Contents.
 
 ### 2. Player Cohort Integrity
 - Official Full 2022–2026 Cohort: 10 Batters (ranked descending by LB90) and 10 Bowlers (ranked ascending by UB90) verified bitwise against `FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md`.

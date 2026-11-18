@@ -88,7 +88,6 @@
     - 12.1 Executive Summary of Technical Findings
     - 12.2 Practical Recruitment Directives for Rajasthan Royals
 13. [Appendix A — Comprehensive Mathematical Formula Register](#appendix-a--comprehensive-mathematical-formula-register)
-14. [Appendix B — Governance, Hash Verification & Audit Trail](#appendix-b--governance-hash-verification--audit-trail)
 
 ---
 
@@ -898,21 +897,3 @@ Table A.1: Comprehensive Mathematical Formula Register
 | **EQ-13** | $\text{UB}_{90\%, j} = \Delta_{\text{EB}, j} + 1.645 \times se_{\text{latent}, j}$ | $Z = 1.645$ (95% one-sided upper credible bound) | `research/phase5_14_5/authoritative_gate.py`<br/>Line 82 | Stage 10 (Ranking Bounds) | Bowler ranking metric (ascending order). Minimizes worst-case leakage. |
 
 ---
-
-# Appendix B — Governance, Hash Verification & Audit Trail
-
-To preserve complete forensic auditability and guarantee that no ranking, dataset, or statistical artifact was modified during report generation, Table B.1 details the verified cryptographic checksums:
-
-Table B.1: System Cryptographic Hash Audit Register
-
-| Artifact Name | Relative Repository Path | Authoritative SHA-256 Hash | Verification Status |
-| :--- | :--- | :--- | :---: |
-| **Canonical Dataset** | `data/processed/m5_3/match_state_full.csv` | `ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4` | **BITWISE MATCH** |
-| **Frozen Official Report** | `FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md` | `0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d` | **BITWISE MATCH** |
-| **Production Gate Module** | `research/phase5_14_5/authoritative_gate.py` | Verified Authoritative Governance Gate | **BITWISE MATCH** |
-| **Out-of-Sample Holdout** | `research/phase5_13/holm_adjusted_results.json` | Authoritative 10k Block Bootstrap Results | **BITWISE MATCH** |
-| **Live Web Platform** | `https://taupe-dodol-c84063.netlify.app/` | Deployed Netlify Production Dashboard | **HTTP 200 OK** |
-| **Git Repository Remote** | `https://github.com/rithvik-30/RRSCOUTIQ` | Synchronized `main` branch | **COMMITTED & PUSHED** |
-
-**Formal Verification Verdict:**  
-This document represents an exhaustive, mathematically coherent, and empirically validated research report. All formulas, data pipelines, and player rankings are 100% synchronized with the RR ScoutIQ production architecture.
