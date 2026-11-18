@@ -1,0 +1,5 @@
+scope,clamp_type,formula_domain,total_deliveries,clamped_count,clamped_pct,driver_conditions,phase_distribution
+Chase Innings,Lower Bound (0.10),"DLI_chase in [0.10, 5.00]",83542,260,0.3112,"Target reached or virtually reached (RRR -> 0, runs required <= 0)","{'Middle': np.int64(140), 'Death': np.int64(107), 'Powerplay': np.int64(13)}"
+Chase Innings,Upper Bound (5.00),"DLI_chase in [0.10, 5.00]",83542,4059,4.8586,"Severe crisis states: RRR >= 18.0, 1-2 wickets in hand, or final over desperation","{'Death': np.int64(3776), 'Middle': np.int64(283)}"
+Setting Innings,Lower Bound (0.20),"DLI_setting in [0.20, 3.50]",92108,0,0.0,Theoretically inactive: min setting DLI is Phi(0) * (10/11)^0.6 = 0.80 * 0.944 = 0.755 > 0.20,{}
+Setting Innings,Upper Bound (3.50),"DLI_setting in [0.20, 3.50]",92108,1262,1.3701,Extreme tail collapse: 8-9 wickets lost in death overs with severe stagnation,"{'Death': np.int64(1225), 'Middle': np.int64(37)}"

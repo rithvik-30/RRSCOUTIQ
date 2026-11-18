@@ -1,0 +1,16 @@
+{
+  "status": "PASSED",
+  "is_passed": true,
+  "parse_success": true,
+  "exit_code": 0,
+  "tests_collected": 171,
+  "tests_passed": 171,
+  "tests_failed": 0,
+  "tests_errors": 0,
+  "tests_skipped": 0,
+  "allow_skipped": true,
+  "duration_seconds": 25.08,
+  "stdout_tail": "........................................................................ [ 42%]\n........................................................................ [ 84%]\n...........................                                              [100%]\n171 passed in 25.08s",
+  "stderr": "",
+  "error": null
+}

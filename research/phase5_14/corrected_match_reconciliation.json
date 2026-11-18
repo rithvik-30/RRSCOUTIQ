@@ -1,0 +1,195 @@
+{
+  "2025": {
+    "season": 2025,
+    "raw_matches_count": 182,
+    "raw_deliveries_count": 40840,
+    "dli_valid_matches_count": 173,
+    "dli_valid_deliveries_count": 39913,
+    "clean_legal_matches_count": 173,
+    "clean_legal_deliveries_count": 38214,
+    "dli_valid_non_legal_deliveries_count": 1699,
+    "pressure_contributing_matches_count": 172,
+    "pressure_deliveries_count": 32332,
+    "zero_pressure_matches_count": 1,
+    "zero_pressure_match_ids": [
+      41979
+    ],
+    "zero_pressure_matches_details": [
+      {
+        "match_id": 41979,
+        "total_deliveries": 29,
+        "legal_deliveries": 29,
+        "pressure_deliveries": 0,
+        "tier_distribution": {
+          "Tier 1: Low": 29
+        },
+        "match_date": "2025-11-08"
+      }
+    ],
+    "excluded_matches_count": 9,
+    "excluded_match_ids": [
+      36208,
+      39809,
+      39983,
+      39985,
+      40727,
+      40749,
+      41975,
+      46311,
+      46749
+    ],
+    "excluded_matches_details": [
+      {
+        "match_id": 36208,
+        "total_deliveries": 80,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-09-10",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 39809,
+        "total_deliveries": 176,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-03-18",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 39983,
+        "total_deliveries": 56,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-02-22",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 39985,
+        "total_deliveries": 113,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-02-25",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 40727,
+        "total_deliveries": 160,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-04-18",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 40749,
+        "total_deliveries": 244,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-05-06",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 41975,
+        "total_deliveries": 60,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-10-29",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 46311,
+        "total_deliveries": 13,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-10-03",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 46749,
+        "total_deliveries": 25,
+        "dli_valid_deliveries": 0,
+        "match_date": "2025-10-23",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      }
+    ]
+  },
+  "2026": {
+    "season": 2026,
+    "raw_matches_count": 134,
+    "raw_deliveries_count": 30816,
+    "dli_valid_matches_count": 126,
+    "dli_valid_deliveries_count": 29603,
+    "clean_legal_matches_count": 126,
+    "clean_legal_deliveries_count": 28243,
+    "dli_valid_non_legal_deliveries_count": 1360,
+    "pressure_contributing_matches_count": 126,
+    "pressure_deliveries_count": 24133,
+    "zero_pressure_matches_count": 0,
+    "zero_pressure_match_ids": [],
+    "zero_pressure_matches_details": [],
+    "excluded_matches_count": 8,
+    "excluded_match_ids": [
+      41851,
+      48610,
+      48611,
+      50137,
+      50190,
+      50371,
+      50408,
+      54711
+    ],
+    "excluded_matches_details": [
+      {
+        "match_id": 41851,
+        "total_deliveries": 121,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-02-01",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 48610,
+        "total_deliveries": 194,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-01-30",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 48611,
+        "total_deliveries": 233,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-02-01",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 50137,
+        "total_deliveries": 144,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-04-07",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 50190,
+        "total_deliveries": 161,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-05-02",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 50371,
+        "total_deliveries": 241,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-05-07",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 50408,
+        "total_deliveries": 55,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-10-17",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      },
+      {
+        "match_id": 54711,
+        "total_deliveries": 64,
+        "dli_valid_deliveries": 0,
+        "match_date": "2026-09-22",
+        "exclusion_reason": "Incomplete DLI state or rain curtailment (0 DLI valid deliveries)"
+      }
+    ]
+  },
+  "audit_explanations": {
+    "task_1_2025_zero_pressure_match_reconciliation": "The true zero-pressure match in the 2025 test season is Match ID 41979 (dated 2025-11-08). It contained exactly 29 deliveries, all in Tier 1: Low, with zero deliveries in Tiers 2, 3, or 4. The prior textual reference to '43815' was a typographic error in the script's hardcoded string; Match 43815 does not exist in the dataset. Both 173 (total clean DLI matches) and 172 (pressure-contributing matches) are correct under their respective definitions.",
+    "task_2_2026_counts_reconciliation": "In the 2026 test season, the canonical dataset contains exactly 134 raw matches (30,816 deliveries). Exactly 8 matches were excluded due to rain curtailment / missing DLI state, leaving 126 DLI-valid matches. These 126 matches contain 28,243 clean legal deliveries and 1,360 non-legal deliveries (wides/no-balls), totaling 29,603 DLI deliveries. All 126 matches contain pressure deliveries, totaling 24,133 pressure balls. The figures '132' and '28,452' cited in the Phase 5.13 report table were typographic errors in the markdown prose; the Phase 5.13 JSON correctly reported 134 raw matches and 28,243 clean legal deliveries."
+  }
+}

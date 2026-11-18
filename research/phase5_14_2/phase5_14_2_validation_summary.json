@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "audit_phase": "Phase 5.14.2 \u2014 Final Freeze-Gate Hardening & Epistemic Uncertainty Audit",
+    "timestamp": "2026-11-18",
+    "verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "gate_policy": "STRICT_FAIL_CLOSED_WITH_EXPLICIT_EXCEPTION_HANDLING"
+  },
+  "hash_gate_results": {
+    "verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "primary_reason": "All canonical assets verified intact and unmodified against frozen cryptographic hashes.",
+    "failures_count": 0,
+    "failures": [],
+    "canonical_dataset": {
+      "path": "data\\processed\\m5_3\\match_state_full.csv",
+      "accessible": true,
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true,
+      "error": null
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "accessible": true,
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true,
+      "error": null
+    }
+  },
+  "uncertainty_quantification_audit": {
+    "status": "VERIFIED_MATHEMATICALLY",
+    "source_file": "src/m5_5b_4_3_8/epistemic_context_engine_b4_3_8.py",
+    "class_name": "ContextualPlayerBaselineRecordB438",
+    "method_name": "_classify_and_shrink",
+    "quantity_analyzed": "latent_se",
+    "exact_mathematical_definition": "Posterior standard deviation of latent player skill parameter under conjugate normal model",
+    "formula": "latent_se = sqrt((1 - shrinkage_weight) * tau2_total)",
+    "empirical_bayes_assumptions": [
+      "Hyperparameter tau2_player estimated from historical population and plugged into conjugate Gaussian model",
+      "Prior mean variance sigma2_mu_LPMO folded into total prior variance tau2_total = tau2_player + sigma2_mu_LPMO",
+      "Observation variance V incorporates within-spell binomial/normal variance and match-level HHI concentration (H * sigma2_match)",
+      "Conditional on plug-in hyperparameters, latent skill posterior is Gaussian: theta_i | Y ~ N(shrunk_estimate, latent_se^2)"
+    ],
+    "terminology_verdict": "Credible-bound terminology is confirmed mathematically; 1.645 represents a one-sided 95% credible bound (and endpoint of a central 90% credible interval)."
+  },
+  "statistical_classification_summary": {
+    "statistically_significant_post_holm": 6,
+    "directional_post_holm": 0,
+    "non_significant": 2,
+    "total_primary_comparisons": 8,
+    "counts_verified": true
+  }
+}

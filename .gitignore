@@ -1,0 +1,39 @@
+# Python virtual environments
+RRScoutIQenv/
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Temporary and log files
+*.tmp
+*.temp
+*.swp
+*~
+~$*
+*.log
+scratch/
+
+# Archives and audit packages
+audit_packages/
+*.zip
+
+# Secrets and environment configs
+.env
+.env.*
+*.env
+*.pem
+*.key
+credentials*
+*token*
+
+# Data directories (raw, extracted, processed, intermediate)
+data/

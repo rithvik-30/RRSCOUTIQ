@@ -1,0 +1,54 @@
+{
+  "audit_phase": "Phase 5.14.5.2 \u2014 Final Terminal Validation & Stale Approval Safety",
+  "component": "Atomic Publication & Double Invalidation Safety with Journal Restart Protection (Fix B)",
+  "failure_model": {
+    "description": "Double failure during manifest commit: os.replace() fails AND fallback unlinking fails (e.g. permission lock), combined with journal update failure and process restart",
+    "vulnerability_remediated": "Older valid manifest (Generation A) surviving on disk while new attempt (Generation B) fails, or fresh process accepting stale approval",
+    "prevention_mechanism": [
+      "Attempt identity generation prior to file modification (gen_id)",
+      "Durable atomic pre-publication attempt recording with fsync synchronization",
+      "Immediate publication abort before modifying artifacts if initial journal write fails (Test A)",
+      "In-progress attempt tracking preventing stale approval survival across application restart (Test B)",
+      "Unverifiable fail-closed behavior on missing, corrupted, or truncated journal (Test C)",
+      "Successful clean recovery and cross-artifact generation ID verification (Test D)",
+      "Explicit recording of failed_recovery_operations and invalidation_succeeded = False",
+      "Authoritative reader checks attempt state before accepting manifest",
+      "Fails closed with UNVERIFIABLE state when on-disk manifest belongs to previous generation"
+    ]
+  },
+  "mandatory_adversarial_tests": [
+    {
+      "test_id": "Test A",
+      "test_name": "test_journal_write_failure_before_publication_aborts",
+      "description": "Inject failure when recording Generation B's initial IN_PROGRESS journal state. Verifies publication aborts before overwriting Generation A's artifacts and reader cannot mistake incomplete B for successful B.",
+      "status": "PASSED"
+    },
+    {
+      "test_id": "Test B",
+      "test_name": "test_journal_write_failure_during_recovery_fresh_process_fails_closed",
+      "description": "Fail summary replacement, manifest replacement, manifest unlink, and journal update during recovery. Clear in-memory state. Verifies old Generation A approval is rejected by fresh process.",
+      "status": "PASSED"
+    },
+    {
+      "test_id": "Test C",
+      "test_name": "test_corrupt_journal_after_restart_returns_unverifiable",
+      "description": "Corrupt or truncate on-disk journal. Clear in-memory state. Verifies reader returns UNVERIFIABLE and never returns approval.",
+      "status": "PASSED"
+    },
+    {
+      "test_id": "Test D",
+      "test_name": "test_successful_recovery_after_failed_attempt",
+      "description": "Following failed attempt, perform clean publication. Verifies new generation is committed and accepted, with generation ID matching across all artifacts.",
+      "status": "PASSED"
+    },
+    {
+      "test_id": "Double Invalidation",
+      "test_name": "test_stale_approval_double_failure_fails_closed",
+      "description": "11-step end-to-end simulation of double invalidation failure with os.replace and unlink errors.",
+      "status": "PASSED"
+    }
+  ],
+  "tests_executed_count": 5,
+  "tests_passed_count": 5,
+  "status": "PASSED"
+}

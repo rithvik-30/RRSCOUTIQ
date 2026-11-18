@@ -1,0 +1,17 @@
+section,metric_or_tier,sample_size_n,pct_of_total,runs_mean,wkts_mean,dot_pct,bnd_pct,notes
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=0,1484,0.8828,,,,,Innings Terminal Delivery (0 forward legal balls)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=1,1481,0.881,13.6367,1.5436,29.3,34.1,Partial Window (Lengths 1..5)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=2,1481,0.881,12.1884,1.106,31.16,28.63,Partial Window (Lengths 1..5)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=3,1479,0.8798,11.8066,0.975,31.94,27.32,Partial Window (Lengths 1..5)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=4,1478,0.8792,11.6245,0.9073,32.32,26.69,Partial Window (Lengths 1..5)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=5,1476,0.878,11.3821,0.8366,32.51,25.92,Partial Window (Lengths 1..5)
+1_WINDOW_LENGTH_DISTRIBUTION,Window Length k=6,159225,94.7182,8.9505,0.3236,34.49,18.98,Exact Complete Window
+2_EXACT_6_BALL_TIER_REPRODUCTION,Tier 1: Low,21435,13.46,8.6432,0.269,41.33,20.54,Exact 6 Legal Balls (Primary Analysis)
+2_EXACT_6_BALL_TIER_REPRODUCTION,Tier 2: Medium,62928,39.52,8.69,0.2728,34.79,18.47,Exact 6 Legal Balls (Primary Analysis)
+2_EXACT_6_BALL_TIER_REPRODUCTION,Tier 3: High,56847,35.7,9.2386,0.35,31.54,18.93,Exact 6 Legal Balls (Primary Analysis)
+2_EXACT_6_BALL_TIER_REPRODUCTION,Tier 4: Extreme,18015,11.31,9.3171,0.4825,34.64,19.09,Exact 6 Legal Balls (Primary Analysis)
+2_EXACT_6_BALL_TIER_REPRODUCTION,Total Exact 6-Ball Sample,159225,100.0,8.9505,0.3236,34.49,18.98,All Valid Legal Deliveries with Runway >= 6
+3_EXPOSURE_SCALING_RECONCILIATION,Tier 1: Low (Partial vs Exact),698,15.75,13.5314,0.2297,23.4,34.99,"Partial Raw Wkts=0.152, Scaled Wkts=0.23, Exact-6 Wkts=0.269, Combined Wkts=0.268"
+3_EXPOSURE_SCALING_RECONCILIATION,Tier 2: Medium (Partial vs Exact),202,4.56,15.2832,0.3228,20.21,38.75,"Partial Raw Wkts=0.223, Scaled Wkts=0.323, Exact-6 Wkts=0.273, Combined Wkts=0.273"
+3_EXPOSURE_SCALING_RECONCILIATION,Tier 3: High (Partial vs Exact),1296,29.24,13.5251,0.8155,23.99,31.3,"Partial Raw Wkts=0.549, Scaled Wkts=0.816, Exact-6 Wkts=0.35, Combined Wkts=0.36"
+3_EXPOSURE_SCALING_RECONCILIATION,Tier 4: Extreme (Partial vs Exact),2237,50.46,9.5585,1.2228,40.89,20.25,"Partial Raw Wkts=0.796, Scaled Wkts=1.223, Exact-6 Wkts=0.483, Combined Wkts=0.564"

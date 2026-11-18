@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "audit_phase": "Phase 5.14.3 \u2014 Final Approval Consistency Hardening",
+    "timestamp": "2026-11-18",
+    "final_verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "governance_rule": "TWO_TIER_SEPARATION (Asset Integrity & Audit Authorization)"
+  },
+  "asset_integrity": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "canonical_dataset": {
+      "path": "data\\processed\\m5_3\\match_state_full.csv",
+      "accessible": true,
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true,
+      "error": null
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "accessible": true,
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true,
+      "error": null
+    }
+  },
+  "audit_authorization": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "checks": {
+      "asset_integrity_prerequisite": true,
+      "statistical_classifications_6_0_2": true,
+      "numerical_variance_floor_1e8": true,
+      "official_selections_invariant": true,
+      "regression_test_suite_passed": true
+    }
+  },
+  "exact_uncertainty_quantification": {
+    "mathematical_formula": "latent_se = sqrt(max(1e-8, latent_posterior_variance))",
+    "variance_floor": 1e-08,
+    "floor_purpose": "Prevents numerical underflow when posterior variance collapses in extreme high-volume contexts.",
+    "conditioning_assumptions": [
+      "Gaussian posterior of latent skill theta_i | Y ~ N(shrunk_estimate, latent_se^2)",
+      "Empirical Bayes plug-in tau2_player estimated via LPMO",
+      "Observation variance V incorporates binomial/normal sampling and cluster HHI"
+    ],
+    "terminology": "One-sided 95% credible bound (conservative endpoint of central 90% credible interval)."
+  }
+}

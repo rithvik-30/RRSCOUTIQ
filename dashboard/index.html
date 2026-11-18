@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RR ScoutIQ — Pressure Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="light-theme">
+
+  <!-- ======================================================================
+       NAVIGATION BAR (STICKY, ELEGANT, RESPONSIVE)
+       ====================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand-wrap" id="brandLogo">
+        <span class="brand-badge">RR</span>
+        <span class="brand-title">ScoutIQ</span>
+        <span class="brand-subtitle">Pressure Intelligence</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#overview" class="nav-link active" data-tab="overview">Overview</a>
+        <a href="#batters" class="nav-link" data-tab="batters">Top 10 Batters</a>
+        <a href="#bowlers" class="nav-link" data-tab="bowlers">Top 10 Bowlers</a>
+        <a href="#explorer" class="nav-link" data-tab="explorer">Player Explorer</a>
+        <a href="#methodology" class="nav-link" data-tab="methodology">Methodology</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span id="themeToggleText">Dark Mode</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="#overview" class="nav-link active" data-tab="overview">Overview</a>
+    <a href="#batters" class="nav-link" data-tab="batters">Top 10 Batters</a>
+    <a href="#bowlers" class="nav-link" data-tab="bowlers">Top 10 Bowlers</a>
+    <a href="#explorer" class="nav-link" data-tab="explorer">Player Explorer</a>
+    <a href="#methodology" class="nav-link" data-tab="methodology">Methodology</a>
+  </div>
+
+  <!-- ======================================================================
+       MAIN CONTENT CONTAINER
+       ====================================================================== -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- ==================================================================
+           PAGE 1: OVERVIEW
+           ================================================================== -->
+      <section id="section-overview" class="page-section active">
+        
+        <!-- Elegant Split-Layout Hero -->
+        <div class="hero-split-grid">
+          <!-- Left Hero Card -->
+          <div class="hero-left-card">
+            <div>
+              <div class="hero-eyebrow">
+                <span class="hero-eyebrow-dot"></span>
+                Rajasthan Royals CRP SupeRR Selector Season 2
+              </div>
+              <h1 class="hero-title">Find the Players Who Deliver Under Pressure.</h1>
+              <p class="hero-description">
+                A Bayesian delivery-level intelligence system designed to isolate and rank players who perform when match pressure is highest. Built on pre-delivery Dynamic Leverage Index (DLI) reconstruction and crossed-effects empirical Bayes shrinkage across 744 clean modeling matches.
+              </p>
+            </div>
+            <div class="hero-actions">
+              <button class="btn-primary" id="heroBtnBatters">
+                Explore Top Batters
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <button class="btn-secondary" id="heroBtnBowlers">
+                Explore Top Bowlers
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <button class="btn-secondary" id="heroBtnExplorer">Open Player Explorer</button>
+            </div>
+          </div>
+
+          <!-- Right Hero Card: DLI Leverage Spectrum Visual -->
+          <div class="hero-right-card">
+            <div class="spectrum-header">
+              <span class="spectrum-title">The DLI Match Pressure Spectrum</span>
+              <span class="spectrum-tag">744 Matches • 168k Deliveries</span>
+            </div>
+            
+            <div class="tier-scale-list">
+              <div class="tier-scale-item">
+                <div>
+                  <span class="tier-badge t1-badge">T1 Normal</span>
+                  <span style="font-size:0.8rem; font-weight:600; color:var(--text-primary); margin-left:8px;">DLI &lt; 0.90</span>
+                </div>
+                <div class="tier-meta">
+                  <strong>76,140 balls</strong> (45.3% vol)
+                </div>
+              </div>
+
+              <div class="tier-scale-item">
+                <div>
+                  <span class="tier-badge t2-badge">T2 Moderate</span>
+                  <span style="font-size:0.8rem; font-weight:600; color:var(--text-primary); margin-left:8px;">0.90 ≤ DLI &lt; 1.35</span>
+                </div>
+                <div class="tier-meta">
+                  <strong>56,846 balls</strong> (33.8% vol)
+                </div>
+              </div>
+
+              <div class="tier-scale-item">
+                <div>
+                  <span class="tier-badge t3-badge">T3 High</span>
+                  <span style="font-size:0.8rem; font-weight:600; color:var(--text-primary); margin-left:8px;">1.35 ≤ DLI &lt; 2.25</span>
+                </div>
+                <div class="tier-meta">
+                  <strong>23,281 balls</strong> (13.8% vol)
+                </div>
+              </div>
+
+              <div class="tier-scale-item">
+                <div>
+                  <span class="tier-badge t4-badge">T4 Extreme</span>
+                  <span style="font-size:0.8rem; font-weight:600; color:var(--text-primary); margin-left:8px;">DLI ≥ 2.25</span>
+                </div>
+                <div class="tier-meta">
+                  <strong>11,837 balls</strong> (7.0% vol)
+                </div>
+              </div>
+            </div>
+
+            <div class="spectrum-footer-box">
+              <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">Pressure Delta Impact:</div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:2px;">
+                <span>#1 Batter Abhishek Sharma:</span>
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--primary);">178.56 → 186.19 SR (+7.63)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span>#1 Bowler Sunil Narine:</span>
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--primary);">7.21 → 6.63 RPO (-0.58 Econ)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 KPI Cards Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Clean Matches</span>
+            <div class="kpi-value">744</div>
+            <div class="kpi-subtext">362 IPL (48.66%) • 381 T20I (51.21%) • 1 Reg (0.13%)</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Legal Deliveries</span>
+            <div class="kpi-value">168,104</div>
+            <div class="kpi-subtext">Filtered pre-delivery ball states (excludes 32 rain matches)</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Eligible Batters</span>
+            <div class="kpi-value">106</div>
+            <div class="kpi-subtext">≥ 500 career balls • ≥ 100 pressure balls • SE ≤ 0.035</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Eligible Bowlers</span>
+            <div class="kpi-value">109</div>
+            <div class="kpi-subtext">≥ 500 career balls • ≥ 100 pressure balls • SE ≤ 0.65 RPO</div>
+          </div>
+        </div>
+
+        <!-- Featured Performers 2-Column Split -->
+        <div class="overview-grid">
+          <!-- Batting Highlights Preview -->
+          <div class="preview-card">
+            <div>
+              <div class="preview-card-header">
+                <h2 class="preview-title">Leading Pressure-Performing Batters</h2>
+                <a class="link-btn" id="previewLinkBatters">View Leaderboard →</a>
+              </div>
+              <p class="preview-explain-text">
+                Ranked by 95% one-sided lower posterior credible bound (LB90) for contextual batting value-add. Only three batters in elite cricket establish confirmed positive lower bounds above zero:
+              </p>
+              <div class="preview-list">
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#1 Abhishek Sharma</div>
+                    <div class="preview-player-sub">Dual-discipline • 1,427 pressure balls (186.19 SR)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+2.72% LB90</div>
+                    <span class="badge-status confirmed" style="font-size:0.68rem; padding:2px 7px;">Confirmed Positive</span>
+                  </div>
+                </div>
+
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#2 Suryakumar Yadav</div>
+                    <div class="preview-player-sub">Specialist Bat • 2,367 pressure balls (166.92 SR)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+1.05% LB90</div>
+                    <span class="badge-status confirmed" style="font-size:0.68rem; padding:2px 7px;">Confirmed Positive</span>
+                  </div>
+                </div>
+
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#3 Vaibhav Sooryavanshi</div>
+                    <div class="preview-player-sub">Specialist Bat • 392 pressure balls (220.92 SR)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+0.78% LB90</div>
+                    <span class="badge-status confirmed" style="font-size:0.68rem; padding:2px 7px;">Confirmed Positive</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border); font-size:0.76rem; color:var(--text-muted);">
+              Ranks 4–10 (Finn Allen through Andre Russell) maintain negative LB90 bounds and represent relative leaders.
+            </div>
+          </div>
+
+          <!-- Bowling Highlights Preview -->
+          <div class="preview-card">
+            <div>
+              <div class="preview-card-header">
+                <h2 class="preview-title">Leading Pressure-Performing Bowlers</h2>
+                <a class="link-btn" id="previewLinkBowlers">View Leaderboard →</a>
+              </div>
+              <p class="preview-explain-text">
+                Ranked by 95% one-sided upper posterior credible bound (UB90) for contextual economy delta. Lower is superior; all 10 candidates are relative leaders holding elite economy under pressure:
+              </p>
+              <div class="preview-list">
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#1 Sunil Narine</div>
+                    <div class="preview-player-sub">Dual-discipline • 1,394 pressure balls (6.63 RPO)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+0.296 UB90</div>
+                    <span class="badge-status relative" style="font-size:0.68rem; padding:2px 7px;">Relative Leader</span>
+                  </div>
+                </div>
+
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#2 Jasprit Bumrah</div>
+                    <div class="preview-player-sub">Specialist Bowl • 1,338 pressure balls (6.96 RPO)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+0.393 UB90</div>
+                    <span class="badge-status relative" style="font-size:0.68rem; padding:2px 7px;">Relative Leader</span>
+                  </div>
+                </div>
+
+                <div class="preview-row-item">
+                  <div>
+                    <div class="preview-player-name">#3 Mustafizur Rahman</div>
+                    <div class="preview-player-sub">Specialist Bowl • 1,247 pressure balls (7.33 RPO)</div>
+                  </div>
+                  <div class="preview-metric-wrap">
+                    <div class="preview-metric-val">+0.592 UB90</div>
+                    <span class="badge-status relative" style="font-size:0.68rem; padding:2px 7px;">Relative Leader</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border); font-size:0.76rem; color:var(--text-muted);">
+              All 10 bowlers maintain positive UB90 bounds crossing zero, ranking as elite suppressors relative to match context.
+            </div>
+          </div>
+        </div>
+
+        <!-- Methodology 3-Step Preview -->
+        <div class="methodology-preview-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div>
+              <h2 style="font-size:1.2rem; font-weight:800; color:var(--text-primary);">Three Pillars of Pressure Intelligence</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:2px;">
+                How RR ScoutIQ transforms raw ball-by-ball delivery feeds into robust, reproducible Bayesian scouting ranks.
+              </p>
+            </div>
+            <a class="btn-secondary" style="font-size:0.8rem; padding:8px 14px;" href="#methodology" onclick="window.switchTab('methodology')">Read Methodology →</a>
+          </div>
+
+          <div class="methodology-steps-grid">
+            <div class="methodology-step-box">
+              <span class="step-num-pill">Step 01</span>
+              <h3 class="step-box-title">Pre-Delivery Leverage Reconstruction</h3>
+              <p class="step-box-text">
+                Every delivery is evaluated using a strict shift-1 state calculation (required run rate, balls remaining, wickets in hand, and phase par) prior to ball release, eliminating outcome leakage.
+              </p>
+            </div>
+
+            <div class="methodology-step-box">
+              <span class="step-num-pill">Step 02</span>
+              <h3 class="step-box-title">Crossed-Effects Empirical Bayes Shrinkage</h3>
+              <p class="step-box-text">
+                Leave-player-and-matches-out (LPMO) benchmarking isolates player skill from pitch conditions, ground geometry, and match-level random variance without contaminating expectation.
+              </p>
+            </div>
+
+            <div class="methodology-step-box">
+              <span class="step-num-pill">Step 03</span>
+              <h3 class="step-box-title">Conservative Posterior Credible Bounds</h3>
+              <p class="step-box-text">
+                Rankings penalize estimation variance using Z = 1.645 Gaussian credible bounds (LB90 for batters, UB90 for bowlers) to protect against small-sample noise and selection bias.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================================================================
+           PAGE 2: TOP 10 BATTERS
+           ================================================================== -->
+      <section id="section-batters" class="page-section">
+        <div class="section-header">
+          <h1 class="section-title">Top 10 Pressure-Performing Batsmen</h1>
+          <p class="section-subtitle">
+            Players ranked by the 95% one-sided lower posterior credible bound for contextual batting value-add ($LB90 = \Delta_{EB} - 1.645 \times se_{latent}$; descending order).
+          </p>
+          <div class="info-line">
+            <div class="info-item"><span class="info-dot"></span> Career Legal Balls ≥ 500</div>
+            <div class="info-item"><span class="info-dot"></span> Pressure Balls (T2–4) ≥ 100</div>
+            <div class="info-item"><span class="info-dot"></span> Latent SE ≤ 0.035</div>
+            <div class="info-item"><span class="info-dot"></span> Multiplier Z = 1.645 (90% 2-sided CI endpoint / 95% 1-sided bound)</div>
+          </div>
+        </div>
+
+        <!-- Featured Horizontal Podium Layout (Top 3 Batters) -->
+        <div class="podium-grid" id="battersFeaturedContainer">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <!-- Full 10-Player Comparison Table -->
+        <div class="table-card">
+          <div class="table-header-bar">
+            <div>
+              <span class="table-title">Complete Top 10 Batsmen Leaderboard</span>
+              <div style="font-size:0.76rem; color:var(--text-secondary); margin-top:2px;">
+                10 Qualified Players • Sorted by LB90 (Descending; Higher is Superior)
+              </div>
+            </div>
+            <span class="badge-status confirmed" style="font-size:0.75rem;">3 Confirmed Positive</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th class="num-col">Contextual ΔEB</th>
+                  <th class="num-col" style="color:var(--primary); font-weight:800;">LB90</th>
+                  <th class="num-col">Pressure SR</th>
+                  <th class="num-col">Boundary %</th>
+                  <th class="num-col">Dot Ball %</th>
+                  <th class="num-col">Career Balls</th>
+                  <th class="num-col">Pressure Balls</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="battersTableBody">
+                <!-- Populated dynamically by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PAGE 3: TOP 10 BOWLERS
+           ================================================================== -->
+      <section id="section-bowlers" class="page-section">
+        <div class="section-header">
+          <h1 class="section-title">Top 10 Pressure-Performing Bowlers</h1>
+          <p class="section-subtitle">
+            Players ranked by the 95% one-sided upper posterior credible bound for contextual economy delta ($UB90 = \Delta_{EB} + 1.645 \times se_{latent}$; ascending order, lower is superior).
+          </p>
+          <div class="info-line">
+            <div class="info-item"><span class="info-dot"></span> Career Legal Balls ≥ 500</div>
+            <div class="info-item"><span class="info-dot"></span> Pressure Balls (T2–4) ≥ 100</div>
+            <div class="info-item"><span class="info-dot"></span> Latent SE ≤ 0.65 RPO</div>
+            <div class="info-item"><span class="info-dot"></span> Multiplier Z = 1.645 (90% 2-sided CI endpoint / 95% 1-sided bound)</div>
+          </div>
+        </div>
+
+        <!-- Ranking Methodology Note: Point Estimates vs Uncertainty-Adjusted Bounds -->
+        <div class="note-box" style="margin-bottom: 20px; padding: 14px 18px; background: rgba(30, 41, 59, 0.6); border-left: 4px solid var(--accent); border-radius: 6px;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 4px;">
+            ⚠️ Methodological Note: Point Estimates vs. Uncertainty-Adjusted Rankings
+          </div>
+          <p style="margin: 0; font-size: 0.80rem; color: var(--text-secondary); line-height: 1.5;">
+            Official bowler ranking is determined strictly by ascending <strong>UB90</strong> (95% one-sided upper credible bound), penalizing estimation variance to ensure sample reliability. Consequently, rankings can differ from raw posterior point estimates (Δ<sub>EB</sub>). For instance, Wanindu Hasaranga holds a more negative point estimate (-0.219 RPO) than Axar Patel (-0.150 RPO); however, Axar Patel's substantially larger volume (2,484 balls / 414 overs vs. 1,789 balls) produces lower latent standard error (0.4868 vs. 0.5293 RPO), yielding a superior conservative upper bound (+0.651 vs. +0.652 RPO). Axar Patel is therefore ranked #5 and Hasaranga #6. Rankings must not be reordered by raw point estimates.
+          </p>
+        </div>
+
+        <!-- Featured Horizontal Podium Layout (Top 3 Bowlers) -->
+        <div class="podium-grid" id="bowlersFeaturedContainer">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <!-- Full 10-Player Comparison Table -->
+        <div class="table-card">
+          <div class="table-header-bar">
+            <div>
+              <span class="table-title">Complete Top 10 Bowlers Leaderboard</span>
+              <div style="font-size:0.76rem; color:var(--text-secondary); margin-top:2px;">
+                10 Qualified Players • Sorted by UB90 (Ascending; Lower is Superior)
+              </div>
+            </div>
+            <span class="badge-status relative" style="font-size:0.75rem;">10 Relative Leaders</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th class="num-col">Contextual ΔEB (RPO)</th>
+                  <th class="num-col" style="color:var(--primary); font-weight:800;">UB90 (RPO)</th>
+                  <th class="num-col">Pressure Econ</th>
+                  <th class="num-col">Wickets (SR)</th>
+                  <th class="num-col">Pressure Dot %</th>
+                  <th class="num-col">Total Overs</th>
+                  <th class="num-col">Pressure Balls</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="bowlersTableBody">
+                <!-- Populated dynamically by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PAGE 4: PLAYER EXPLORER (SCOUTING WORKBENCH)
+           ================================================================== -->
+      <section id="section-explorer" class="page-section">
+        <div class="section-header">
+          <h1 class="section-title">Player Explorer</h1>
+          <p class="section-subtitle">
+            Interactive scouting workbench for in-depth diagnostic evaluation across leverage tiers, statistical uncertainty bounds, and delivery-level match states.
+          </p>
+        </div>
+
+        <div class="explorer-layout">
+          <!-- Left Column: Search & Picker List -->
+          <div class="explorer-sidebar">
+            <div class="explorer-sidebar-top">
+              <div class="search-input-wrap">
+                <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="explorerSearchInput" class="search-input" placeholder="Search candidate or ID...">
+              </div>
+              <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">All (20)</button>
+                <button class="filter-pill" data-filter="batter">Batters (10)</button>
+                <button class="filter-pill" data-filter="bowler">Bowlers (10)</button>
+              </div>
+            </div>
+            <div class="player-list" id="playerPickerList">
+              <!-- Populated dynamically by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Right Column: Detail Panel Workbench -->
+          <div class="explorer-main">
+            <div class="player-detail-card">
+              <!-- Player Header -->
+              <div class="detail-header-row">
+                <div class="detail-player-info">
+                  <div class="detail-rank-pill" id="detailPlayerRank">#1</div>
+                  <div class="detail-name-wrap">
+                    <h2 class="detail-name" id="detailPlayerName">Abhishek Sharma</h2>
+                    <div class="detail-meta-line" id="detailPlayerMeta">
+                      ID: <strong>6281</strong> • Eligibility: <strong>Dual-discipline</strong> • 124 Matches (2,136 balls)
+                    </div>
+                  </div>
+                </div>
+                <div id="detailPlayerStatus">
+                  <span class="badge-status confirmed">Confirmed Positive</span>
+                </div>
+              </div>
+
+              <!-- 4 KPI Metric Boxes -->
+              <div class="detail-metrics-grid">
+                <div class="metric-box">
+                  <span class="metric-box-label">Contextual ΔEB</span>
+                  <div class="metric-box-val" id="explorerBox1Val">+6.70%</div>
+                  <div class="metric-box-sub" id="explorerBox1Sub">Contextual Batting Val-Add</div>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-box-label">Primary Credible Bound</span>
+                  <div class="metric-box-val" id="explorerBox2Val" style="color:var(--primary);">+2.72%</div>
+                  <div class="metric-box-sub" id="explorerBox2Sub">95% Lower Posterior Bound (LB90)</div>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-box-label">Pressure Metric</span>
+                  <div class="metric-box-val" id="explorerBox3Val">186.19</div>
+                  <div class="metric-box-sub" id="explorerBox3Sub">Pressure Strike Rate (T2–4)</div>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-box-label">Execution Quality</span>
+                  <div class="metric-box-val" id="explorerBox4Val">31.53%</div>
+                  <div class="metric-box-sub" id="explorerBox4Sub">Pressure Dot Ball %</div>
+                </div>
+              </div>
+
+              <!-- Visual Analytics Split Grid -->
+              <div class="charts-grid">
+                <div class="chart-card">
+                  <div class="chart-title">
+                    <span>Leverage Tier Trajectory</span>
+                    <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">T1 → T2 → T3 → T4</span>
+                  </div>
+                  <div class="chart-canvas-wrap">
+                    <canvas id="chartTierProgression"></canvas>
+                  </div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-title">
+                    <span>Boundary % vs. Dot % Composition</span>
+                    <span style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">Normal vs Pressure</span>
+                  </div>
+                  <div class="chart-canvas-wrap">
+                    <canvas id="chartComposition"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4-Tier Match-State Evidence Table -->
+              <div class="table-card" style="margin-bottom:20px; box-shadow:none;">
+                <div class="table-header-bar" style="padding:12px 16px;">
+                  <span style="font-size:0.9rem; font-weight:700;">Delivery-Level Match-State Breakdown</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">T1 Normal • T2 Medium • T3 High • T4 Extreme Crunch</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead id="explorerTierTableHead">
+                      <tr>
+                        <th>Tier / State</th>
+                        <th>DLI Range</th>
+                        <th class="num-col">Balls</th>
+                        <th class="num-col">Runs</th>
+                        <th class="num-col">SR</th>
+                        <th class="num-col">Boundaries</th>
+                        <th class="num-col">Dots</th>
+                        <th class="num-col">Outs (Hazard)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="explorerTierTableBody">
+                      <!-- Populated dynamically by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Exposure & Limitations Card -->
+              <div style="background:var(--background); border:1px solid var(--border); border-radius:var(--radius-md); padding:18px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  <strong style="font-size:0.86rem; color:var(--text-primary);" id="explorerLimitTitle">Exposure & Statistical Disclosure</strong>
+                </div>
+                <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.55;" id="explorerLimitBody">
+                  Verified high exposure across terminal crunch situations, absorbing deliveries in Tier 4 Extreme Pressure with consistent execution.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PAGE 5: METHODOLOGY (TECHNICAL RESEARCH PUBLICATION FORMAT)
+           ================================================================== -->
+      <section id="section-methodology" class="page-section">
+        <div class="section-header">
+          <h1 class="section-title">Methodology & Mathematical Framework</h1>
+          <p class="section-subtitle">
+            Pre-delivery match-state reconstruction, Dynamic Leverage Index (DLI), crossed-effects empirical Bayes shrinkage, and Bayesian posterior credible bounds.
+          </p>
+        </div>
+
+        <div class="methodology-grid">
+          <!-- Card 1: Dataset Coverage -->
+          <div class="doc-card">
+            <span class="doc-card-number">01</span>
+            <h2 class="doc-card-title">Dataset Provenance & Scope Coverage</h2>
+            <p class="doc-card-text">
+              The canonical dataset comprises 776 multi-format fixtures (367 IPL, 408 T20I, 1 Regional). After removing 32 rain-interrupted/curtailed fixtures, the clean legal modeling population contains exactly 744 matches and 168,104 clean legal deliveries.
+            </p>
+            <div class="formula-container">
+              Clean Population = 362 IPL (48.66%) + 381 T20I (51.21%) + 1 Regional (0.13%)<br>
+              Clean Legal Balls = 168,104 | Excluded Rain Deliveries = 4,161 (32 matches)
+            </div>
+          </div>
+
+          <!-- Card 2: Dynamic Leverage Index -->
+          <div class="doc-card">
+            <span class="doc-card-number">02</span>
+            <h2 class="doc-card-title">Dynamic Leverage Index (DLI)</h2>
+            <p class="doc-card-text">
+              DLI is the approved contextual measure of delivery-level match pressure. In chases, it evaluates required run rate relative to phase scoring par; in first innings, it grows with time progression $\Phi(t)$ and run-rate stagnation.
+            </p>
+            <div class="formula-container">
+              DLI_chase = clamp[(RRR/CRR_phase) × (10/(W+1))^0.50 × (1 + 24/(B+12))^0.50, 0.10, 5.00]<br>
+              DLI_set = clamp[Φ(t) × (10/(W+1))^0.60 × (1 + max(0, (CRR_phase - CRR)/6))^0.50, 0.20, 3.50]<br>
+              where Φ(t) = 0.80 + 0.70 × (t/120)^1.20; Super Over DLI = 3.50
+            </div>
+          </div>
+
+          <!-- Card 3: Pre-delivery Reconstruction -->
+          <div class="doc-card">
+            <span class="doc-card-number">03</span>
+            <h2 class="doc-card-title">Pre-Delivery Match-State Reconstruction</h2>
+            <p class="doc-card-text">
+              Every legal delivery is modeled within a strict shift-1 sequence. All features—balls remaining, wickets in hand, score, required run rate, and phase par—are evaluated strictly prior to the bowler releasing the ball, guaranteeing zero outcome leakage.
+            </p>
+            <div class="formula-container">
+              State(t) = f({d_1, d_2, ... d_{t-1}}) | Outcome(t) strictly excluded
+            </div>
+          </div>
+
+          <!-- Card 4: Empirical Bayes Shrinkage -->
+          <div class="doc-card">
+            <span class="doc-card-number">04</span>
+            <h2 class="doc-card-title">Empirical Bayes Crossed-Effects Shrinkage</h2>
+            <p class="doc-card-text">
+              Leave-player-and-matches-out (LPMO) benchmarking ensures that when evaluating player $i$, all fixtures involving player $i$ are excluded from baseline estimation. Crossed-effects modeling partitions observed variance between talent, match environment, and noise.
+            </p>
+            <div class="formula-container">
+              Var(Obs_i) = tau_player^2 + sigma_match^2 + sigma_noise^2<br>
+              B_i = tau^2 / (tau^2 + SE_i^2) | Δ_EB,i = B_i × Δ_raw,i
+            </div>
+          </div>
+
+          <!-- Card 5: Batter Ranking -->
+          <div class="doc-card">
+            <span class="doc-card-number">05</span>
+            <h2 class="doc-card-title">Batter Ranking: 95% One-Sided Lower Credible Bound</h2>
+            <p class="doc-card-text">
+              Batters are ranked strictly in descending order of the 95% one-sided lower posterior credible bound ($LB90$) for contextual batting value-add. A candidate establishes confirmed positive value-add only when $LB90 > 0$.
+            </p>
+            <div class="formula-container">
+              LB90 = Δ_EB - 1.645 × se_latent (descending order; higher is superior)<br>
+              Threshold: Confirmed Positive if LB90 &gt; 0 (achieved by Ranks 1–3 only)
+            </div>
+          </div>
+
+          <!-- Card 6: Bowler Ranking -->
+          <div class="doc-card">
+            <span class="doc-card-number">06</span>
+            <h2 class="doc-card-title">Bowler Ranking: 95% One-Sided Upper Credible Bound</h2>
+            <p class="doc-card-text">
+              Bowlers are ranked in ascending order of the 95% one-sided upper posterior credible bound ($UB90$) for contextual economy delta. This bound defines a conservative ceiling on expected run concession under pressure. Ranking by ascending upper bound prioritizes bowlers who minimize credible run leakage.
+            </p>
+            <div class="formula-container">
+              UB90 = Δ_EB + 1.645 × se_latent (ascending order; lower is superior)<br>
+              Key Rule: Point estimates and uncertainty bounds can produce different orders (e.g. Axar #5 vs Hasaranga #6)
+            </div>
+          </div>
+
+          <!-- Card 7: Statistical Uncertainty -->
+          <div class="doc-card">
+            <span class="doc-card-number">07</span>
+            <h2 class="doc-card-title">Statistical Uncertainty & Z = 1.645 Multiplier</h2>
+            <p class="doc-card-text">
+              Under the Gaussian posterior approximation, the endpoint of a 90% two-sided credible interval corresponds mathematically to a 95% one-sided posterior credible bound. The multiplier $Z = 1.645$ directly guards against small-sample noise.
+            </p>
+            <div class="formula-container">
+              P(Δ &gt; LB90 | Data) = 0.95 (Batters) | P(Δ &lt; UB90 | Data) = 0.95 (Bowlers)<br>
+              Multiplier Z = 1.645 (90% two-sided CI endpoint / 95% one-sided bound)
+            </div>
+          </div>
+
+          <!-- Card 8: Eligibility Criteria -->
+          <div class="doc-card">
+            <span class="doc-card-number">08</span>
+            <h2 class="doc-card-title">Cohort Eligibility Criteria</h2>
+            <p class="doc-card-text">
+              Candidates are evaluated against three objective qualification gates prior to ranking: minimum 500 career legal balls, minimum 100 pressure deliveries ($\text{DLI} \ge 0.90$), and an epistemic standard error threshold.
+            </p>
+            <div class="formula-container">
+              Batters: Career Balls ≥ 500 • Pressure Balls ≥ 100 • SE ≤ 0.035 (106 eligible)<br>
+              Bowlers: Career Balls ≥ 500 • Pressure Balls ≥ 100 • SE ≤ 0.65 RPO (109 eligible)
+            </div>
+          </div>
+
+          <!-- Card 9: Methodological Limitations -->
+          <div class="doc-card" style="grid-column: 1 / -1;">
+            <span class="doc-card-number">09</span>
+            <h2 class="doc-card-title">Methodological Limitations & Epistemic Boundaries</h2>
+            <p class="doc-card-text">
+              RR ScoutIQ produces descriptive contextual rankings rather than deterministic future predictions. Deliveries with missing or zero exposure (e.g. Tier 4 balls for certain top-order batters) are never imputed. Player ratings reflect historical contextual delivery execution under empirical Bayes shrinkage.
+            </p>
+            <div class="formula-container">
+              Zero Imputation: No synthesis of unobserved match states | No causal attribution
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Dataset Provenance Ledger Table -->
+        <div class="table-card">
+          <div class="table-header-bar">
+            <div>
+              <span class="table-title">Full Dataset Provenance Ledger</span>
+              <div style="font-size:0.76rem; color:var(--text-secondary); margin-top:2px;">
+                Audited counts comparing raw canonical database against clean modeling dataset.
+              </div>
+            </div>
+            <span class="badge-status confirmed" style="font-size:0.75rem;">SHA-256 Verified</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Population Subset</th>
+                  <th class="num-col">Matches</th>
+                  <th class="num-col">IPL Matches</th>
+                  <th class="num-col">T20I Matches</th>
+                  <th class="num-col">Regional</th>
+                  <th>Deliveries Filtered</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:700;">Canonical Database</td>
+                  <td class="num-col">776</td>
+                  <td class="num-col">367 (47.29%)</td>
+                  <td class="num-col">408 (52.58%)</td>
+                  <td class="num-col">1 (0.13%)</td>
+                  <td>179,837 total raw delivery records</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--warning); font-weight:700;">Excluded Matches (Rain / DLS)</td>
+                  <td class="num-col">32</td>
+                  <td class="num-col">5</td>
+                  <td class="num-col">27</td>
+                  <td class="num-col">0</td>
+                  <td>4,161 excluded deliveries</td>
+                </tr>
+                <tr style="background-color:var(--surface-soft); font-weight:700;">
+                  <td style="color:var(--primary);">Clean Legal Modeling Dataset</td>
+                  <td class="num-col">744</td>
+                  <td class="num-col">362 (48.66%)</td>
+                  <td class="num-col">381 (51.21%)</td>
+                  <td class="num-col">1 (0.13%)</td>
+                  <td>168,104 clean legal balls (SHA-256 ce7e9a2f...)</td>
+                </tr>
+                <tr>
+                  <td>Super Over Segments</td>
+                  <td class="num-col">—</td>
+                  <td class="num-col">—</td>
+                  <td class="num-col">—</td>
+                  <td class="num-col">—</td>
+                  <td>23 deliveries (16 Inn 3, 7 Inn 4; DLI = 3.50)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>RR ScoutIQ</strong> — Rajasthan Royals CRP SupeRR Selector Season 2 • Pressure Intelligence Platform
+      </div>
+      <div style="font-family:var(--font-mono); font-size:0.75rem;">
+        744 Clean Matches • 168,104 Legal Deliveries • Frozen Baseline ce7e9a2f...
+      </div>
+    </div>
+  </footer>
+
+  <!-- Load Global Data & Application Logic -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "official_total_spells": 17075,
+  "p511_total_spells": 17075,
+  "row_count_difference": 0,
+  "official_zero_legal_balls": 1,
+  "official_invalid_spells": 1,
+  "p511_zero_legal_balls_in_press": 1,
+  "matched_spells_count": 17075,
+  "differences": {
+    "legal_balls": 0,
+    "bowler_debit_runs": 0,
+    "modal_tier": 0
+  },
+  "official_valid_pressure_spells": 14479,
+  "p511_pressure_spells": 14480,
+  "spells_with_extras_count": 5388,
+  "extras_differences": {
+    "legal_balls": 0,
+    "debit_runs": 0
+  },
+  "tier_diff_samples": []
+}

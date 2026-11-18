@@ -1,0 +1,224 @@
+{
+  "dataset_deliveries": 106160,
+  "dataset_matches": 445,
+  "batters": {
+    "eligible_count_ref": 66,
+    "eligible_count_p511": 66,
+    "max_abs_diff_val_add": 0.0,
+    "max_abs_diff_se": 0.0,
+    "max_abs_diff_lb90": 0.0,
+    "max_rank_position_difference": 0,
+    "top10_comparison": [
+      {
+        "rank": 1,
+        "ref_name": "Suryakumar Yadav",
+        "ref_id": 1699,
+        "ref_lb90": 0.013313414118744468,
+        "p511_name": "Suryakumar Yadav",
+        "p511_id": 1699,
+        "p511_lb90": 0.013313414118744468,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 2,
+        "ref_name": "Travis Head",
+        "ref_id": 2367,
+        "ref_lb90": 0.0035461892392559466,
+        "p511_name": "Travis Head",
+        "p511_id": 2367,
+        "p511_lb90": 0.0035461892392559466,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 3,
+        "ref_name": "Yashasvi Jaiswal",
+        "ref_id": 6819,
+        "ref_lb90": -0.004055236864676397,
+        "p511_name": "Yashasvi Jaiswal",
+        "p511_id": 6819,
+        "p511_lb90": -0.004055236864676397,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 4,
+        "ref_name": "Sanju Samson",
+        "ref_id": 2258,
+        "ref_lb90": -0.006421972622942217,
+        "p511_name": "Sanju Samson",
+        "p511_id": 2258,
+        "p511_lb90": -0.006421972622942217,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 5,
+        "ref_name": "Abhishek Sharma",
+        "ref_id": 6281,
+        "ref_lb90": -0.010100629684482658,
+        "p511_name": "Abhishek Sharma",
+        "p511_id": 6281,
+        "p511_lb90": -0.010100629684482658,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 6,
+        "ref_name": "Andre Russell",
+        "ref_id": 1318,
+        "ref_lb90": -0.01249036267403552,
+        "p511_name": "Andre Russell",
+        "p511_id": 1318,
+        "p511_lb90": -0.01249036267403552,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 7,
+        "ref_name": "Phil Salt",
+        "ref_id": 5553,
+        "ref_lb90": -0.014601722368590985,
+        "p511_name": "Phil Salt",
+        "p511_id": 5553,
+        "p511_lb90": -0.014601722368590985,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 8,
+        "ref_name": "Glenn Maxwell",
+        "ref_id": 838,
+        "ref_lb90": -0.016785906293227976,
+        "p511_name": "Glenn Maxwell",
+        "p511_id": 838,
+        "p511_lb90": -0.016785906293227976,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 9,
+        "ref_name": "Jos Buttler",
+        "ref_id": 813,
+        "ref_lb90": -0.017486912328508877,
+        "p511_name": "Jos Buttler",
+        "p511_id": 813,
+        "p511_lb90": -0.017486912328508877,
+        "abs_diff_lb90": 0.0
+      },
+      {
+        "rank": 10,
+        "ref_name": "Ruturaj Gaikwad",
+        "ref_id": 6059,
+        "ref_lb90": -0.017803225198267048,
+        "p511_name": "Ruturaj Gaikwad",
+        "p511_id": 6059,
+        "p511_lb90": -0.017803225198267048,
+        "abs_diff_lb90": 0.0
+      }
+    ]
+  },
+  "bowlers": {
+    "eligible_count_ref": 64,
+    "eligible_count_p511": 64,
+    "max_abs_diff_delta": 0.005103790277078302,
+    "max_abs_diff_se": 0.002572518673464308,
+    "max_abs_diff_ub90": 0.00815812015126749,
+    "max_rank_position_difference": 1,
+    "top10_comparison": [
+      {
+        "rank": 1,
+        "ref_name": "Sunil Narine",
+        "ref_id": 781,
+        "ref_ub90": 0.37517176061072055,
+        "p511_name": "Sunil Narine",
+        "p511_id": 781,
+        "p511_ub90": 0.37023340512504244,
+        "abs_diff_ub90": 0.004938355485678114
+      },
+      {
+        "rank": 2,
+        "ref_name": "Mitchell Santner",
+        "ref_id": 4101,
+        "ref_ub90": 0.4966622862655398,
+        "p511_name": "Mitchell Santner",
+        "p511_id": 4101,
+        "p511_ub90": 0.4887395655338624,
+        "abs_diff_ub90": 0.007922720731677435
+      },
+      {
+        "rank": 3,
+        "ref_name": "Jasprit Bumrah",
+        "ref_id": 2933,
+        "ref_ub90": 0.4971834675750887,
+        "p511_name": "Jasprit Bumrah",
+        "p511_id": 2933,
+        "p511_ub90": 0.49147373141797146,
+        "abs_diff_ub90": 0.005709736157117229
+      },
+      {
+        "rank": 4,
+        "ref_name": "Rashid Khan",
+        "ref_id": 4722,
+        "ref_ub90": 0.49967181882521977,
+        "p511_name": "Rashid Khan",
+        "p511_id": 4722,
+        "p511_ub90": 0.49387637059463235,
+        "abs_diff_ub90": 0.005795448230587419
+      },
+      {
+        "rank": 5,
+        "ref_name": "Ravi Bishnoi",
+        "ref_id": 7503,
+        "ref_ub90": 0.512378678082723,
+        "p511_name": "Ravi Bishnoi",
+        "p511_id": 7503,
+        "p511_ub90": 0.5070900169819195,
+        "abs_diff_ub90": 0.0052886611008035045
+      },
+      {
+        "rank": 6,
+        "ref_name": "Axar Patel",
+        "ref_id": 2876,
+        "ref_ub90": 0.5247014606411733,
+        "p511_name": "Axar Patel",
+        "p511_id": 2876,
+        "p511_ub90": 0.5199673863743106,
+        "abs_diff_ub90": 0.004734074266862676
+      },
+      {
+        "rank": 7,
+        "ref_name": "Matheesha Pathirana",
+        "ref_id": 8661,
+        "ref_ub90": 0.5267159886486233,
+        "p511_name": "Matheesha Pathirana",
+        "p511_id": 8661,
+        "p511_ub90": 0.5216501703058787,
+        "abs_diff_ub90": 0.005065818342744666
+      },
+      {
+        "rank": 8,
+        "ref_name": "Ravindra Jadeja",
+        "ref_id": 152,
+        "ref_ub90": 0.5521170188354214,
+        "p511_name": "Ravindra Jadeja",
+        "p511_id": 152,
+        "p511_ub90": 0.5463540302181846,
+        "abs_diff_ub90": 0.005762988617236786
+      },
+      {
+        "rank": 9,
+        "ref_name": "Kuldeep Yadav",
+        "ref_id": 3644,
+        "ref_ub90": 0.5712777305501757,
+        "p511_name": "Kuldeep Yadav",
+        "p511_id": 3644,
+        "p511_ub90": 0.5666304174520012,
+        "abs_diff_ub90": 0.004647313098174566
+      },
+      {
+        "rank": 10,
+        "ref_name": "Maheesh Theekshana",
+        "ref_id": 19316,
+        "ref_ub90": 0.5883252184144883,
+        "p511_name": "Maheesh Theekshana",
+        "p511_id": 19316,
+        "p511_ub90": 0.583555143793252,
+        "abs_diff_ub90": 0.004770074621236242
+      }
+    ]
+  }
+}

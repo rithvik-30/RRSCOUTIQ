@@ -1,0 +1,92 @@
+{
+  "window_a": {
+    "train_matches_count": 445,
+    "test_matches_count": 173,
+    "match_id_overlap_count": 0,
+    "train_date_range": [
+      "2022-01-22",
+      "2024-12-30"
+    ],
+    "test_date_range": [
+      "2025-01-02",
+      "2025-12-19"
+    ],
+    "strict_temporal_order": true,
+    "train_deliveries_count": 106160,
+    "test_deliveries_count": 39913,
+    "top10_batters_test_exposure_deliveries": {
+      "1699": 573,
+      "2367": 331,
+      "6819": 359,
+      "2258": 386,
+      "6281": 682,
+      "1318": 151,
+      "5553": 490,
+      "838": 160,
+      "813": 603,
+      "6059": 82
+    },
+    "top10_bowlers_test_exposure_deliveries": {
+      "781": 275,
+      "4101": 408,
+      "2933": 521,
+      "4722": 312,
+      "7503": 338,
+      "2876": 503,
+      "8661": 336,
+      "152": 232,
+      "3644": 516,
+      "19316": 584
+    }
+  },
+  "window_b": {
+    "train_matches_count": 618,
+    "test_matches_count": 126,
+    "match_id_overlap_count": 0,
+    "train_date_range": [
+      "2022-01-22",
+      "2025-12-19"
+    ],
+    "test_date_range": [
+      "2026-01-07",
+      "2026-11-01"
+    ],
+    "strict_temporal_order": true,
+    "train_deliveries_count": 146073,
+    "test_deliveries_count": 29603,
+    "top10_batters_test_exposure_deliveries": {
+      "6281": 678,
+      "1699": 316,
+      "2367": 271,
+      "6819": 260,
+      "5553": 223,
+      "1318": 0,
+      "4847": 295,
+      "6396": 200,
+      "3125": 172,
+      "818": 379
+    },
+    "top10_bowlers_test_exposure_deliveries": {
+      "2933": 390,
+      "3644": 344,
+      "781": 309,
+      "4373": 43,
+      "4101": 357,
+      "2876": 621,
+      "2984": 142,
+      "2417": 280,
+      "152": 202,
+      "19316": 169
+    }
+  },
+  "leakage_checks": {
+    "contextual_hierarchy_leakage": "NONE - ContextualHierarchyB438.fit called strictly on training slice",
+    "prior_estimation_leakage": "NONE - LPMO priors pre-aggregated strictly on training slice",
+    "player_career_aggregates_leakage": "NONE - career balls and debits grouped strictly from train_legal",
+    "contextual_player_aggregates_leakage": "NONE - context balls and debits grouped strictly from train_legal",
+    "crosswalk_leakage": "NONE - crosswalk used strictly for string names and role discipline, not full-dataset statistics",
+    "eligibility_leakage": "NONE - 500-ball and 100-ball thresholds applied strictly to training exposure",
+    "standard_errors_leakage": "NONE - empirical Bayes shrinkage parameters fitted strictly on training slice",
+    "preprocessing_normalization_leakage": "NONE - DLI state features pre-computed in immutable match_state_full.csv"
+  }
+}

@@ -1,0 +1,1849 @@
+// Authoritative Frozen Data for RR ScoutIQ Dashboard
+window.RR_DATA = {
+  "meta": {
+    "project": "RR ScoutIQ",
+    "subtitle": "Pressure Performance Intelligence System",
+    "canonical_matches": 776,
+    "clean_matches": 744,
+    "clean_legal_deliveries": 168104,
+    "total_deliveries": 179837,
+    "excluded_matches": 32,
+    "super_over_deliveries": 23,
+    "ipl_matches_clean": 362,
+    "ipl_pct_clean": 48.66,
+    "t20i_matches_clean": 381,
+    "t20i_pct_clean": 51.21,
+    "regional_matches_clean": 1,
+    "regional_pct_clean": 0.13,
+    "eligible_batters_cohort": 106,
+    "eligible_bowlers_cohort": 109,
+    "min_balls_threshold": 500,
+    "min_pressure_balls": 100,
+    "multiplier_Z": 1.645,
+    "credible_interval_desc": "Conservative endpoint of 90% two-sided CI (95% one-sided bound)"
+  },
+  "batters": [
+    {
+      "rank": 1,
+      "player_id": 6281,
+      "name": "Abhishek Sharma",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 124,
+      "total_balls": 2136,
+      "status": "Confirmed Positive Value-Add",
+      "is_confirmed_positive": true,
+      "limitation_flag": "Small Tier 4 Sample (23b)",
+      "normal": {
+        "balls": 709,
+        "runs": 1266,
+        "sr": 178.56,
+        "bnd": 210.0,
+        "bnd_pct": 29.62,
+        "dots": 291.0,
+        "dot_pct": 41.04,
+        "outs": 31,
+        "hazard": 4.37
+      },
+      "pressure": {
+        "balls": 1427,
+        "runs": 2657,
+        "sr": 186.19,
+        "bnd": 420.0,
+        "bnd_pct": 29.43,
+        "dots": 450.0,
+        "dot_pct": 31.53,
+        "outs": 86,
+        "hazard": 6.03
+      },
+      "high": {
+        "balls": 435,
+        "runs": 787,
+        "sr": 180.92,
+        "bnd": 122.0,
+        "bnd_pct": 28.05,
+        "dots": 135.0,
+        "dot_pct": 31.03,
+        "outs": 26,
+        "hazard": 5.98
+      },
+      "t2": {
+        "balls": 992,
+        "runs": 1870,
+        "sr": 188.51,
+        "bnd": 298.0,
+        "bnd_pct": 30.04,
+        "dots": 315.0,
+        "dot_pct": 31.75,
+        "outs": 60,
+        "hazard": 6.05
+      },
+      "t3": {
+        "balls": 412,
+        "runs": 749,
+        "sr": 181.8,
+        "bnd": 116.0,
+        "bnd_pct": 28.16,
+        "dots": 126.0,
+        "dot_pct": 30.58,
+        "outs": 23,
+        "hazard": 5.58
+      },
+      "t4": {
+        "balls": 23,
+        "runs": 38,
+        "sr": 165.22,
+        "bnd": 6.0,
+        "bnd_pct": 26.09,
+        "dots": 9.0,
+        "dot_pct": 39.13,
+        "outs": 3,
+        "hazard": 13.04
+      },
+      "deltas": {
+        "delta_sr": 7.63,
+        "delta_bnd": -0.19,
+        "delta_dot": -9.51
+      },
+      "model": {
+        "val_add": 6.7,
+        "se_latent": 0.0242,
+        "lb90": 2.72
+      }
+    },
+    {
+      "rank": 2,
+      "player_id": 1699,
+      "name": "Suryakumar Yadav",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 132,
+      "total_balls": 2646,
+      "status": "Confirmed Positive Value-Add",
+      "is_confirmed_positive": true,
+      "limitation_flag": "Robust Tier 4 Exposure (147b)",
+      "normal": {
+        "balls": 279,
+        "runs": 454,
+        "sr": 162.72,
+        "bnd": 72.0,
+        "bnd_pct": 25.81,
+        "dots": 107.0,
+        "dot_pct": 38.35,
+        "outs": 12,
+        "hazard": 4.3
+      },
+      "pressure": {
+        "balls": 2367,
+        "runs": 3951,
+        "sr": 166.92,
+        "bnd": 580.0,
+        "bnd_pct": 24.5,
+        "dots": 744.0,
+        "dot_pct": 31.43,
+        "outs": 99,
+        "hazard": 4.18
+      },
+      "high": {
+        "balls": 1137,
+        "runs": 2006,
+        "sr": 176.43,
+        "bnd": 301.0,
+        "bnd_pct": 26.47,
+        "dots": 338.0,
+        "dot_pct": 29.73,
+        "outs": 43,
+        "hazard": 3.78
+      },
+      "t2": {
+        "balls": 1230,
+        "runs": 1945,
+        "sr": 158.13,
+        "bnd": 279.0,
+        "bnd_pct": 22.68,
+        "dots": 406.0,
+        "dot_pct": 33.01,
+        "outs": 56,
+        "hazard": 4.55
+      },
+      "t3": {
+        "balls": 990,
+        "runs": 1690,
+        "sr": 170.71,
+        "bnd": 251.0,
+        "bnd_pct": 25.35,
+        "dots": 298.0,
+        "dot_pct": 30.1,
+        "outs": 31,
+        "hazard": 3.13
+      },
+      "t4": {
+        "balls": 147,
+        "runs": 316,
+        "sr": 214.97,
+        "bnd": 50.0,
+        "bnd_pct": 34.01,
+        "dots": 40.0,
+        "dot_pct": 27.21,
+        "outs": 12,
+        "hazard": 8.16
+      },
+      "deltas": {
+        "delta_sr": 4.2,
+        "delta_bnd": -1.31,
+        "delta_dot": -6.92
+      },
+      "model": {
+        "val_add": 4.5,
+        "se_latent": 0.0209,
+        "lb90": 1.05
+      }
+    },
+    {
+      "rank": 3,
+      "player_id": 50284,
+      "name": "Vaibhav Sooryavanshi",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 30,
+      "total_balls": 561,
+      "status": "Confirmed Positive Value-Add",
+      "is_confirmed_positive": true,
+      "limitation_flag": "Zero Tier 4 Balls",
+      "normal": {
+        "balls": 169,
+        "runs": 361,
+        "sr": 213.61,
+        "bnd": 61.0,
+        "bnd_pct": 36.09,
+        "dots": 59.0,
+        "dot_pct": 34.91,
+        "outs": 9,
+        "hazard": 5.33
+      },
+      "pressure": {
+        "balls": 392,
+        "runs": 866,
+        "sr": 220.92,
+        "bnd": 147.0,
+        "bnd_pct": 37.5,
+        "dots": 137.0,
+        "dot_pct": 34.95,
+        "outs": 21,
+        "hazard": 5.36
+      },
+      "high": {
+        "balls": 87,
+        "runs": 208,
+        "sr": 239.08,
+        "bnd": 36.0,
+        "bnd_pct": 41.38,
+        "dots": 33.0,
+        "dot_pct": 37.93,
+        "outs": 6,
+        "hazard": 6.9
+      },
+      "t2": {
+        "balls": 305,
+        "runs": 658,
+        "sr": 215.74,
+        "bnd": 111.0,
+        "bnd_pct": 36.39,
+        "dots": 104.0,
+        "dot_pct": 34.1,
+        "outs": 15,
+        "hazard": 4.92
+      },
+      "t3": {
+        "balls": 87,
+        "runs": 208,
+        "sr": 239.08,
+        "bnd": 36.0,
+        "bnd_pct": 41.38,
+        "dots": 33.0,
+        "dot_pct": 37.93,
+        "outs": 6,
+        "hazard": 6.9
+      },
+      "t4": {
+        "balls": 0,
+        "runs": 0,
+        "sr": 0.0,
+        "bnd": 0.0,
+        "bnd_pct": 0.0,
+        "dots": 0.0,
+        "dot_pct": 0.0,
+        "outs": 0,
+        "hazard": 0.0
+      },
+      "deltas": {
+        "delta_sr": 7.31,
+        "delta_bnd": 1.41,
+        "delta_dot": 0.04
+      },
+      "model": {
+        "val_add": 6.31,
+        "se_latent": 0.0336,
+        "lb90": 0.78
+      }
+    },
+    {
+      "rank": 4,
+      "player_id": 4847,
+      "name": "Finn Allen",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 50,
+      "total_balls": 804,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Zero Tier 4 Balls",
+      "normal": {
+        "balls": 383,
+        "runs": 569,
+        "sr": 148.56,
+        "bnd": 90.0,
+        "bnd_pct": 23.5,
+        "dots": 176.0,
+        "dot_pct": 45.95,
+        "outs": 16,
+        "hazard": 4.18
+      },
+      "pressure": {
+        "balls": 421,
+        "runs": 826,
+        "sr": 196.2,
+        "bnd": 133.0,
+        "bnd_pct": 31.59,
+        "dots": 149.0,
+        "dot_pct": 35.39,
+        "outs": 32,
+        "hazard": 7.6
+      },
+      "high": {
+        "balls": 71,
+        "runs": 162,
+        "sr": 228.17,
+        "bnd": 27.0,
+        "bnd_pct": 38.03,
+        "dots": 21.0,
+        "dot_pct": 29.58,
+        "outs": 5,
+        "hazard": 7.04
+      },
+      "t2": {
+        "balls": 350,
+        "runs": 664,
+        "sr": 189.71,
+        "bnd": 106.0,
+        "bnd_pct": 30.29,
+        "dots": 128.0,
+        "dot_pct": 36.57,
+        "outs": 27,
+        "hazard": 7.71
+      },
+      "t3": {
+        "balls": 71,
+        "runs": 162,
+        "sr": 228.17,
+        "bnd": 27.0,
+        "bnd_pct": 38.03,
+        "dots": 21.0,
+        "dot_pct": 29.58,
+        "outs": 5,
+        "hazard": 7.04
+      },
+      "t4": {
+        "balls": 0,
+        "runs": 0,
+        "sr": 0.0,
+        "bnd": 0.0,
+        "bnd_pct": 0.0,
+        "dots": 0.0,
+        "dot_pct": 0.0,
+        "outs": 0,
+        "hazard": 0.0
+      },
+      "deltas": {
+        "delta_sr": 47.64,
+        "delta_bnd": 8.09,
+        "delta_dot": -10.56
+      },
+      "model": {
+        "val_add": 5.16,
+        "se_latent": 0.0318,
+        "lb90": -0.07
+      }
+    },
+    {
+      "rank": 5,
+      "player_id": 2367,
+      "name": "Travis Head",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 64,
+      "total_balls": 1087,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Zero Tier 4 Balls",
+      "normal": {
+        "balls": 422,
+        "runs": 819,
+        "sr": 194.08,
+        "bnd": 146.0,
+        "bnd_pct": 34.6,
+        "dots": 159.0,
+        "dot_pct": 37.68,
+        "outs": 15,
+        "hazard": 3.55
+      },
+      "pressure": {
+        "balls": 665,
+        "runs": 1108,
+        "sr": 166.62,
+        "bnd": 190.0,
+        "bnd_pct": 28.57,
+        "dots": 255.0,
+        "dot_pct": 38.35,
+        "outs": 48,
+        "hazard": 7.22
+      },
+      "high": {
+        "balls": 146,
+        "runs": 266,
+        "sr": 182.19,
+        "bnd": 48.0,
+        "bnd_pct": 32.88,
+        "dots": 61.0,
+        "dot_pct": 41.78,
+        "outs": 12,
+        "hazard": 8.22
+      },
+      "t2": {
+        "balls": 519,
+        "runs": 842,
+        "sr": 162.24,
+        "bnd": 142.0,
+        "bnd_pct": 27.36,
+        "dots": 194.0,
+        "dot_pct": 37.38,
+        "outs": 36,
+        "hazard": 6.94
+      },
+      "t3": {
+        "balls": 146,
+        "runs": 266,
+        "sr": 182.19,
+        "bnd": 48.0,
+        "bnd_pct": 32.88,
+        "dots": 61.0,
+        "dot_pct": 41.78,
+        "outs": 12,
+        "hazard": 8.22
+      },
+      "t4": {
+        "balls": 0,
+        "runs": 0,
+        "sr": 0.0,
+        "bnd": 0.0,
+        "bnd_pct": 0.0,
+        "dots": 0.0,
+        "dot_pct": 0.0,
+        "outs": 0,
+        "hazard": 0.0
+      },
+      "deltas": {
+        "delta_sr": -27.46,
+        "delta_bnd": -6.03,
+        "delta_dot": 0.67
+      },
+      "model": {
+        "val_add": 4.32,
+        "se_latent": 0.0274,
+        "lb90": -0.18
+      }
+    },
+    {
+      "rank": 6,
+      "player_id": 5553,
+      "name": "Phil Salt",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 78,
+      "total_balls": 1497,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Small Tier 4 Sample (45b)",
+      "normal": {
+        "balls": 485,
+        "runs": 822,
+        "sr": 169.48,
+        "bnd": 139.0,
+        "bnd_pct": 28.66,
+        "dots": 178.0,
+        "dot_pct": 36.7,
+        "outs": 23,
+        "hazard": 4.74
+      },
+      "pressure": {
+        "balls": 1012,
+        "runs": 1733,
+        "sr": 171.25,
+        "bnd": 260.0,
+        "bnd_pct": 25.69,
+        "dots": 315.0,
+        "dot_pct": 31.13,
+        "outs": 47,
+        "hazard": 4.64
+      },
+      "high": {
+        "balls": 280,
+        "runs": 517,
+        "sr": 184.64,
+        "bnd": 74.0,
+        "bnd_pct": 26.43,
+        "dots": 73.0,
+        "dot_pct": 26.07,
+        "outs": 15,
+        "hazard": 5.36
+      },
+      "t2": {
+        "balls": 732,
+        "runs": 1216,
+        "sr": 166.12,
+        "bnd": 186.0,
+        "bnd_pct": 25.41,
+        "dots": 242.0,
+        "dot_pct": 33.06,
+        "outs": 32,
+        "hazard": 4.37
+      },
+      "t3": {
+        "balls": 235,
+        "runs": 414,
+        "sr": 176.17,
+        "bnd": 61.0,
+        "bnd_pct": 25.96,
+        "dots": 67.0,
+        "dot_pct": 28.51,
+        "outs": 14,
+        "hazard": 5.96
+      },
+      "t4": {
+        "balls": 45,
+        "runs": 103,
+        "sr": 228.89,
+        "bnd": 13.0,
+        "bnd_pct": 28.89,
+        "dots": 6.0,
+        "dot_pct": 13.33,
+        "outs": 1,
+        "hazard": 2.22
+      },
+      "deltas": {
+        "delta_sr": 1.77,
+        "delta_bnd": -2.97,
+        "delta_dot": -5.57
+      },
+      "model": {
+        "val_add": 3.58,
+        "se_latent": 0.0263,
+        "lb90": -0.75
+      }
+    },
+    {
+      "rank": 7,
+      "player_id": 6819,
+      "name": "Yashasvi Jaiswal",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 84,
+      "total_balls": 1774,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Zero Tier 4 Balls",
+      "normal": {
+        "balls": 593,
+        "runs": 882,
+        "sr": 148.74,
+        "bnd": 154.0,
+        "bnd_pct": 25.97,
+        "dots": 273.0,
+        "dot_pct": 46.04,
+        "outs": 19,
+        "hazard": 3.2
+      },
+      "pressure": {
+        "balls": 1181,
+        "runs": 1838,
+        "sr": 155.63,
+        "bnd": 291.0,
+        "bnd_pct": 24.64,
+        "dots": 431.0,
+        "dot_pct": 36.49,
+        "outs": 58,
+        "hazard": 4.91
+      },
+      "high": {
+        "balls": 293,
+        "runs": 502,
+        "sr": 171.33,
+        "bnd": 83.0,
+        "bnd_pct": 28.33,
+        "dots": 96.0,
+        "dot_pct": 32.76,
+        "outs": 21,
+        "hazard": 7.17
+      },
+      "t2": {
+        "balls": 888,
+        "runs": 1336,
+        "sr": 150.45,
+        "bnd": 208.0,
+        "bnd_pct": 23.42,
+        "dots": 335.0,
+        "dot_pct": 37.73,
+        "outs": 37,
+        "hazard": 4.17
+      },
+      "t3": {
+        "balls": 293,
+        "runs": 502,
+        "sr": 171.33,
+        "bnd": 83.0,
+        "bnd_pct": 28.33,
+        "dots": 96.0,
+        "dot_pct": 32.76,
+        "outs": 21,
+        "hazard": 7.17
+      },
+      "t4": {
+        "balls": 0,
+        "runs": 0,
+        "sr": 0.0,
+        "bnd": 0.0,
+        "bnd_pct": 0.0,
+        "dots": 0.0,
+        "dot_pct": 0.0,
+        "outs": 0,
+        "hazard": 0.0
+      },
+      "deltas": {
+        "delta_sr": 6.89,
+        "delta_bnd": -1.33,
+        "delta_dot": -9.55
+      },
+      "model": {
+        "val_add": 3.03,
+        "se_latent": 0.0232,
+        "lb90": -0.78
+      }
+    },
+    {
+      "rank": 8,
+      "player_id": 4117,
+      "name": "Ishan Kishan",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 116,
+      "total_balls": 2314,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Small Tier 4 Sample (23b)",
+      "normal": {
+        "balls": 359,
+        "runs": 387,
+        "sr": 107.8,
+        "bnd": 58.0,
+        "bnd_pct": 16.16,
+        "dots": 184.0,
+        "dot_pct": 51.25,
+        "outs": 13,
+        "hazard": 3.62
+      },
+      "pressure": {
+        "balls": 1955,
+        "runs": 2992,
+        "sr": 153.04,
+        "bnd": 446.0,
+        "bnd_pct": 22.81,
+        "dots": 677.0,
+        "dot_pct": 34.63,
+        "outs": 96,
+        "hazard": 4.91
+      },
+      "high": {
+        "balls": 621,
+        "runs": 1022,
+        "sr": 164.57,
+        "bnd": 150.0,
+        "bnd_pct": 24.15,
+        "dots": 187.0,
+        "dot_pct": 30.11,
+        "outs": 34,
+        "hazard": 5.48
+      },
+      "t2": {
+        "balls": 1334,
+        "runs": 1970,
+        "sr": 147.68,
+        "bnd": 296.0,
+        "bnd_pct": 22.19,
+        "dots": 490.0,
+        "dot_pct": 36.73,
+        "outs": 62,
+        "hazard": 4.65
+      },
+      "t3": {
+        "balls": 598,
+        "runs": 991,
+        "sr": 165.72,
+        "bnd": 147.0,
+        "bnd_pct": 24.58,
+        "dots": 181.0,
+        "dot_pct": 30.27,
+        "outs": 32,
+        "hazard": 5.35
+      },
+      "t4": {
+        "balls": 23,
+        "runs": 31,
+        "sr": 134.78,
+        "bnd": 3.0,
+        "bnd_pct": 13.04,
+        "dots": 6.0,
+        "dot_pct": 26.09,
+        "outs": 2,
+        "hazard": 8.7
+      },
+      "deltas": {
+        "delta_sr": 45.24,
+        "delta_bnd": 6.65,
+        "delta_dot": -16.62
+      },
+      "model": {
+        "val_add": 2.51,
+        "se_latent": 0.0208,
+        "lb90": -0.9
+      }
+    },
+    {
+      "rank": 9,
+      "player_id": 6396,
+      "name": "Tim David",
+      "discipline_eligibility": "Single-discipline (Batting)",
+      "matches": 93,
+      "total_balls": 1154,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (286b)",
+      "normal": {
+        "balls": 77,
+        "runs": 126,
+        "sr": 163.64,
+        "bnd": 19.0,
+        "bnd_pct": 24.68,
+        "dots": 27.0,
+        "dot_pct": 35.06,
+        "outs": 7,
+        "hazard": 9.09
+      },
+      "pressure": {
+        "balls": 1077,
+        "runs": 1912,
+        "sr": 177.53,
+        "bnd": 269.0,
+        "bnd_pct": 24.98,
+        "dots": 333.0,
+        "dot_pct": 30.92,
+        "outs": 52,
+        "hazard": 4.83
+      },
+      "high": {
+        "balls": 902,
+        "runs": 1618,
+        "sr": 179.38,
+        "bnd": 228.0,
+        "bnd_pct": 25.28,
+        "dots": 278.0,
+        "dot_pct": 30.82,
+        "outs": 46,
+        "hazard": 5.1
+      },
+      "t2": {
+        "balls": 175,
+        "runs": 294,
+        "sr": 168.0,
+        "bnd": 41.0,
+        "bnd_pct": 23.43,
+        "dots": 55.0,
+        "dot_pct": 31.43,
+        "outs": 6,
+        "hazard": 3.43
+      },
+      "t3": {
+        "balls": 616,
+        "runs": 1064,
+        "sr": 172.73,
+        "bnd": 150.0,
+        "bnd_pct": 24.35,
+        "dots": 185.0,
+        "dot_pct": 30.03,
+        "outs": 30,
+        "hazard": 4.87
+      },
+      "t4": {
+        "balls": 286,
+        "runs": 554,
+        "sr": 193.71,
+        "bnd": 78.0,
+        "bnd_pct": 27.27,
+        "dots": 93.0,
+        "dot_pct": 32.52,
+        "outs": 16,
+        "hazard": 5.59
+      },
+      "deltas": {
+        "delta_sr": 13.89,
+        "delta_bnd": 0.3,
+        "delta_dot": -4.14
+      },
+      "model": {
+        "val_add": 3.43,
+        "se_latent": 0.027,
+        "lb90": -1.0
+      }
+    },
+    {
+      "rank": 10,
+      "player_id": 1318,
+      "name": "Andre Russell",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 56,
+      "total_balls": 707,
+      "status": "Relative Ranking Leader",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (202b)",
+      "normal": {
+        "balls": 20,
+        "runs": 34,
+        "sr": 170.0,
+        "bnd": 5.0,
+        "bnd_pct": 25.0,
+        "dots": 8.0,
+        "dot_pct": 40.0,
+        "outs": 0,
+        "hazard": 0.0
+      },
+      "pressure": {
+        "balls": 687,
+        "runs": 1173,
+        "sr": 170.74,
+        "bnd": 179.0,
+        "bnd_pct": 26.06,
+        "dots": 290.0,
+        "dot_pct": 42.21,
+        "outs": 43,
+        "hazard": 6.26
+      },
+      "high": {
+        "balls": 626,
+        "runs": 1068,
+        "sr": 170.61,
+        "bnd": 163.0,
+        "bnd_pct": 26.04,
+        "dots": 263.0,
+        "dot_pct": 42.01,
+        "outs": 40,
+        "hazard": 6.39
+      },
+      "t2": {
+        "balls": 61,
+        "runs": 105,
+        "sr": 172.13,
+        "bnd": 16.0,
+        "bnd_pct": 26.23,
+        "dots": 27.0,
+        "dot_pct": 44.26,
+        "outs": 3,
+        "hazard": 4.92
+      },
+      "t3": {
+        "balls": 424,
+        "runs": 734,
+        "sr": 173.11,
+        "bnd": 113.0,
+        "bnd_pct": 26.65,
+        "dots": 179.0,
+        "dot_pct": 42.22,
+        "outs": 24,
+        "hazard": 5.66
+      },
+      "t4": {
+        "balls": 202,
+        "runs": 334,
+        "sr": 165.35,
+        "bnd": 50.0,
+        "bnd_pct": 24.75,
+        "dots": 84.0,
+        "dot_pct": 41.58,
+        "outs": 16,
+        "hazard": 7.92
+      },
+      "deltas": {
+        "delta_sr": 0.74,
+        "delta_bnd": 1.06,
+        "delta_dot": 2.21
+      },
+      "model": {
+        "val_add": 3.7,
+        "se_latent": 0.0302,
+        "lb90": -1.26
+      }
+    }
+  ],
+  "bowlers": [
+    {
+      "rank": 1,
+      "player_id": 781,
+      "name": "Sunil Narine",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 67,
+      "total_balls": 1533,
+      "overs": "255.3",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (158b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 139,
+        "runs": 187,
+        "econ": 8.07,
+        "bnd": 22.0,
+        "bnd_pct": 15.83,
+        "dots": 47.0,
+        "dot_pct": 33.81,
+        "wkts": 3,
+        "sr": 46.3,
+        "overs": "23.1"
+      },
+      "pressure": {
+        "balls": 1394,
+        "runs": 1540,
+        "econ": 6.63,
+        "bnd": 149.0,
+        "bnd_pct": 10.69,
+        "dots": 537.0,
+        "dot_pct": 38.52,
+        "wkts": 63,
+        "sr": 22.1,
+        "overs": "232.2"
+      },
+      "high": {
+        "balls": 741,
+        "runs": 762,
+        "econ": 6.17,
+        "bnd": 69.0,
+        "bnd_pct": 9.31,
+        "dots": 307.0,
+        "dot_pct": 41.43,
+        "wkts": 44,
+        "sr": 16.8,
+        "overs": "123.3"
+      },
+      "t2": {
+        "balls": 653,
+        "runs": 778,
+        "econ": 7.15,
+        "bnd": 80.0,
+        "bnd_pct": 12.25,
+        "dots": 230.0,
+        "dot_pct": 35.22,
+        "wkts": 19,
+        "sr": 34.4,
+        "overs": "108.5"
+      },
+      "t3": {
+        "balls": 583,
+        "runs": 608,
+        "econ": 6.26,
+        "bnd": 55.0,
+        "bnd_pct": 9.43,
+        "dots": 237.0,
+        "dot_pct": 40.65,
+        "wkts": 35,
+        "sr": 16.7,
+        "overs": "97.1"
+      },
+      "t4": {
+        "balls": 158,
+        "runs": 154,
+        "econ": 5.85,
+        "bnd": 14.0,
+        "bnd_pct": 8.86,
+        "dots": 70.0,
+        "dot_pct": 44.3,
+        "wkts": 9,
+        "sr": 17.6,
+        "overs": "26.2"
+      },
+      "deltas": {
+        "delta_econ": -1.44,
+        "delta_dot": 4.71,
+        "delta_bnd": -5.14
+      },
+      "model": {
+        "delta_rpo": -0.605,
+        "se_latent": 0.5478,
+        "ub90": 0.296
+      }
+    },
+    {
+      "rank": 2,
+      "player_id": 2933,
+      "name": "Jasprit Bumrah",
+      "discipline_eligibility": "Single-discipline (Bowling)",
+      "matches": 69,
+      "total_balls": 1594,
+      "overs": "265.4",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (256b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 256,
+        "runs": 266,
+        "econ": 6.23,
+        "bnd": 39.0,
+        "bnd_pct": 15.23,
+        "dots": 131.0,
+        "dot_pct": 51.17,
+        "wkts": 7,
+        "sr": 36.6,
+        "overs": "42.4"
+      },
+      "pressure": {
+        "balls": 1338,
+        "runs": 1552,
+        "econ": 6.96,
+        "bnd": 199.0,
+        "bnd_pct": 14.87,
+        "dots": 581.0,
+        "dot_pct": 43.42,
+        "wkts": 72,
+        "sr": 18.6,
+        "overs": "223.0"
+      },
+      "high": {
+        "balls": 836,
+        "runs": 1011,
+        "econ": 7.26,
+        "bnd": 123.0,
+        "bnd_pct": 14.71,
+        "dots": 325.0,
+        "dot_pct": 38.88,
+        "wkts": 55,
+        "sr": 15.2,
+        "overs": "139.2"
+      },
+      "t2": {
+        "balls": 502,
+        "runs": 541,
+        "econ": 6.47,
+        "bnd": 76.0,
+        "bnd_pct": 15.14,
+        "dots": 256.0,
+        "dot_pct": 51.0,
+        "wkts": 17,
+        "sr": 29.5,
+        "overs": "83.4"
+      },
+      "t3": {
+        "balls": 580,
+        "runs": 726,
+        "econ": 7.51,
+        "bnd": 89.0,
+        "bnd_pct": 15.34,
+        "dots": 211.0,
+        "dot_pct": 36.38,
+        "wkts": 32,
+        "sr": 18.1,
+        "overs": "96.4"
+      },
+      "t4": {
+        "balls": 256,
+        "runs": 285,
+        "econ": 6.68,
+        "bnd": 34.0,
+        "bnd_pct": 13.28,
+        "dots": 114.0,
+        "dot_pct": 44.53,
+        "wkts": 23,
+        "sr": 11.1,
+        "overs": "42.4"
+      },
+      "deltas": {
+        "delta_econ": 0.73,
+        "delta_dot": -7.75,
+        "delta_bnd": -0.36
+      },
+      "model": {
+        "delta_rpo": -0.538,
+        "se_latent": 0.5659,
+        "ub90": 0.393
+      }
+    },
+    {
+      "rank": 3,
+      "player_id": 4373,
+      "name": "Mustafizur Rahman",
+      "discipline_eligibility": "Single-discipline (Bowling)",
+      "matches": 63,
+      "total_balls": 1414,
+      "overs": "235.4",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (267b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 167,
+        "runs": 217,
+        "econ": 7.8,
+        "bnd": 33.0,
+        "bnd_pct": 19.76,
+        "dots": 70.0,
+        "dot_pct": 41.92,
+        "wkts": 6,
+        "sr": 27.8,
+        "overs": "27.5"
+      },
+      "pressure": {
+        "balls": 1247,
+        "runs": 1524,
+        "econ": 7.33,
+        "bnd": 198.0,
+        "bnd_pct": 15.88,
+        "dots": 509.0,
+        "dot_pct": 40.82,
+        "wkts": 66,
+        "sr": 18.9,
+        "overs": "207.5"
+      },
+      "high": {
+        "balls": 756,
+        "runs": 963,
+        "econ": 7.64,
+        "bnd": 119.0,
+        "bnd_pct": 15.74,
+        "dots": 293.0,
+        "dot_pct": 38.76,
+        "wkts": 48,
+        "sr": 15.8,
+        "overs": "126.0"
+      },
+      "t2": {
+        "balls": 491,
+        "runs": 561,
+        "econ": 6.86,
+        "bnd": 79.0,
+        "bnd_pct": 16.09,
+        "dots": 216.0,
+        "dot_pct": 43.99,
+        "wkts": 18,
+        "sr": 27.3,
+        "overs": "81.5"
+      },
+      "t3": {
+        "balls": 489,
+        "runs": 662,
+        "econ": 8.12,
+        "bnd": 81.0,
+        "bnd_pct": 16.56,
+        "dots": 161.0,
+        "dot_pct": 32.92,
+        "wkts": 21,
+        "sr": 23.3,
+        "overs": "81.3"
+      },
+      "t4": {
+        "balls": 267,
+        "runs": 301,
+        "econ": 6.76,
+        "bnd": 38.0,
+        "bnd_pct": 14.23,
+        "dots": 132.0,
+        "dot_pct": 49.44,
+        "wkts": 27,
+        "sr": 9.9,
+        "overs": "44.3"
+      },
+      "deltas": {
+        "delta_econ": -0.47,
+        "delta_dot": -1.1,
+        "delta_bnd": -3.88
+      },
+      "model": {
+        "delta_rpo": -0.326,
+        "se_latent": 0.5576,
+        "ub90": 0.592
+      }
+    },
+    {
+      "rank": 4,
+      "player_id": 3644,
+      "name": "Kuldeep Yadav",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 87,
+      "total_balls": 1878,
+      "overs": "313.0",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (216b)",
+      "is_specialist_bowler_note": true,
+      "normal": {
+        "balls": 67,
+        "runs": 135,
+        "econ": 12.09,
+        "bnd": 17.0,
+        "bnd_pct": 25.37,
+        "dots": 17.0,
+        "dot_pct": 25.37,
+        "wkts": 2,
+        "sr": 33.5,
+        "overs": "11.1"
+      },
+      "pressure": {
+        "balls": 1811,
+        "runs": 2311,
+        "econ": 7.66,
+        "bnd": 249.0,
+        "bnd_pct": 13.75,
+        "dots": 619.0,
+        "dot_pct": 34.18,
+        "wkts": 114,
+        "sr": 15.9,
+        "overs": "301.5"
+      },
+      "high": {
+        "balls": 1074,
+        "runs": 1288,
+        "econ": 7.2,
+        "bnd": 130.0,
+        "bnd_pct": 12.1,
+        "dots": 390.0,
+        "dot_pct": 36.31,
+        "wkts": 78,
+        "sr": 13.8,
+        "overs": "179.0"
+      },
+      "t2": {
+        "balls": 737,
+        "runs": 1023,
+        "econ": 8.33,
+        "bnd": 119.0,
+        "bnd_pct": 16.15,
+        "dots": 229.0,
+        "dot_pct": 31.07,
+        "wkts": 36,
+        "sr": 20.5,
+        "overs": "122.5"
+      },
+      "t3": {
+        "balls": 858,
+        "runs": 1029,
+        "econ": 7.2,
+        "bnd": 99.0,
+        "bnd_pct": 11.54,
+        "dots": 295.0,
+        "dot_pct": 34.38,
+        "wkts": 54,
+        "sr": 15.9,
+        "overs": "143.0"
+      },
+      "t4": {
+        "balls": 216,
+        "runs": 259,
+        "econ": 7.19,
+        "bnd": 31.0,
+        "bnd_pct": 14.35,
+        "dots": 95.0,
+        "dot_pct": 43.98,
+        "wkts": 24,
+        "sr": 9.0,
+        "overs": "36.0"
+      },
+      "deltas": {
+        "delta_econ": -4.43,
+        "delta_dot": 8.81,
+        "delta_bnd": -11.62
+      },
+      "model": {
+        "delta_rpo": -0.213,
+        "se_latent": 0.4908,
+        "ub90": 0.595
+      }
+    },
+    {
+      "rank": 5,
+      "player_id": 2876,
+      "name": "Axar Patel",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 127,
+      "total_balls": 2484,
+      "overs": "414.0",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (255b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 197,
+        "runs": 268,
+        "econ": 8.16,
+        "bnd": 38.0,
+        "bnd_pct": 19.29,
+        "dots": 78.0,
+        "dot_pct": 39.59,
+        "wkts": 5,
+        "sr": 39.4,
+        "overs": "32.5"
+      },
+      "pressure": {
+        "balls": 2287,
+        "runs": 3018,
+        "econ": 7.92,
+        "bnd": 362.0,
+        "bnd_pct": 15.83,
+        "dots": 797.0,
+        "dot_pct": 34.85,
+        "wkts": 103,
+        "sr": 22.2,
+        "overs": "381.1"
+      },
+      "high": {
+        "balls": 1273,
+        "runs": 1664,
+        "econ": 7.84,
+        "bnd": 196.0,
+        "bnd_pct": 15.4,
+        "dots": 445.0,
+        "dot_pct": 34.96,
+        "wkts": 59,
+        "sr": 21.6,
+        "overs": "212.1"
+      },
+      "t2": {
+        "balls": 1014,
+        "runs": 1354,
+        "econ": 8.01,
+        "bnd": 166.0,
+        "bnd_pct": 16.37,
+        "dots": 352.0,
+        "dot_pct": 34.71,
+        "wkts": 44,
+        "sr": 23.1,
+        "overs": "169.0"
+      },
+      "t3": {
+        "balls": 1018,
+        "runs": 1315,
+        "econ": 7.75,
+        "bnd": 150.0,
+        "bnd_pct": 14.73,
+        "dots": 343.0,
+        "dot_pct": 33.69,
+        "wkts": 48,
+        "sr": 21.2,
+        "overs": "169.4"
+      },
+      "t4": {
+        "balls": 255,
+        "runs": 349,
+        "econ": 8.21,
+        "bnd": 46.0,
+        "bnd_pct": 18.04,
+        "dots": 102.0,
+        "dot_pct": 40.0,
+        "wkts": 11,
+        "sr": 23.2,
+        "overs": "42.3"
+      },
+      "deltas": {
+        "delta_econ": -0.24,
+        "delta_dot": -4.74,
+        "delta_bnd": -3.46
+      },
+      "model": {
+        "delta_rpo": -0.15,
+        "se_latent": 0.4868,
+        "ub90": 0.651
+      }
+    },
+    {
+      "rank": 6,
+      "player_id": 4900,
+      "name": "Wanindu Hasaranga",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 80,
+      "total_balls": 1789,
+      "overs": "298.1",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (184b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 227,
+        "runs": 293,
+        "econ": 7.74,
+        "bnd": 36.0,
+        "bnd_pct": 15.86,
+        "dots": 87.0,
+        "dot_pct": 38.33,
+        "wkts": 13,
+        "sr": 17.5,
+        "overs": "37.5"
+      },
+      "pressure": {
+        "balls": 1562,
+        "runs": 2054,
+        "econ": 7.89,
+        "bnd": 230.0,
+        "bnd_pct": 14.72,
+        "dots": 545.0,
+        "dot_pct": 34.89,
+        "wkts": 108,
+        "sr": 14.5,
+        "overs": "260.2"
+      },
+      "high": {
+        "balls": 903,
+        "runs": 1193,
+        "econ": 7.93,
+        "bnd": 131.0,
+        "bnd_pct": 14.51,
+        "dots": 330.0,
+        "dot_pct": 36.54,
+        "wkts": 73,
+        "sr": 12.4,
+        "overs": "150.3"
+      },
+      "t2": {
+        "balls": 659,
+        "runs": 861,
+        "econ": 7.84,
+        "bnd": 99.0,
+        "bnd_pct": 15.02,
+        "dots": 215.0,
+        "dot_pct": 32.63,
+        "wkts": 35,
+        "sr": 18.8,
+        "overs": "109.5"
+      },
+      "t3": {
+        "balls": 719,
+        "runs": 920,
+        "econ": 7.68,
+        "bnd": 97.0,
+        "bnd_pct": 13.49,
+        "dots": 256.0,
+        "dot_pct": 35.61,
+        "wkts": 55,
+        "sr": 13.1,
+        "overs": "119.5"
+      },
+      "t4": {
+        "balls": 184,
+        "runs": 273,
+        "econ": 8.9,
+        "bnd": 34.0,
+        "bnd_pct": 18.48,
+        "dots": 74.0,
+        "dot_pct": 40.22,
+        "wkts": 18,
+        "sr": 10.2,
+        "overs": "30.4"
+      },
+      "deltas": {
+        "delta_econ": 0.15,
+        "delta_dot": -3.44,
+        "delta_bnd": -1.14
+      },
+      "model": {
+        "delta_rpo": -0.219,
+        "se_latent": 0.5296,
+        "ub90": 0.652
+      }
+    },
+    {
+      "rank": 7,
+      "player_id": 152,
+      "name": "Ravindra Jadeja",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 72,
+      "total_balls": 1355,
+      "overs": "225.5",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (127b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 43,
+        "runs": 51,
+        "econ": 7.12,
+        "bnd": 4.0,
+        "bnd_pct": 9.3,
+        "dots": 13.0,
+        "dot_pct": 30.23,
+        "wkts": 1,
+        "sr": 43.0,
+        "overs": "7.1"
+      },
+      "pressure": {
+        "balls": 1312,
+        "runs": 1685,
+        "econ": 7.71,
+        "bnd": 179.0,
+        "bnd_pct": 13.64,
+        "dots": 413.0,
+        "dot_pct": 31.48,
+        "wkts": 56,
+        "sr": 23.4,
+        "overs": "218.4"
+      },
+      "high": {
+        "balls": 743,
+        "runs": 926,
+        "econ": 7.48,
+        "bnd": 99.0,
+        "bnd_pct": 13.32,
+        "dots": 253.0,
+        "dot_pct": 34.05,
+        "wkts": 34,
+        "sr": 21.9,
+        "overs": "123.5"
+      },
+      "t2": {
+        "balls": 569,
+        "runs": 759,
+        "econ": 8.0,
+        "bnd": 80.0,
+        "bnd_pct": 14.06,
+        "dots": 160.0,
+        "dot_pct": 28.12,
+        "wkts": 22,
+        "sr": 25.9,
+        "overs": "94.5"
+      },
+      "t3": {
+        "balls": 616,
+        "runs": 748,
+        "econ": 7.29,
+        "bnd": 77.0,
+        "bnd_pct": 12.5,
+        "dots": 207.0,
+        "dot_pct": 33.6,
+        "wkts": 25,
+        "sr": 24.6,
+        "overs": "102.4"
+      },
+      "t4": {
+        "balls": 127,
+        "runs": 178,
+        "econ": 8.41,
+        "bnd": 22.0,
+        "bnd_pct": 17.32,
+        "dots": 46.0,
+        "dot_pct": 36.22,
+        "wkts": 9,
+        "sr": 14.1,
+        "overs": "21.1"
+      },
+      "deltas": {
+        "delta_econ": 0.59,
+        "delta_dot": 1.25,
+        "delta_bnd": 4.34
+      },
+      "model": {
+        "delta_rpo": -0.156,
+        "se_latent": 0.493,
+        "ub90": 0.655
+      }
+    },
+    {
+      "rank": 8,
+      "player_id": 4101,
+      "name": "Mitchell Santner",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 82,
+      "total_balls": 1725,
+      "overs": "287.3",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (213b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 199,
+        "runs": 243,
+        "econ": 7.33,
+        "bnd": 31.0,
+        "bnd_pct": 15.58,
+        "dots": 81.0,
+        "dot_pct": 40.7,
+        "wkts": 6,
+        "sr": 33.2,
+        "overs": "33.1"
+      },
+      "pressure": {
+        "balls": 1526,
+        "runs": 1826,
+        "econ": 7.18,
+        "bnd": 206.0,
+        "bnd_pct": 13.5,
+        "dots": 566.0,
+        "dot_pct": 37.09,
+        "wkts": 79,
+        "sr": 19.3,
+        "overs": "254.2"
+      },
+      "high": {
+        "balls": 839,
+        "runs": 978,
+        "econ": 6.99,
+        "bnd": 106.0,
+        "bnd_pct": 12.63,
+        "dots": 322.0,
+        "dot_pct": 38.38,
+        "wkts": 52,
+        "sr": 16.1,
+        "overs": "139.5"
+      },
+      "t2": {
+        "balls": 687,
+        "runs": 848,
+        "econ": 7.41,
+        "bnd": 100.0,
+        "bnd_pct": 14.56,
+        "dots": 244.0,
+        "dot_pct": 35.52,
+        "wkts": 27,
+        "sr": 25.4,
+        "overs": "114.3"
+      },
+      "t3": {
+        "balls": 626,
+        "runs": 741,
+        "econ": 7.1,
+        "bnd": 82.0,
+        "bnd_pct": 13.1,
+        "dots": 233.0,
+        "dot_pct": 37.22,
+        "wkts": 35,
+        "sr": 17.9,
+        "overs": "104.2"
+      },
+      "t4": {
+        "balls": 213,
+        "runs": 237,
+        "econ": 6.68,
+        "bnd": 24.0,
+        "bnd_pct": 11.27,
+        "dots": 89.0,
+        "dot_pct": 41.78,
+        "wkts": 17,
+        "sr": 12.5,
+        "overs": "35.3"
+      },
+      "deltas": {
+        "delta_econ": -0.15,
+        "delta_dot": -3.61,
+        "delta_bnd": -2.08
+      },
+      "model": {
+        "delta_rpo": -0.245,
+        "se_latent": 0.5479,
+        "ub90": 0.656
+      }
+    },
+    {
+      "rank": 9,
+      "player_id": 2984,
+      "name": "Sikandar Raza",
+      "discipline_eligibility": "Dual-discipline eligible",
+      "matches": 41,
+      "total_balls": 839,
+      "overs": "139.5",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Small Tier 4 Sample (28b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 120,
+        "runs": 142,
+        "econ": 7.1,
+        "bnd": 17.0,
+        "bnd_pct": 14.17,
+        "dots": 42.0,
+        "dot_pct": 35.0,
+        "wkts": 3,
+        "sr": 40.0,
+        "overs": "20.0"
+      },
+      "pressure": {
+        "balls": 719,
+        "runs": 845,
+        "econ": 7.05,
+        "bnd": 80.0,
+        "bnd_pct": 11.13,
+        "dots": 227.0,
+        "dot_pct": 31.57,
+        "wkts": 31,
+        "sr": 23.2,
+        "overs": "119.5"
+      },
+      "high": {
+        "balls": 343,
+        "runs": 393,
+        "econ": 6.87,
+        "bnd": 36.0,
+        "bnd_pct": 10.5,
+        "dots": 115.0,
+        "dot_pct": 33.53,
+        "wkts": 17,
+        "sr": 20.2,
+        "overs": "57.1"
+      },
+      "t2": {
+        "balls": 376,
+        "runs": 452,
+        "econ": 7.21,
+        "bnd": 44.0,
+        "bnd_pct": 11.7,
+        "dots": 112.0,
+        "dot_pct": 29.79,
+        "wkts": 14,
+        "sr": 26.9,
+        "overs": "62.4"
+      },
+      "t3": {
+        "balls": 315,
+        "runs": 369,
+        "econ": 7.03,
+        "bnd": 35.0,
+        "bnd_pct": 11.11,
+        "dots": 104.0,
+        "dot_pct": 33.02,
+        "wkts": 14,
+        "sr": 22.5,
+        "overs": "52.3"
+      },
+      "t4": {
+        "balls": 28,
+        "runs": 24,
+        "econ": 5.14,
+        "bnd": 1.0,
+        "bnd_pct": 3.57,
+        "dots": 11.0,
+        "dot_pct": 39.29,
+        "wkts": 3,
+        "sr": 9.3,
+        "overs": "4.4"
+      },
+      "deltas": {
+        "delta_econ": -0.05,
+        "delta_dot": -3.43,
+        "delta_bnd": -3.04
+      },
+      "model": {
+        "delta_rpo": -0.274,
+        "se_latent": 0.5738,
+        "ub90": 0.67
+      }
+    },
+    {
+      "rank": 10,
+      "player_id": 5979,
+      "name": "Abrar Ahmed",
+      "discipline_eligibility": "Single-discipline (Bowling)",
+      "matches": 34,
+      "total_balls": 740,
+      "overs": "123.2",
+      "status": "Top Relative Suppressor",
+      "is_confirmed_positive": false,
+      "limitation_flag": "Robust Tier 4 Exposure (136b)",
+      "is_specialist_bowler_note": false,
+      "normal": {
+        "balls": 94,
+        "runs": 114,
+        "econ": 7.28,
+        "bnd": 13.0,
+        "bnd_pct": 13.83,
+        "dots": 40.0,
+        "dot_pct": 42.55,
+        "wkts": 2,
+        "sr": 47.0,
+        "overs": "15.4"
+      },
+      "pressure": {
+        "balls": 646,
+        "runs": 707,
+        "econ": 6.57,
+        "bnd": 78.0,
+        "bnd_pct": 12.07,
+        "dots": 276.0,
+        "dot_pct": 42.72,
+        "wkts": 42,
+        "sr": 15.4,
+        "overs": "107.4"
+      },
+      "high": {
+        "balls": 424,
+        "runs": 418,
+        "econ": 5.92,
+        "bnd": 38.0,
+        "bnd_pct": 8.96,
+        "dots": 186.0,
+        "dot_pct": 43.87,
+        "wkts": 31,
+        "sr": 13.7,
+        "overs": "70.4"
+      },
+      "t2": {
+        "balls": 222,
+        "runs": 289,
+        "econ": 7.81,
+        "bnd": 40.0,
+        "bnd_pct": 18.02,
+        "dots": 90.0,
+        "dot_pct": 40.54,
+        "wkts": 11,
+        "sr": 20.2,
+        "overs": "37.0"
+      },
+      "t3": {
+        "balls": 288,
+        "runs": 301,
+        "econ": 6.27,
+        "bnd": 28.0,
+        "bnd_pct": 9.72,
+        "dots": 119.0,
+        "dot_pct": 41.32,
+        "wkts": 22,
+        "sr": 13.1,
+        "overs": "48.0"
+      },
+      "t4": {
+        "balls": 136,
+        "runs": 117,
+        "econ": 5.16,
+        "bnd": 10.0,
+        "bnd_pct": 7.35,
+        "dots": 67.0,
+        "dot_pct": 49.26,
+        "wkts": 9,
+        "sr": 15.1,
+        "overs": "22.4"
+      },
+      "deltas": {
+        "delta_econ": -0.71,
+        "delta_dot": 0.17,
+        "delta_bnd": -1.76
+      },
+      "model": {
+        "delta_rpo": -0.304,
+        "se_latent": 0.6083,
+        "ub90": 0.697
+      }
+    }
+  ]
+};

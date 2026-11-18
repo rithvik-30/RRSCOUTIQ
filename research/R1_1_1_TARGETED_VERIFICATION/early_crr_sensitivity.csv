@@ -1,0 +1,5 @@
+treatment_name,imputation_rule,sample_size_n,cluster_count_g,dli_beta,dli_se_classical,dli_se_clustered,dli_t_clustered,dli_p_clustered,dli_ci95_low,dli_ci95_high,delta_beta_vs_canon
+1. Canonical Baseline (8.00 Imputation),Undefined early CRR in Over 1 imputed to canonical 8.00,159225,744,0.06382,0.004262,0.010297,6.198,< 0.0001,0.04361,0.08403,0.0
+2. Complete-Case Exclusion (Drop Missing CRR),"Excludes 8,850 observations where pre_crr is undefined (Over 1 deliveries)",150375,744,0.06184,0.004319,0.01048,5.901,< 0.0001,0.04127,0.08242,-0.00198
+3. Empirical Powerplay Mean Imputation (8.14),Imputes missing CRR to empirical Powerplay mean (8.14),159225,744,0.06383,0.00426,0.010291,6.202,< 0.0001,0.04362,0.08403,1e-05
+4. Missing Indicator Method (Zero Impute + Dummy),Sets missing CRR to 0.00 and includes explicit is_CRR_missing indicator dummy,159225,744,0.05975,0.004224,0.010349,5.774,< 0.0001,0.03944,0.08007,-0.00407

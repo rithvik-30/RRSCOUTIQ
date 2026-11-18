@@ -1,0 +1,17 @@
+diagnostic_level,diagnostic_type,variable_name,vif_factor,collinearity_status,singular_value_index,singular_value_unscaled,singular_value_scaled,notes
+Variable-Level,Variance Inflation Factor (VIF),Intercept,1.0,Low Multicollinearity (VIF < 5),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),W_hand,4.6824,Low Multicollinearity (VIF < 5),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),B_rem,7.6213,Moderate Multicollinearity (5 <= VIF < 10),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),is_PP,3.8982,Low Multicollinearity (VIF < 5),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),is_Death,2.5157,Low Multicollinearity (VIF < 5),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),Rate,2.5133,Low Multicollinearity (VIF < 5),,,,Evaluates multicollinearity of specific covariate
+Variable-Level,Variance Inflation Factor (VIF),DLI,5.7933,Moderate Multicollinearity (5 <= VIF < 10),,,,Evaluates multicollinearity of specific covariate
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_1,,Matrix Conditioning Spectrum,1,29531.13,754.98,Singular value component 1 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_2,,Matrix Conditioning Spectrum,2,2554.39,426.22,Singular value component 2 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_3,,Matrix Conditioning Spectrum,3,744.67,399.03,Singular value component 3 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_4,,Matrix Conditioning Spectrum,4,233.26,323.73,Singular value component 4 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_5,,Matrix Conditioning Spectrum,5,134.21,264.26,Singular value component 5 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_6,,Matrix Conditioning Spectrum,6,84.36,125.38,Singular value component 6 of design matrix X
+Matrix-Level,Design Matrix Singular Value (Eigen-spectrum),Singular_Value_Component_7,,Matrix Conditioning Spectrum,7,38.06,115.48,Singular value component 7 of design matrix X
+Matrix-Level,Condition Number (Unscaled),Full_Design_Matrix_Unscaled_Kappa,,Matrix Conditioning (Unscaled),max/min,775.84,,Ratio s_max / s_min = 775.84 (dominated by column scales: Balls vs Rate)
+Matrix-Level,Condition Number (Column-Standardized),Full_Design_Matrix_Scaled_Kappa,,Well-Conditioned (Scaled),max/min,,6.54,Ratio s_max / s_min = 6.54 (< 10: mathematically well-conditioned)

@@ -1,0 +1,48 @@
+{
+  "status": "PASSED",
+  "is_passed": true,
+  "active_execution_path_verified": true,
+  "failures_count": 0,
+  "failures": [],
+  "numerical_tests": {
+    "normal_positive_variance_batter": {
+      "passed": true,
+      "latent_posterior_variance": 0.001011111111111111,
+      "latent_se": 0.03179797338056486,
+      "shrinkage_weight": 0.5185185185185185
+    },
+    "normal_positive_variance_bowler": {
+      "passed": true,
+      "latent_posterior_variance": 0.3903555163954252,
+      "latent_se": 0.6247843759213455,
+      "shrinkage_weight": 0.1607062644690923
+    },
+    "variance_below_floor_activation": {
+      "passed": true,
+      "latent_posterior_variance": 1.5999987809656167e-09,
+      "latent_se": 0.0001,
+      "expected_latent_se": 0.0001
+    },
+    "credible_bound_multiplier_and_directionality": {
+      "passed": true,
+      "multiplier": 1.645,
+      "batter_direction": "LOWER_BOUND (mu - 1.645*se)",
+      "bowler_direction": "UPPER_BOUND (mu + 1.645*se)",
+      "batter_test_lb90": 0.013313414345000003,
+      "bowler_test_ub90": 0.37023341330000004
+    },
+    "negative_variance_guard": {
+      "passed": true,
+      "sqrt_max_negative": 0.0001
+    }
+  },
+  "active_engine_class": "src.m5_5b_4_3_8.epistemic_context_engine_b4_3_8.ContextualPlayerBaselineRecordB438",
+  "formula_documentation": {
+    "posterior_variance": "Var(theta_i | Y_{i,c}, mu_LPMO) = (1.0 - shrinkage_weight) * tau2_total",
+    "latent_se": "latent_se = sqrt(max(1e-8, latent_posterior_variance))",
+    "floor_value": 1e-08,
+    "z_multiplier": 1.645,
+    "coverage_interpretation": "One-sided 95% credible bound; conservative endpoint of central two-sided 90% credible interval.",
+    "conditioning_qualification": "Conditional on Gaussian empirical-Bayes conjugate model and LPMO plug-in estimates."
+  }
+}

@@ -1,0 +1,3090 @@
+================================================================================
+RR ScoutIQ — PHASE 5.14.5.1 EXECUTION & VERIFICATION AUDIT LOG
+================================================================================
+Date: 2026-11-18
+Project: RR ScoutIQ (Rajasthan Royals IPL 2027 Auction Strategy Hackathon)
+Platform: Windows (PowerShell / Python 3.13.9, pytest 8.4.2)
+Scope: Phase 5.14.5.1 Final Verification Corrections & Fail-Closed Gate Hardening
+Immutability Audit: Verified ce7e9a... (match_state_full.csv) and 0e0a11... (competition report)
+
+--------------------------------------------------------------------------------
+STEP 1: VERIFY BASELINE HASHES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-FileHash -Algorithm SHA256 data/processed/m5_3/match_state_full.csv, FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md | Format-List Path, Hash"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:25:56+05:30
+Completed At: 2026-11-18T18:25:59+05:30
+Created At: 2026-11-18T18:25:56+05:30
+Completed At: 2026-11-18T18:25:59+05:30
+Command exited with code 0.
+
+Command output:
+
+
+Path : C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\data\processed\m5_3\match_state_full.csv
+Hash : CE7E9A2FD2B8487E2E0BFEBFF5B7B44FE39D63EE7B5B1FBC35C5E07238E2D9E4
+
+Path : C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md
+Hash : 0E0A11F87622DBEED44C3D918F37C5C9DE2F2BE8B22AC180099B5ADD1B882A1D
+
+--------------------------------------------------------------------------------
+STEP 2: INSPECT PROSPECTIVE RANKINGS RECORD KEYS
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open('research/phase5_11/prospective_rankings.json') as f:
+    d = json.load(f)
+b0 = d['window_a']['top10_batters'][0]
+print('Keys in batter record:', list(b0.keys()))
+print('Sample batter record:', b0)
+bw0 = d['window_a']['top10_bowlers'][0]
+print('Keys in bowler record:', list(bw0.keys()))
+print('Sample bowler record:', bw0)
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:26:04+05:30
+Completed At: 2026-11-18T18:26:05+05:30
+Created At: 2026-11-18T18:26:04+05:30
+Completed At: 2026-11-18T18:26:05+05:30
+Command exited with code 0.
+
+Command output:
+Keys in batter record: ['striker_id', 'n_press_balls', 'mean_val_add', 'se_latent', 'canonical_balls', 'name', 'role', 'lb90', 'eligible', 'player_id', 'lb_90']
+Sample batter record: {'striker_id': 1699, 'n_press_balls': 1641, 'mean_val_add': 0.0479658971153596, 'se_latent': 0.02106533920766877, 'canonical_balls': 1788, 'name': 'Suryakumar Yadav', 'role': 'Batter', 'lb90': 0.013313414118744468, 'eligible': True, 'player_id': 1699, 'lb_90': 0.013313414118744468}
+Keys in bowler record: ['bowler_id', 'n_press_spells', 'mean_delta', 'se_latent', 'canonical_balls', 'name', 'role', 'ub90', 'eligible', 'player_id', 'ub_90']
+Sample bowler record: {'bowler_id': 781, 'n_press_spells': 74, 'mean_delta': -0.5620136547628346, 'se_latent': 0.5667155379257611, 'canonical_balls': 954, 'name': 'Sunil Narine', 'role': 'All-Rounder', 'ub90': 0.37023340512504244, 'eligible': True, 'player_id': 781, 'ub_90': 0.37023340512504244}
+
+--------------------------------------------------------------------------------
+STEP 3: SEARCH FOR EXPLICIT RANK IN RESEARCH JSONS
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Select-String -Path research/**/*.json -Pattern '\"rank\": 1' | Select-Object Path, LineNumber -First 10"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:26:13+05:30
+Completed At: 2026-11-18T18:26:14+05:30
+Created At: 2026-11-18T18:26:13+05:30
+Completed At: 2026-11-18T18:26:14+05:30
+Command exited with code 0.
+
+No output from the command.
+
+--------------------------------------------------------------------------------
+STEP 4: LIST ALL JSON FILES IN RESEARCH
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem -Recurse -Filter *.json research | Select-Object FullName"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:26:20+05:30
+Completed At: 2026-11-18T18:26:21+05:30
+Created At: 2026-11-18T18:26:20+05:30
+Completed At: 2026-11-18T18:26:21+05:30
+Command exited with code 0.
+
+Command output:
+
+FullName                                                                                                               
+--------                                                                                                               
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_11\prospective_rankings.json                      
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_11\walk_forward_evaluation_results.json           
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_12\corrected_bootstrap_results.json               
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_12\outcome_definition_analysis.json               
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_12\production_ranking_equivalence.json            
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_12\spell_aggregation_equivalence.json             
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_12\temporal_leakage_audit.json                    
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_13\final_match_reconciliation.json                
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_13\final_numerical_equivalence.json               
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_13\holm_adjusted_results.json                     
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_13\independently_verified_bootstrap.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14\corrected_match_reconciliation.json            
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14\corrected_statistical_results.json             
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14\phase5_14_validation_summary.json              
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14\production_equivalence_verification.json       
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_1\corrected_statistical_interpretation.json    
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_1\phase5_14_1_validation_summary.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_2\phase5_14_2_validation_summary.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_3\phase5_14_3_validation_summary.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\authoritative_gate_manifest.json             
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\frozen_asset_hash_verification.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\phase5_14_5_validation_summary.json          
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\publication_recovery_results.json            
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\selection_invariance_results.json            
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\statistical_precision_results.json           
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\subprocess_validation_results.json           
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\uncertainty_verification_results.json        
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\phase5_14_4\phase5_14_4_validation_summary...
+
+--------------------------------------------------------------------------------
+STEP 5: CHECK KEYS OF PROSPECTIVE_RANKINGS.JSON
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open('research/phase5_11/prospective_rankings.json') as f:
+    d = json.load(f)
+for k, v in d.items():
+    print('Key:', k)
+    if isinstance(v, dict):
+        for k2, v2 in v.items():
+            print('  Subkey:', k2, 'count:', len(v2) if isinstance(v2, list) else type(v2))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:26:41+05:30
+Completed At: 2026-11-18T18:26:42+05:30
+Created At: 2026-11-18T18:26:41+05:30
+Completed At: 2026-11-18T18:26:42+05:30
+Command exited with code 0.
+
+Command output:
+Key: window_a
+  Subkey: top10_batters count: 10
+  Subkey: top10_bowlers count: 10
+  Subkey: all_eligible_batters count: 66
+  Subkey: all_eligible_bowlers count: 64
+  Subkey: full_batters count: 66
+  Subkey: full_bowlers count: 64
+Key: window_b
+  Subkey: top10_batters count: 10
+  Subkey: top10_bowlers count: 10
+  Subkey: all_eligible_batters count: 88
+  Subkey: all_eligible_bowlers count: 93
+  Subkey: full_batters count: 88
+  Subkey: full_bowlers count: 93
+
+--------------------------------------------------------------------------------
+STEP 6: SEARCH FOR DETAILED_ROLE AND TOP-ORDER BATTER
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Select-String -Path research/**/*.py, src/**/*.py, data/**/*.json -Pattern 'detailed_role', 'Top-Order Batter' | Select-Object Path, LineNumber -First 10"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:26:55+05:30
+Completed At: 2026-11-18T18:26:57+05:30
+Created At: 2026-11-18T18:26:55+05:30
+Completed At: 2026-11-18T18:26:57+05:30
+Command exited with code 0.
+
+Command output:
+
+Path                                                                                            LineNumber
+----                                                                                            ----------
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_2\freeze_gate.py               240
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_2\freeze_gate.py               241
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_2\freeze_gate.py               248
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_3\hardened_gate.py             359
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_3\hardened_gate.py             360
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_3\hardened_gate.py             367
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\authoritative_gate.py         68
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\authoritative_gate.py         69
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\authoritative_gate.py         70
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\authoritative_gate.py         71
+
+--------------------------------------------------------------------------------
+STEP 7: SEARCH FOR DETAILED_ROLE IN ALL JSON FILES
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import glob, json
+
+for f in glob.glob('**/*.json', recursive=True):
+    if 'node_modules' in f or '.git' in f or '.pytest' in f: continue
+    try:
+        data = json.load(open(f, encoding='utf-8', errors='ignore'))
+        s = json.dumps(data)
+        if 'detailed_role' in s:
+            print('Found detailed_role in:', f)
+    except Exception:
+        pass
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:27:23+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16660
+Task Description: python -c "
+import glob, json
+
+for f in glob.glob('**/*.json', recursive=True):
+    if 'node_modules' in f or '.git' in f or '.pytest' in f: continue
+    try:
+        data = json.load(open(f, encoding='utf-8', errors='ignore'))
+        s = json.dumps(data)
+        if 'detailed_role' in s:
+            print('Found detailed_role in:', f)
+    except Exception:
+        pass
+"
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16660.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 8: CREATE PHASE 5.14.5.1 DIRECTORIES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "New-Item -ItemType Directory -Force -Path research/phase5_14_5_1, tests/phase5_14_5_1"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:28:45+05:30
+Completed At: 2026-11-18T18:28:47+05:30
+Created At: 2026-11-18T18:28:45+05:30
+Completed At: 2026-11-18T18:28:47+05:30
+Command exited with code 0.
+
+Command output:
+
+
+    Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----        18-11-2026     18:28                phase5_14_5_1                                                        
+
+
+    Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\tests
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----        18-11-2026     18:28                phase5_14_5_1
+
+--------------------------------------------------------------------------------
+STEP 9: CHECK 5.14.5.1 DIRECTORIES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem research\phase5_14_5_1, tests\phase5_14_5_1 -ErrorAction SilentlyContinue"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:29:31+05:30
+Completed At: 2026-11-18T18:29:33+05:30
+Created At: 2026-11-18T18:29:31+05:30
+Completed At: 2026-11-18T18:29:33+05:30
+Command exited with code 0.
+
+No output from the command.
+
+--------------------------------------------------------------------------------
+STEP 10: FIND PHASE 5.14.5.1 IN TRANSCRIPT
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Select-String -Path C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript.jsonl -Pattern 'PHASE 5.14.5.1' -Context 0, 5"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:30:14+05:30
+Completed At: 2026-11-18T18:30:16+05:30
+The tool's output was truncated due to being too long. You can find the full output in a file at file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/steps/16690/output.txt.
+
+Here is a preview with the middle of the output truncated:
+Created At: 2026-11-18T18:30:14+05:30
+Completed At: 2026-11-18T18:30:16+05:30
+Command exited with code 0.
+
+Command output:
+
+> C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript.jsonl
+:16638:{"step_index":16642,"source":"USER_EXPLICIT","type":"USER_INPUT","status":"DONE","created_at":"2026-11-18T12:55:
+33Z","content":"<USER_REQUEST>\n# PHASE 5.14.5.1 — FINAL VERIFICATION CORRECTIONS\n\n## Project\nRR ScoutIQ — 
+Rajasthan Royals IPL 2027 Auction Strategy Hackathon\n\n## Objective\n\nFix the specific implementation and 
+verification defects identified during the independent review of Phase 5.14.5.\n\nThis is a narrow corrective 
+subphase. Do not redesign the governance architecture, statistical methodology, production engine, or player selection 
+process.\n\nThe goal is to make every approval claim demonstrably supported by the actual implementation.\n\n---\n\n# 
+1. STRICT SCOPE\n\nCreate only:\n\n- `research/phase5_14_5_1/`\n- `tests/phase5_14_5_1/`\n\nYou may edit only the 
+Phase 5.14.5 governance implementation and its associated tests where required.\n\nDo not modify:\n\n- Production DLI 
+engine.\n- Hierarchical Empirical Bayes ranking implementation.\n- Canonical datasets.\n- Official Top 10 batter 
+selections.\n- Official Top 10 bowler selections.\n- Frozen competition report.\n- Previous phase artifacts.\n- 
+Existing statistical results.\n- Existing player rankings.\n\nPreserve these SHA-256 hashes:\n\nCanonical 
+dataset:\n\n`ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4`\n\nCompetition 
+report:\n\n`0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b
+<truncated 6221 bytes>
+us":"DONE","created_at":"2026-11-18T12:59:31Z","conte
+nt":"Created At: 2026-11-18T18:29:31+05:30\nCompleted At: 2026-11-18T18:29:33+05:30\nCreated At: 
+2026-11-18T18:29:31+05:30\nCompleted At: 2026-11-18T18:29:33+05:30\nCommand exited with code 0.\n\nNo output from the 
+command."}
+  C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript.jsonl
+:16667:{"step_index":16671,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-11-18T12:59:33
+Z","model":"gemini-3.8-flash-medium","input_tokens":2501,"cache_read_tokens":24227,"output_tokens":87,"tool_calls":[{"n
+ame":"read_file","args":{"EndLine":"120","Path":"\"c:\\\\Users\\\\rithv\\\\OneDrive\\\\Documents\\\\Desktop\\\\RR_Scout
+IQ\\\\research\\\\phase5_14_5\\\\authoritative_gate.py\"","StartLine":"1"}}]}
+> C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript.jsonl
+:16685:{"step_index":16689,"source":"MODEL","type":"PLANNER_RESPONSE","status":"DONE","created_at":"2026-11-18T13:00:09
+Z","model":"gemini-3.8-flash-medium","input_tokens":3211,"cache_read_tokens":54463,"output_tokens":283,"thinking":"Init
+ial assessment: The current task is to understand the requirements for \"PHASE 5.14.5.1\". The initial information 
+source is a summarized prompt, but it might be truncated. Therefore, the full transcript will be consulted for 
+complete details.\n\nThe next step involves retrieving the complete information for \"PHASE 5.14.5.1\". The full 
+transcript is the primary source to ensure the task's requirements are fully 
+understood.\n\n\n","tool_calls":[{"name":"run_command","args":{"CommandLine":"\"powershell -Command \\\"Select-String 
+-Path C:\\\\Users\\\\rithv\\\\.gemini\\\\antigravity\\\\brain\\\\75228dec-7afc-411d-bc51-f501edccceec\\\\.system_genera
+ted\\\\logs\\\\transcript.jsonl -Pattern 'PHASE 5.14.5.1' -Context 0, 
+5\\\"\"","WaitMsBeforeAsync":"5000","toolSummary":"\"Find Phase 5.14.5.1 in transcript\""}}]}
+
+--------------------------------------------------------------------------------
+STEP 11: READ FULL PHASE 5.14.5.1 USER PROMPT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        data = json.loads(line)
+        if data.get('step_index') == 16642:
+            print(data['content'])
+            break
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:30:21+05:30
+Completed At: 2026-11-18T18:30:22+05:30
+The tool's output was truncated due to being too long. You can find the full output in a file at file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/steps/16692/output.txt.
+
+Here is a preview with the middle of the output truncated:
+Created At: 2026-11-18T18:30:21+05:30
+Completed At: 2026-11-18T18:30:22+05:30
+Command exited with code 0.
+
+Command output:
+<USER_REQUEST>
+# PHASE 5.14.5.1 — FINAL VERIFICATION CORRECTIONS
+
+## Project
+RR ScoutIQ — Rajasthan Royals IPL 2027 Auction Strategy Hackathon
+
+## Objective
+
+Fix the specific implementation and verification defects identified during the independent review of Phase 5.14.5.
+
+This is a narrow corrective subphase. Do not redesign the governance architecture, statistical methodology, production engine, or player selection process.
+
+The goal is to make every approval claim demonstrably supported by the actual implementation.
+
+---
+
+# 1. STRICT SCOPE
+
+Create only:
+
+- `research/phase5_14_5_1/`
+- `tests/phase5_14_5_1/`
+
+You may edit only the Phase 5.14.5 governance implementation and its associated tests where required.
+
+Do not modify:
+
+- Production DLI engine.
+- Hierarchical Empirical Bayes ranking implementation.
+- Canonical datasets.
+- Official Top 10 batter selections.
+- Official Top 10 bowler selections.
+- Frozen competition report.
+- Previous phase artifacts.
+- Existing statistical results.
+- Existing player rankings.
+
+Preserve these SHA-256 hashes:
+
+Canonical dataset:
+
+`ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4`
+
+Competition report:
+
+`0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d`
+
+If either hash changes, stop and report failure.
+
+Before editing, inspect the existing Phase 5.14.5 implementation and tests. Reproduce each identified defect before attempting to fix it.
+
+---
+
+# 2. FIX A — STRICT PYTEST TERMINAL SUMMARY PARSER
+
+Inspect:
+
+`pa
+<truncated 6220 bytes>
+
+
+# 11. FINAL VERDICT
+
+The final verdict must be exactly one of:
+
+- APPROVED FOR COMPETITION FREEZE
+- NOT APPROVED FOR COMPETITION FREEZE
+
+Approval is permitted only when all mandatory checks pass.
+
+If any check fails, report the exact blocker.
+
+Preserve the following qualifications:
+
+- The 2025 and 2026 evaluations are historical walk-forward tests, not external future-season validation.
+- Match-cluster bootstrap assumes distinct matches are independent clusters.
+- DLI is a situational pressure proxy, not a direct psychological stress measurement.
+- Selection objectives and external strike-rate evaluation are distinct.
+- Cohort-level statistical significance does not establish individual significance for every selected player.
+
+## Final instruction
+
+This is a correction-only phase.
+
+Do not change the model, player rankings, official Top 10 selections, datasets, or frozen competition report.
+
+Fix the exact defects identified in the Phase 5.14.5 review, prove the fixes with adversarial tests, and provide an evidence-backed final verdict.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-18T18:25:33+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\audit_reports\M4_CONTROLLED_PILOT_PLAN.md (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 386
+Other open documents:
+- c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\src\external_source_verification.py (LANGUAGE_UNSPECIFIED)
+- c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_11\evaluate_test_periods.py (LANGUAGE_UNSPECIFIED)
+- c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_11\run_production_walk_forward.py (LANGUAGE_UNSPECIFIED)
+- c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\CSPM_PHASE_4_6_2_FINAL_INFERENCE_AUDIT.md (LANGUAGE_UNSPECIFIED)
+- c:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\CSPM_PHASE_4_6_3_FINAL_CORRECTION.md (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
+
+--------------------------------------------------------------------------------
+STEP 12: PRINT FIX C, FIX D, FIX E FROM PROMPT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        data = json.loads(line)
+        if data.get('step_index') == 16642:
+            c = data['content']
+            idx = c.find('FIX C')
+            print(c[idx:idx+3500])
+            break
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:30:27+05:30
+Completed At: 2026-11-18T18:30:28+05:30
+Created At: 2026-11-18T18:30:27+05:30
+Completed At: 2026-11-18T18:30:28+05:30
+Command exited with code 0.
+
+Command output:
+FIX C — VERIFY BOOTSTRAP MEAN AND STANDARD ERROR
+
+Inspect:
+
+`evaluate_statistical_evidence()`
+
+The independent review found that the implementation reads the actual bootstrap mean and standard error but does not compare them against the frozen expected values.
+
+This must be corrected.
+
+For all eight comparisons, validate:
+
+- Observed effect estimate.
+- Bootstrap mean.
+- Bootstrap standard error.
+- Confidence interval lower endpoint.
+- Confidence interval upper endpoint.
+- Raw p-value.
+- Holm-adjusted p-value.
+- Significance classification.
+
+Use the frozen Phase 5.14.4 / Phase 5.14.5 statistical evidence as the expected reference.
+
+## Numerical comparison policy
+
+Use explicit tolerances:
+
+- Absolute tolerance: `1e-6`
+- Relative tolerance: `1e-5`
+
+Apply the tolerances consistently to all relevant numerical fields.
+
+Do not round values before comparing them.
+
+Record:
+
+- Expected value.
+- Actual value.
+- Absolute difference.
+- Relative difference where defined.
+- Applied tolerance.
+- Pass/fail status.
+
+Add adversarial tests that modify only:
+
+- Bootstrap mean.
+- Bootstrap standard error.
+- Effect estimate.
+- CI lower endpoint.
+- CI upper endpoint.
+- Raw p-value.
+- Holm-adjusted p-value.
+
+Every material discrepancy must be detected.
+
+---
+
+# 5. FIX D — DERIVE CLASSIFICATION FROM STATISTICAL EVIDENCE
+
+The current implementation compares classification labels against frozen labels.
+
+That is insufficient.
+
+Derive the classification from the actual statistical values and documented policy.
+
+Use:
+
+- Raw p-value.
+- Holm-adjusted p-value.
+- Familywise alpha = 0.05.
+- Confidence interval zero crossing.
+- Direction of the estimated effect.
+
+Classification policy:
+
+**Statistically significant:**
+Holm-adjusted p-value below 0.05 and confidence interval excludes zero in the observed direction.
+
+**Non-significant:**
+Holm-adjusted p-value is at least 0.05, or the confidence interval includes zero.
+
+**Directional-only:**
+Only use this category if a separately documented statistical rule explicitly supports it. Do not invent a directional category simply because the effect estimate has a favorable sign.
+
+The expected outcome remains:
+
+- 6 statistically significant.
+- 0 directional-only.
+- 2 non-significant.
+
+Both 2026 bowler comparisons must remain non-significant.
+
+Their Holm-adjusted p-values are 0.1144 and their confidence intervals cross zero.
+
+Add tests that manipulate p-values and confidence intervals to ensure classification changes correctly.
+
+Do not change the underlying statistical results to force a desired classification.
+
+---
+
+# 6. FIX E — REAL MANIFEST REPLACEMENT FAILURE TEST
+
+Inspect the authoritative publication implementation.
+
+The previous tests simulated exceptions before the actual manifest replacement operation.
+
+This did not prove that a real filesystem replacement failure is handled safely.
+
+## Requirements
+
+1. Seed an existing valid APPROVED manifest.
+2. Execute the real publication pathway.
+3. Inject a failure specifically at the actual manifest `os.replace()` operation.
+4. Verify the authoritative state after failure.
+5. Verify that the previous approval cannot remain authoritative for the failed generation.
+6. Verify that temporary files are cleaned up.
+7. Verify that a subsequent successful publication can recover.
+8. Test both missing and inaccessible manifest scenarios where feasible.
+
+Do not merely raise an exception before the replacement function is called.
+
+The test must exercise the actual publication function and its fail
+
+--------------------------------------------------------------------------------
+STEP 13: INSPECT PROSPECTIVE_RANKINGS.JSON KEYS
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open('research/phase5_11/prospective_rankings.json', 'r', encoding='utf-8') as f:
+    d = json.load(f)
+wa = d.get('window_a', {})
+print('Batter 0 keys:', wa['top10_batters'][0].keys())
+print('Batter 0:', wa['top10_batters'][0])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:30:40+05:30
+Completed At: 2026-11-18T18:30:41+05:30
+Created At: 2026-11-18T18:30:40+05:30
+Completed At: 2026-11-18T18:30:41+05:30
+Command exited with code 0.
+
+Command output:
+Batter 0 keys: dict_keys(['striker_id', 'n_press_balls', 'mean_val_add', 'se_latent', 'canonical_balls', 'name', 'role', 'lb90', 'eligible', 'player_id', 'lb_90'])
+Batter 0: {'striker_id': 1699, 'n_press_balls': 1641, 'mean_val_add': 0.0479658971153596, 'se_latent': 0.02106533920766877, 'canonical_balls': 1788, 'name': 'Suryakumar Yadav', 'role': 'Batter', 'lb90': 0.013313414118744468, 'eligible': True, 'player_id': 1699, 'lb_90': 0.013313414118744468}
+
+--------------------------------------------------------------------------------
+STEP 14: SEARCH FOR SELECTION JSONS
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem -Recurse -Filter '*selection*.json', '*official*.json', '*top10*.json' | Select-Object FullName"
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:30:44+05:30
+Completed At: 2026-11-18T18:30:46+05:30
+Created At: 2026-11-18T18:30:44+05:30
+Completed At: 2026-11-18T18:30:46+05:30
+Command exited with code 1.
+
+Command output:
+Get-ChildItem : Cannot convert 'System.Object[]' to the type 'System.String' required by parameter 'Filter'. Specified 
+method is not supported.
+At line:1 char:32
++ ... rse -Filter '*selection*.json', '*official*.json', '*top10*.json' | S ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-ChildItem], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgument,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+--------------------------------------------------------------------------------
+STEP 15: SEARCH FOR SELECTION JSONS
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem -Recurse -Include '*selection*.json', '*official*.json', '*top10*.json', '*player*.json' | Select-Object FullName"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:30:52+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16700
+Task Description: powershell -Command "Get-ChildItem -Recurse -Include '*selection*.json', '*official*.json', '*top10*.json', '*player*.json' | Select-Object FullName"
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16700.log
+Log output:
+
+
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 16: CHECK COMPETITION REPORT FOR TOP 10 TABLES
+--------------------------------------------------------------------------------
+Command:
+python -c "
+with open('FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md', 'r', encoding='utf-8') as f:
+    text = f.read()
+
+import re
+print('Has Suryakumar Yadav:', 'Suryakumar Yadav' in text)
+print('Has Sunil Narine:', 'Sunil Narine' in text)
+# Let's find tables or mentions of Top 10
+lines = text.splitlines()
+for i, l in enumerate(lines):
+    if 'Top 10' in l or 'Official' in l:
+        print(f'{i}: {l}')
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:31:13+05:30
+Completed At: 2026-11-18T18:31:14+05:30
+Created At: 2026-11-18T18:31:13+05:30
+Completed At: 2026-11-18T18:31:14+05:30
+Command exited with code 0.
+
+Command output:
+Has Suryakumar Yadav: True
+Has Sunil Narine: True
+38: - **Top 10 Pressure-Performing Batsmen** (ranked by conservative lower credible bound of contextual batting value-add).
+39: - **Top 10 Pressure-Performing Bowlers** (ranked by conservative contextual economy suppression upper bound).
+152: ## C. Top 10 Pressure-Performing Batsmen
+175: ## D. Top 10 Pressure-Performing Bowlers
+
+--------------------------------------------------------------------------------
+STEP 17: READ TOP 10 TABLES FROM COMPETITION REPORT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+with open('FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
+for l in lines[150:205]:
+    print(l, end='')
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:31:22+05:30
+Completed At: 2026-11-18T18:31:22+05:30
+Created At: 2026-11-18T18:31:22+05:30
+Completed At: 2026-11-18T18:31:22+05:30
+Command exited with code 0.
+
+Command output:
+---
+
+## C. Top 10 Pressure-Performing Batsmen
+
+Ranked strictly by the conservative lower bound of the 90% two-sided credible interval (95% one-sided lower posterior credible bound for contextual batting value-add, $Z = 1.645$) in descending order within the eligible population ($\ge 500$ career balls, $\ge 100$ pressure balls, $se_{\text{latent}} \le 0.035$).
+
+> [!NOTE]
+> **Discipline Eligibility vs. Real-World Roles:**
+> Classifications in the *Observed Discipline Eligibility* column reflect recorded delivery participation in the canonical modeling database (whether a player batted and/or bowled in clean fixtures) rather than official franchise or international cricket squad roles. For example, Abhishek Sharma and Andre Russell are classified as dual-discipline eligible because both have substantial batting and bowling deliveries in the dataset.
+
+| Rank | Player Name | Local ID | Observed Discipline Eligibility | Contextual Val-Add ($\Delta_{\text{EB}}$) | 95% One-Sided Lower Bound ($\text{LB}_{90\% \text{ CI}}$) | Total Legal Balls | Combined Pressure (T2–4) | High Pressure (T3–4) | Tier 4 Extreme Crunch | Evidence Summary & Key Limitations |
+|:---:|:---|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **#1** | **Abhishek Sharma** | `6281` | Dual-discipline eligible | **+6.70%** | **+2.72%** | 2,136 | 1,427 | 435 | 23 | **Confirmed Positive Value-Add.** Elevates scoring by +7.63 SR under pressure (186.19 SR) while reducing dot balls by 9.51%. Small Tier 4 sample (23 balls); primary profile established in T2 & T3. |
+| **#2** | **Suryakumar Yadav** | `1699` | Single-discipline (Batting) | **+4.50%** | **+1.05%** | 2,646 | 2,367 | 1,137 | 147 | **Confirmed Positive Value-Add.** Large sample (2,367 pressure balls). Increases scoring tempo as pressure rises, reaching 214.97 SR in Tier 4 with a 4.
+<truncated 4842 bytes>
+.651 RPO** | 2,484 (414.0) | 2,287 | 1,273 | 255 | **Top Relative Suppressor.** Substantial bowling volume (414 overs). 103 pressure wickets; lowest latent standard error in cohort (0.4868 RPO). |
+| **#6** | **Wanindu Hasaranga** | `4900` | Dual-discipline eligible | **-0.219 RPO** | **+0.652 RPO** | 1,789 (298.1) | 1,562 | 903 | 184 | **Top Relative Suppressor.** Wicket-taking rate of 14.46 balls/wicket under pressure. Captures 108 pressure wickets while holding economy under 7.90 RPO. |
+| **#7** | **Ravindra Jadeja** | `152` | Dual-discipline eligible | **-0.156 RPO** | **+0.655 RPO** | 1,355 (225.5) | 1,312 | 743 | 127 | **Top Relative Suppressor.** Restricts boundaries under pressure (13.64% boundary concession rate across 1,312 balls) with low match-to-match variance. |
+| **#8** | **Mitchell Santner** | `4101` | Dual-discipline eligible | **-0.245 RPO** | **+0.656 RPO** | 1,725 (287.3) | 1,526 | 839 | 213 | **Top Relative Suppressor.** Economy decreases to 6.68 RPO with 41.78% dot balls in Tier 4 Extreme Leverage (213 balls). Concedes 13.50% boundaries under pressure. |
+| **#9** | **Sikandar Raza** | `2984` | Dual-discipline eligible | **-0.274 RPO** | **+0.670 RPO** | 839 (139.5) | 719 | 343 | 28 | **Top Relative Suppressor.** Concedes boundaries on 11.13% of pressure deliveries. Small Tier 4 sample (28 balls); profile established in T2 & T3. |
+| **#10** | **Abrar Ahmed** | `5979` | Single-discipline (Bowling) | **-0.304 RPO** | **+0.697 RPO** | 740 (123.2) | 646 | 424 | 136 | **Top Relative Suppressor.** Economy of 5.92 RPO across 424 High-Pressure balls and 5.16 RPO in Tier 4 (49.26% dot balls, 42 pressure wickets). |
+
+---
+
+## E. Player Evidence & Detailed Observations
+
+### Batsmen Observations
+
+#### 1. Abhishek Sharma (Local ID: `6281`)
+- **Discipline Eligibility (Dataset):** Dual-discipline eligible (observed batting & bowling in dataset)
+- **Normal Conditions (T1):** 709 balls | 1266 runs | 178.56 SR | 29.62% boundary rate | 41.04% dot-ball rate | 31 dismissals | 4.37% dismissal hazard
+
+--------------------------------------------------------------------------------
+STEP 18: CHECK PRODUCTION_EQUIVALENCE_VERIFICATION.JSON
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open('research/phase5_14/production_equivalence_verification.json', 'r', encoding='utf-8') as f:
+    d = json.load(f)
+print('Keys:', d.keys())
+print('official_top10_players:', d.get('official_top10_players'))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:31:27+05:30
+Completed At: 2026-11-18T18:31:29+05:30
+Created At: 2026-11-18T18:31:27+05:30
+Completed At: 2026-11-18T18:31:29+05:30
+Command exited with code 0.
+
+Command output:
+Keys: dict_keys(['metadata', 'exact_scope_of_testing', 'batters_equivalence', 'bowlers_equivalence', 'official_top10_players'])
+official_top10_players: {'batters': ['Suryakumar Yadav', 'Travis Head', 'Yashasvi Jaiswal', 'Sanju Samson', 'Abhishek Sharma', 'Andre Russell', 'Phil Salt', 'Glenn Maxwell', 'Jos Buttler', 'Ruturaj Gaikwad'], 'bowlers': ['Sunil Narine', 'Mitchell Santner', 'Jasprit Bumrah', 'Rashid Khan', 'Ravi Bishnoi', 'Axar Patel', 'Matheesha Pathirana', 'Ravindra Jadeja', 'Kuldeep Yadav', 'Maheesh Theekshana']}
+
+--------------------------------------------------------------------------------
+STEP 19: SEARCH FOR DETAILED ROLE OCCURRENCES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Select-String -Path research\*.json, research\*\*.json -Pattern 'Wicketkeeper-Batter' -ErrorAction SilentlyContinue | Select-Object Path"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:31:41+05:30
+Completed At: 2026-11-18T18:31:42+05:30
+Created At: 2026-11-18T18:31:41+05:30
+Completed At: 2026-11-18T18:31:42+05:30
+Command exited with code 0.
+
+No output from the command.
+
+--------------------------------------------------------------------------------
+STEP 20: RUN EXISTING PHASE 5.14.5 TESTS
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5 -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:32:29+05:30
+Completed At: 2026-11-18T18:32:38+05:30
+Created At: 2026-11-18T18:32:29+05:30
+Completed At: 2026-11-18T18:32:38+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 39 items
+
+tests/phase5_14_5/test_final_approval_consistency.py::test_full_governance_gate_end_to_end_approval PASSED [  2%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_hash_mismatch_blocks_freeze_approval PASSED [  5%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_failing_unit_tests_block_freeze_approval PASSED [  7%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_json_and_markdown_verdicts_agree_on_generation_and_status PASSED [ 10%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_immutable_assets_cryptographically_verified PASSED [ 12%]
+tests/phase5_14_5/test_publication_recovery.py::test_initial_publication_creates_valid_authoritative_freeze PASSED [ 15%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage1_failure_invalidates_previously_approved_deployment PASSED [ 17%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage2_failure_invalidates_previously_approved_deployment PASSED [ 20%]
+tests/phase5_14_5/test_publication_recovery.py::test_manifest_commit_failure_invalidates_authoritative_state PASSED [ 23%]
+tests/phase5_14_5/test_publication_recovery.py::test_failed_rerun_overwrites_previous_approval_with_not_approved PASSED [ 25%]
+tests/phase5_14_5/test_publication_recovery.py::test_temporary_files_cleaned_up_under_all_failure_modes PASSED [ 28%]
+tests/phase5_14_5/test_selection_verificatio
+<truncated 877 bytes>
+ED [ 51%]
+tests/phase5_14_5/test_statistical_precision.py::test_2026_bowlers_strictly_non_significant PASSED [ 53%]
+tests/phase5_14_5/test_statistical_precision.py::test_altered_effect_fails_tolerance_check PASSED [ 56%]
+tests/phase5_14_5/test_statistical_precision.py::test_inverted_classification_fails PASSED [ 58%]
+tests/phase5_14_5/test_subprocess_runner.py::test_valid_pytest_complete_summary_parsed PASSED [ 61%]
+tests/phase5_14_5/test_subprocess_runner.py::test_nonzero_process_exit_code_fails PASSED [ 64%]
+tests/phase5_14_5/test_subprocess_runner.py::test_missing_pytest_executable_handled PASSED [ 66%]
+tests/phase5_14_5/test_subprocess_runner.py::test_subprocess_timeout_handled PASSED [ 69%]
+tests/phase5_14_5/test_subprocess_runner.py::test_malformed_pytest_output_fails PASSED [ 71%]
+tests/phase5_14_5/test_subprocess_runner.py::test_empty_output_fails PASSED [ 74%]
+tests/phase5_14_5/test_subprocess_runner.py::test_misleading_partial_passing_count_fails PASSED [ 76%]
+tests/phase5_14_5/test_subprocess_runner.py::test_failures_or_errors_in_output_fails PASSED [ 79%]
+tests/phase5_14_5/test_subprocess_runner.py::test_skipped_tests_policy_enforcement PASSED [ 82%]
+tests/phase5_14_5/test_subprocess_runner.py::test_inconsistent_reported_totals_fails PASSED [ 84%]
+tests/phase5_14_5/test_subprocess_runner.py::test_real_subprocess_execution_with_python PASSED [ 87%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_active_production_uncertainty_evaluator_passes PASSED [ 89%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_normal_positive_variance_calculation PASSED [ 92%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_variance_below_floor_elevated_to_floor PASSED [ 94%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_negative_variance_numerical_guard PASSED [ 97%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_credible_bound_1_645_multiplier_and_directionality PASSED [100%]
+
+============================= 39 passed in 5.08s ==============================
+
+--------------------------------------------------------------------------------
+STEP 21: REPRODUCE DEFECT A
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from research.phase5_14_5.authoritative_gate import parse_pytest_terminal_output
+res1 = parse_pytest_terminal_output('1 passed', '', 0)
+print('res1 is_passed:', res1['is_passed'], res1['status'])
+
+res2 = parse_pytest_terminal_output('User log: 1 passed today', '', 0)
+print('res2 is_passed:', res2['is_passed'], res2['status'])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:32:45+05:30
+Completed At: 2026-11-18T18:32:46+05:30
+Created At: 2026-11-18T18:32:45+05:30
+Completed At: 2026-11-18T18:32:46+05:30
+Command exited with code 0.
+
+Command output:
+res1 is_passed: True PASSED
+res2 is_passed: True PASSED
+
+--------------------------------------------------------------------------------
+STEP 22: REPRODUCE DEFECT B
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from research.phase5_14_5.authoritative_gate import evaluate_selection_invariance
+res = evaluate_selection_invariance()
+print('is_passed:', res['is_passed'], res['status'])
+print('Batter 0 actual_rank:', res['batters'][0]['actual_rank'])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:32:50+05:30
+Completed At: 2026-11-18T18:32:51+05:30
+Created At: 2026-11-18T18:32:50+05:30
+Completed At: 2026-11-18T18:32:51+05:30
+Command exited with code 0.
+
+Command output:
+is_passed: True PASSED
+Batter 0 actual_rank: 1
+
+--------------------------------------------------------------------------------
+STEP 23: REPRODUCE DEFECT C
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import tempfile, json
+from pathlib import Path
+from research.phase5_14_5.authoritative_gate import evaluate_statistical_precision, DEFAULT_STATS_PATH
+
+with open(DEFAULT_STATS_PATH, 'r') as f:
+    d = json.load(f)
+
+# Corrupt bootstrap_mean and bootstrap_standard_error completely
+d['comparisons'][0]['bootstrap_mean'] = 999999.0
+d['comparisons'][0]['bootstrap_standard_error'] = 888888.0
+
+with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as tf:
+    json.dump(d, tf)
+    tmp_path = tf.name
+
+res = evaluate_statistical_precision(stats_path=Path(tmp_path))
+print('Corrupted boot_mean and se is_passed:', res['is_passed'], res['status'])
+Path(tmp_path).unlink()
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:33:00+05:30
+Completed At: 2026-11-18T18:33:01+05:30
+Created At: 2026-11-18T18:33:00+05:30
+Completed At: 2026-11-18T18:33:01+05:30
+Command exited with code 0.
+
+Command output:
+Corrupted boot_mean and se is_passed: True PASSED
+
+--------------------------------------------------------------------------------
+STEP 24: REPRODUCE DEFECT D
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import tempfile, json
+from pathlib import Path
+from research.phase5_14_5.authoritative_gate import evaluate_statistical_precision, DEFAULT_STATS_PATH
+
+with open(DEFAULT_STATS_PATH, 'r') as f:
+    d = json.load(f)
+
+# Keep label but change p-value and CI
+d['comparisons'][0]['raw_p_value'] = 0.85
+d['comparisons'][0]['holm_adjusted_p'] = 0.85
+d['comparisons'][0]['ci_95_low'] = -5.0
+d['comparisons'][0]['ci_95_high'] = 15.0
+
+with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as tf:
+    json.dump(d, tf)
+    tmp_path = tf.name
+
+res = evaluate_statistical_precision(stats_path=Path(tmp_path))
+print('Contradictory classification without derivation:', res['is_passed'], res['failures'])
+Path(tmp_path).unlink()
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:33:08+05:30
+Completed At: 2026-11-18T18:33:09+05:30
+Created At: 2026-11-18T18:33:08+05:30
+Completed At: 2026-11-18T18:33:09+05:30
+Command exited with code 0.
+
+Command output:
+Contradictory classification without derivation: False ["Inconsistency: '2025_batters_vs_league' classified as STATISTICALLY_SIGNIFICANT but CI crosses zero.", "Tolerances violated for comparison '2025_batters_vs_league'.", "Holm monotonicity violated at '2025_batters_vs_non_selected': 0.0007999200079992001 < 0.85"]
+
+--------------------------------------------------------------------------------
+STEP 25: TEST REGEX ON TEST CASES
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import re
+
+PYTEST_SUMMARY_LINE_REGEX = re.compile(
+    r'^(?:=+\s*)?(?:(?:(?:\d+)\s+(?:passed|failed|errors?|skipped|xfailed|xpassed))(?:,\s*|\s+)?)+\s+in\s+([\d\.]+)s(?:\s*=+)?$',
+    re.IGNORECASE
+)
+
+test_cases = [
+    ('============================= 114 passed in 45.41s =============================', True),
+    ('10 passed, 2 failed in 5.20s', True),
+    ('95 passed, 1 failed, 1 error in 32.10s', True),
+    ('100 passed, 2 skipped in 10.0s', True),
+    ('=== 132 passed in 47.12s ===', True),
+    ('1 passed', False),
+    ('User log: 1 passed today', False),
+    ('Running tests...\nDone with some items.', False),
+    ('', False),
+    ('10 passed in 2.0s\nProcess crashed with exit code 2', True), # last line vs summary line
+]
+
+for s, expected in test_cases:
+    lines = [l.strip() for l in s.strip().splitlines() if l.strip()]
+    matches = [l for l in lines if PYTEST_SUMMARY_LINE_REGEX.match(l)]
+    print(f'Match: {bool(matches)} (expected {expected}) for {repr(s[:40])}')
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:34:28+05:30
+Completed At: 2026-11-18T18:34:30+05:30
+Created At: 2026-11-18T18:34:28+05:30
+Completed At: 2026-11-18T18:34:30+05:30
+Command exited with code 0.
+
+Command output:
+Match: True (expected True) for '============================= 114 passed'
+Match: True (expected True) for '10 passed, 2 failed in 5.20s'
+Match: True (expected True) for '95 passed, 1 failed, 1 error in 32.10s'
+Match: True (expected True) for '100 passed, 2 skipped in 10.0s'
+Match: True (expected True) for '=== 132 passed in 47.12s ==='
+Match: False (expected False) for '1 passed'
+Match: False (expected False) for 'User log: 1 passed today'
+Match: False (expected False) for 'Running tests...\nDone with some items.'
+Match: False (expected False) for ''
+Match: True (expected True) for '10 passed in 2.0s\nProcess crashed with e'
+
+--------------------------------------------------------------------------------
+STEP 26: RUN TEST_SELECTION_VERIFICATION.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5/test_selection_verification.py -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:38:57+05:30
+Completed At: 2026-11-18T18:39:00+05:30
+Created At: 2026-11-18T18:38:57+05:30
+Completed At: 2026-11-18T18:39:00+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______ ERROR collecting tests/phase5_14_5/test_selection_verification.py ______
+tests\phase5_14_5\test_selection_verification.py:22: in <module>
+    from research.phase5_14_5.authoritative_gate import (
+research\phase5_14_5\authoritative_gate.py:638: in <module>
+    rankings_path: Path = DEFAULT_SELECTION_PATH,
+                          ^^^^^^^^^^^^^^^^^^^^^^
+E   NameError: name 'DEFAULT_SELECTION_PATH' is not defined
+=========================== short test summary info ===========================
+ERROR tests/phase5_14_5/test_selection_verification.py - NameError: name 'DEF...
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.34s ===============================
+
+--------------------------------------------------------------------------------
+STEP 27: RUN TEST_SELECTION_VERIFICATION.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5/test_selection_verification.py -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:39:12+05:30
+Completed At: 2026-11-18T18:39:15+05:30
+Created At: 2026-11-18T18:39:12+05:30
+Completed At: 2026-11-18T18:39:15+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/phase5_14_5/test_selection_verification.py::test_canonical_selection_all_20_players_pass PASSED [ 16%]
+tests/phase5_14_5/test_selection_verification.py::test_missing_player_detected PASSED [ 33%]
+tests/phase5_14_5/test_selection_verification.py::test_duplicate_player_id_detected PASSED [ 50%]
+tests/phase5_14_5/test_selection_verification.py::test_unexpected_player_detected PASSED [ 66%]
+tests/phase5_14_5/test_selection_verification.py::test_reordered_players_detected PASSED [ 83%]
+tests/phase5_14_5/test_selection_verification.py::test_role_mismatch_detected FAILED [100%]
+
+================================== FAILURES ===================================
+_________________________ test_role_mismatch_detected _________________________
+
+tmp_path = WindowsPath('C:/Users/rithv/AppData/Local/Temp/pytest-of-rithv/pytest-14/test_role_mismatch_detected0')
+
+    def test_role_mismatch_detected(tmp_path):
+        """Changing player role triggers role mismatch failure."""
+        with open(DEFAULT_RANKINGS_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    
+        # Change Suryakumar Yadav role to Bowler
+        data["window_a"]["top10_batters"][0]["role"] = "Bowler"
+        bad_file = tmp_path / "role_mismatch.json"
+        with open(bad_file, "w", encoding="utf-8") as f:
+            json.dump(data, f)
+    
+        res = evaluate_selection_invariance(rankings_path=bad_file)
+        assert res["is_passed"] is False
+>       assert any("Batter Role mismatch" in f for f in res["failures"])
+E       assert False
+E        +  where False = any(<generator object test_role_mismatch_detected.<locals>.<genexpr> at 0x000001A9D7CBB850>)
+
+tests\phase5_14_5\test_selection_verification.py:133: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/phase5_14_5/test_selection_verification.py::test_role_mismatch_detected
+========================= 1 failed, 5 passed in 0.53s =========================
+
+--------------------------------------------------------------------------------
+STEP 28: RUN TEST_SELECTION_VERIFICATION.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5/test_selection_verification.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:39:35+05:30
+Completed At: 2026-11-18T18:39:38+05:30
+Created At: 2026-11-18T18:39:35+05:30
+Completed At: 2026-11-18T18:39:38+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/phase5_14_5/test_selection_verification.py::test_canonical_selection_all_20_players_pass PASSED [ 16%]
+tests/phase5_14_5/test_selection_verification.py::test_missing_player_detected PASSED [ 33%]
+tests/phase5_14_5/test_selection_verification.py::test_duplicate_player_id_detected PASSED [ 50%]
+tests/phase5_14_5/test_selection_verification.py::test_unexpected_player_detected PASSED [ 66%]
+tests/phase5_14_5/test_selection_verification.py::test_reordered_players_detected PASSED [ 83%]
+tests/phase5_14_5/test_selection_verification.py::test_role_mismatch_detected PASSED [100%]
+
+============================== 6 passed in 0.15s ==============================
+
+--------------------------------------------------------------------------------
+STEP 29: RUN ALL TESTS IN TESTS/PHASE5_14_5
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5 -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:39:42+05:30
+Completed At: 2026-11-18T18:39:49+05:30
+Created At: 2026-11-18T18:39:42+05:30
+Completed At: 2026-11-18T18:39:49+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 39 items
+
+tests/phase5_14_5/test_final_approval_consistency.py::test_full_governance_gate_end_to_end_approval PASSED [  2%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_hash_mismatch_blocks_freeze_approval PASSED [  5%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_failing_unit_tests_block_freeze_approval PASSED [  7%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_json_and_markdown_verdicts_agree_on_generation_and_status PASSED [ 10%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_immutable_assets_cryptographically_verified PASSED [ 12%]
+tests/phase5_14_5/test_publication_recovery.py::test_initial_publication_creates_valid_authoritative_freeze PASSED [ 15%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage1_failure_invalidates_previously_approved_deployment PASSED [ 17%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage2_failure_invalidates_previously_approved_deployment PASSED [ 20%]
+tests/phase5_14_5/test_publication_recovery.py::test_manifest_commit_failure_invalidates_authoritative_state PASSED [ 23%]
+tests/phase5_14_5/test_publication_recovery.py::test_failed_rerun_overwrites_previous_approval_with_not_approved PASSED [ 25%]
+tests/phase5_14_5/test_publication_recovery.py::test_temporary_files_cleaned_up_under_all_failure_modes PASSED [ 28%]
+tests/phase5_14_5/test_selection_verificatio
+<truncated 4950 bytes>
+ping a non-significant comparison to statistically significant triggers failure."""
+        with open(DEFAULT_STATS_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    
+        for c in data["comparisons"]:
+            if c["comparison_id"] == "2026_bowlers_vs_league":
+                c["inference_classification"] = "STATISTICALLY_SIGNIFICANT"
+    
+        bad_file = tmp_path / "bad_class.json"
+        with open(bad_file, "w", encoding="utf-8") as f:
+            json.dump(data, f)
+    
+        res = evaluate_statistical_precision(stats_path=bad_file)
+        assert res["is_passed"] is False
+>       assert any("Inconsistency" in f or "Classification count mismatch" in f for f in res["failures"])
+E       assert False
+E        +  where False = any(<generator object test_inverted_classification_fails.<locals>.<genexpr> at 0x000002584026D2F0>)
+
+tests\phase5_14_5\test_statistical_precision.py:99: AssertionError
+_____________________ test_malformed_pytest_output_fails ______________________
+
+    def test_malformed_pytest_output_fails():
+        stdout = "Running tests...\nDone with some items."
+        res = parse_pytest_terminal_output(stdout=stdout, stderr="", exit_code=0)
+        assert res["is_passed"] is False
+>       assert "MALFORMED OUTPUT" in res["status"]
+E       AssertionError: assert 'MALFORMED OUTPUT' in 'FAILED — MALFORMED SUMMARY / NO GENUINE SUMMARY LINE FOUND'
+
+tests\phase5_14_5\test_subprocess_runner.py:86: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/phase5_14_5/test_statistical_precision.py::test_2026_bowlers_strictly_non_significant
+FAILED tests/phase5_14_5/test_statistical_precision.py::test_altered_effect_fails_tolerance_check
+FAILED tests/phase5_14_5/test_statistical_precision.py::test_inverted_classification_fails
+FAILED tests/phase5_14_5/test_subprocess_runner.py::test_malformed_pytest_output_fails
+======================== 4 failed, 35 passed in 3.92s =========================
+
+--------------------------------------------------------------------------------
+STEP 30: RUN ALL TESTS IN TESTS/PHASE5_14_5
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5 -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:40:32+05:30
+Completed At: 2026-11-18T18:40:38+05:30
+Created At: 2026-11-18T18:40:32+05:30
+Completed At: 2026-11-18T18:40:38+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 39 items
+
+tests/phase5_14_5/test_final_approval_consistency.py::test_full_governance_gate_end_to_end_approval PASSED [  2%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_hash_mismatch_blocks_freeze_approval PASSED [  5%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_failing_unit_tests_block_freeze_approval PASSED [  7%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_json_and_markdown_verdicts_agree_on_generation_and_status PASSED [ 10%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_immutable_assets_cryptographically_verified PASSED [ 12%]
+tests/phase5_14_5/test_publication_recovery.py::test_initial_publication_creates_valid_authoritative_freeze PASSED [ 15%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage1_failure_invalidates_previously_approved_deployment PASSED [ 17%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage2_failure_invalidates_previously_approved_deployment PASSED [ 20%]
+tests/phase5_14_5/test_publication_recovery.py::test_manifest_commit_failure_invalidates_authoritative_state PASSED [ 23%]
+tests/phase5_14_5/test_publication_recovery.py::test_failed_rerun_overwrites_previous_approval_with_not_approved PASSED [ 25%]
+tests/phase5_14_5/test_publication_recovery.py::test_temporary_files_cleaned_up_under_all_failure_modes PASSED [ 28%]
+tests/phase5_14_5/test_selection_verificatio
+<truncated 877 bytes>
+ED [ 51%]
+tests/phase5_14_5/test_statistical_precision.py::test_2026_bowlers_strictly_non_significant PASSED [ 53%]
+tests/phase5_14_5/test_statistical_precision.py::test_altered_effect_fails_tolerance_check PASSED [ 56%]
+tests/phase5_14_5/test_statistical_precision.py::test_inverted_classification_fails PASSED [ 58%]
+tests/phase5_14_5/test_subprocess_runner.py::test_valid_pytest_complete_summary_parsed PASSED [ 61%]
+tests/phase5_14_5/test_subprocess_runner.py::test_nonzero_process_exit_code_fails PASSED [ 64%]
+tests/phase5_14_5/test_subprocess_runner.py::test_missing_pytest_executable_handled PASSED [ 66%]
+tests/phase5_14_5/test_subprocess_runner.py::test_subprocess_timeout_handled PASSED [ 69%]
+tests/phase5_14_5/test_subprocess_runner.py::test_malformed_pytest_output_fails PASSED [ 71%]
+tests/phase5_14_5/test_subprocess_runner.py::test_empty_output_fails PASSED [ 74%]
+tests/phase5_14_5/test_subprocess_runner.py::test_misleading_partial_passing_count_fails PASSED [ 76%]
+tests/phase5_14_5/test_subprocess_runner.py::test_failures_or_errors_in_output_fails PASSED [ 79%]
+tests/phase5_14_5/test_subprocess_runner.py::test_skipped_tests_policy_enforcement PASSED [ 82%]
+tests/phase5_14_5/test_subprocess_runner.py::test_inconsistent_reported_totals_fails PASSED [ 84%]
+tests/phase5_14_5/test_subprocess_runner.py::test_real_subprocess_execution_with_python PASSED [ 87%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_active_production_uncertainty_evaluator_passes PASSED [ 89%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_normal_positive_variance_calculation PASSED [ 92%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_variance_below_floor_elevated_to_floor PASSED [ 94%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_negative_variance_numerical_guard PASSED [ 97%]
+tests/phase5_14_5/test_uncertainty_verification.py::test_credible_bound_1_645_multiplier_and_directionality PASSED [100%]
+
+============================= 39 passed in 3.73s ==============================
+
+--------------------------------------------------------------------------------
+STEP 31: VERIFY FIX A, FIX B, FIX C RESOLUTION
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from research.phase5_14_5.authoritative_gate import parse_pytest_terminal_output, evaluate_selection_invariance, evaluate_statistical_precision
+import tempfile, json
+from pathlib import Path
+
+# Fix A verification
+r1 = parse_pytest_terminal_output('1 passed', '', 0)
+print('Fix A (1 passed):', r1['is_passed'], r1['status'])
+
+r2 = parse_pytest_terminal_output('User log: 1 passed today', '', 0)
+print('Fix A (log):', r2['is_passed'], r2['status'])
+
+# Fix B verification (missing rank)
+with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as tf:
+    json.dump({'top10_batters': [{'player_id': 1699, 'name': 'Suryakumar Yadav', 'role': 'Batter', 'detailed_role': 'Batter'}], 'top10_bowlers': []}, tf)
+    tf_path = tf.name
+r_sel = evaluate_selection_invariance(rankings_path=Path(tf_path))
+print('Fix B (missing rank):', r_sel['is_passed'], r_sel['failures'][0])
+Path(tf_path).unlink()
+
+# Fix C verification (corrupt bootstrap_mean)
+from research.phase5_14_5.authoritative_gate import DEFAULT_STATS_PATH
+with open(DEFAULT_STATS_PATH, 'r') as f:
+    sd = json.load(f)
+sd['comparisons'][0]['bootstrap_mean'] = 999.0
+with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as tf:
+    json.dump(sd, tf)
+    tf_path2 = tf.name
+r_stat = evaluate_statistical_precision(stats_path=Path(tf_path2))
+print('Fix C (corrupt bootstrap_mean):', r_stat['is_passed'], r_stat['failures'][0])
+Path(tf_path2).unlink()
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:40:46+05:30
+Completed At: 2026-11-18T18:40:47+05:30
+Created At: 2026-11-18T18:40:46+05:30
+Completed At: 2026-11-18T18:40:47+05:30
+Command exited with code 0.
+
+Command output:
+Fix A (1 passed): False FAILED — MALFORMED OUTPUT (NO GENUINE SUMMARY LINE FOUND)
+Fix A (log): False FAILED — MALFORMED OUTPUT (NO GENUINE SUMMARY LINE FOUND)
+Fix B (missing rank): False Rankings top10_batters count is 1, expected 10.
+Fix C (corrupt bootstrap_mean): False Tolerances violated for comparison '2025_batters_vs_league' on field 'bootstrap_mean': actual=999.0, expected=5.873077284709423, abs_diff=9.93126923e+02 (atol=1e-06), rel_diff=1.69098221e+02 (rtol=1e-05)
+
+--------------------------------------------------------------------------------
+STEP 32: RUN TEST_STRICT_PYTEST_PARSER.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_strict_pytest_parser.py -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:41:32+05:30
+Completed At: 2026-11-18T18:41:36+05:30
+Created At: 2026-11-18T18:41:32+05:30
+Completed At: 2026-11-18T18:41:36+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 11 items
+
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_bare_passed_substring_fails FAILED [  9%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_logging_prose_containing_passed_fails PASSED [ 18%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_empty_stdout_fails PASSED [ 27%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_whitespace_only_stdout_fails PASSED [ 36%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_truncated_summary_fails PASSED [ 45%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_missing_duration_fails PASSED [ 54%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_duplicate_conflicting_summary_lines_fails PASSED [ 63%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_nonzero_exit_code_with_passing_summary_fails PASSED [ 72%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_succeeds PASSED [ 81%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_with_skipped_tests PASSED [ 90%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_inconsistent_totals_fails PASSED [100%]
+
+================================== FAILURES ===================================
+______________________ test_bare_passed_substring_fails _______________________
+
+    def test_bare_passed_substring_fails():
+        """Adversarial: '1 passed' without summary markers or duration must fail closed."""
+        res = parse_pytest_terminal_output(stdout="1 passed", stderr="", exit_code=0)
+        assert res["is_passed"] is False
+        assert res["parse_success"] is False
+        assert "MALFORMED OUTPUT" in res["status"]
+>       assert "no genuine summary line found" in res["error"].lower()
+E       AssertionError: assert 'no genuine summary line found' in 'pytest stdout does not contain a recognizable, well-formed terminal completion summary with duration.'
+E        +  where 'pytest stdout does not contain a recognizable, well-formed terminal completion summary with duration.' = <built-in method lower of str object at 0x000001B7FB2F4300>()
+E        +    where <built-in method lower of str object at 0x000001B7FB2F4300> = 'Pytest stdout does not contain a recognizable, well-formed terminal completion summary with duration.'.lower
+
+tests\phase5_14_5_1\test_strict_pytest_parser.py:37: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/phase5_14_5_1/test_strict_pytest_parser.py::test_bare_passed_substring_fails
+======================== 1 failed, 10 passed in 0.23s =========================
+
+--------------------------------------------------------------------------------
+STEP 33: RUN TEST_STRICT_PYTEST_PARSER.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_strict_pytest_parser.py
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:41:55+05:30
+Completed At: 2026-11-18T18:41:59+05:30
+Created At: 2026-11-18T18:41:55+05:30
+Completed At: 2026-11-18T18:41:59+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 11 items
+
+tests\phase5_14_5_1\test_strict_pytest_parser.py ...........             [100%]
+
+============================= 11 passed in 0.18s ==============================
+
+--------------------------------------------------------------------------------
+STEP 34: RUN TEST_EXPLICIT_SELECTION_FIELDS.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_explicit_selection_fields.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:42:28+05:30
+Completed At: 2026-11-18T18:42:32+05:30
+Created At: 2026-11-18T18:42:28+05:30
+Completed At: 2026-11-18T18:42:32+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_canonical_baseline_passes_all_checks PASSED [  7%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_missing_rank_field_fails PASSED [ 15%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_rank_3_to_rank_4_fails PASSED [ 23%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_duplicate_rank_fails PASSED [ 30%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_swapped_two_players_fails PASSED [ 38%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_player_id_fails PASSED [ 46%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_player_name_fails PASSED [ 53%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_broad_role_fails PASSED [ 61%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_detailed_role_fails PASSED [ 69%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_remove_required_detailed_role_field_fails PASSED [ 76%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_duplicate_player_fails PASSED [ 84%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_unexpected_player_fails PASSED [ 92%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_prospective_rankings_fails_due_to_missing_fields PASSED [100%]
+
+============================= 13 passed in 0.64s ==============================
+
+--------------------------------------------------------------------------------
+STEP 35: RUN TEST_BOOTSTRAP_NUMERIC_VERIFICATION.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_bootstrap_numeric_verification.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:42:53+05:30
+Completed At: 2026-11-18T18:42:57+05:30
+Created At: 2026-11-18T18:42:53+05:30
+Completed At: 2026-11-18T18:42:57+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_canonical_statistical_evidence_full_records_pass PASSED [ 12%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_bootstrap_mean_only_fails PASSED [ 25%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_bootstrap_standard_error_only_fails PASSED [ 37%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_observed_effect_only_fails PASSED [ 50%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_ci_lower_endpoint_only_fails PASSED [ 62%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_ci_upper_endpoint_only_fails PASSED [ 75%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_raw_p_value_only_fails PASSED [ 87%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_holm_adjusted_p_only_fails PASSED [100%]
+
+============================== 8 passed in 0.43s ==============================
+
+--------------------------------------------------------------------------------
+STEP 36: RUN TEST_STATISTICAL_CLASSIFICATION.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_statistical_classification.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:43:15+05:30
+Completed At: 2026-11-18T18:43:18+05:30
+Created At: 2026-11-18T18:43:15+05:30
+Completed At: 2026-11-18T18:43:18+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_positive_significant PASSED [ 14%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_negative_significant PASSED [ 28%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_p_value PASSED [ 42%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_ci_zero_crossing PASSED [ 57%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_canonical_distribution_is_strictly_6_0_2 PASSED [ 71%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_2026_bowler_comparisons_strictly_non_significant PASSED [ 85%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_altered_p_value_triggers_classification_inconsistency_failure PASSED [100%]
+
+============================== 7 passed in 0.20s ==============================
+
+--------------------------------------------------------------------------------
+STEP 37: RUN TEST_REAL_MANIFEST_FAILURE.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_real_manifest_failure.py -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:43:37+05:30
+Completed At: 2026-11-18T18:43:40+05:30
+Created At: 2026-11-18T18:43:37+05:30
+Completed At: 2026-11-18T18:43:40+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_real_manifest_replace_failure_invalidates_and_recovers FAILED [ 33%]
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_missing_manifest_fails_closed PASSED [ 66%]
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_unreadable_manifest_fails_closed PASSED [100%]
+
+================================== FAILURES ===================================
+_________ test_real_manifest_replace_failure_invalidates_and_recovers _________
+
+tmp_path = WindowsPath('C:/Users/rithv/AppData/Local/Temp/pytest-of-rithv/pytest-21/test_real_manifest_replace_fai0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000198E0705F30>
+
+    def test_real_manifest_replace_failure_invalidates_and_recovers(tmp_path, monkeypatch):
+        """
+        1. Seed valid approved manifest.
+        2. Monkeypatch os.replace specifically during manifest atomic commit.
+        3. Verify authoritative state becomes NOT APPROVED and old approval does NOT survive.
+        4. Verify temp files cleaned up.
+        5. Verify recovery on subsequent publication.
+        """
+        gate = get_mock_approved_gate()
+    
+        # Step 1: Seed valid APPROVED manifest
+        ok1, msg1, receipt1 = publish_artifacts_fail_safe(gate, output_dir=tmp_path)
+        assert ok1 is True
+        assert receipt1["publication_state"] 
+<truncated 896 bytes>
+      # Step 3: Run real publication pathway
+        ok2, msg2, receipt2 = publish_artifacts_fail_safe(gate, output_dir=tmp_path)
+        assert ok2 is False
+        assert receipt2["publication_state"] == PUB_STATE_PUBLICATION_FAILED
+        gen2 = receipt2["gen_id"]
+        assert gen2 != gen1
+    
+        # Step 4: Verify authoritative verification for gen2 FAILS
+        v2, v2_msg, m2 = verify_authoritative_publication(output_dir=tmp_path, expected_gen_id=gen2)
+        assert v2 is False
+    
+        # Step 5: Verify that the old approval CANNOT remain authoritative
+        # If fallback unlinked the manifest, or wrote invalid manifest, or if expected_gen_id doesn't match:
+        v_stale, stale_msg, m_stale = verify_authoritative_publication(output_dir=tmp_path, expected_gen_id=gen2)
+        assert v_stale is False
+    
+        # Also check general verification without expected_gen_id
+        v_gen, _, m_gen = verify_authoritative_publication(output_dir=tmp_path)
+        assert v_gen is False, "A failed publication must never leave an authoritative approved state!"
+    
+        # Step 6: Verify all temporary files are cleaned up
+        tmps = list(tmp_path.glob("*.tmp"))
+>       assert len(tmps) == 0, f"Lingering temporary files found: {tmps}"
+E       AssertionError: Lingering temporary files found: [WindowsPath('C:/Users/rithv/AppData/Local/Temp/pytest-of-rithv/pytest-21/test_real_manifest_replace_fai0/authoritative_gate_manifest.json.tmp')]
+E       assert 1 == 0
+E        +  where 1 = len([WindowsPath('C:/Users/rithv/AppData/Local/Temp/pytest-of-rithv/pytest-21/test_real_manifest_replace_fai0/authoritative_gate_manifest.json.tmp')])
+
+tests\phase5_14_5_1\test_real_manifest_failure.py:121: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/phase5_14_5_1/test_real_manifest_failure.py::test_real_manifest_replace_failure_invalidates_and_recovers
+========================= 1 failed, 2 passed in 0.37s =========================
+
+--------------------------------------------------------------------------------
+STEP 38: RUN TEST_REAL_MANIFEST_FAILURE.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_real_manifest_failure.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:44:24+05:30
+Completed At: 2026-11-18T18:44:27+05:30
+Created At: 2026-11-18T18:44:24+05:30
+Completed At: 2026-11-18T18:44:27+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_real_manifest_replace_failure_invalidates_and_recovers PASSED [ 33%]
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_missing_manifest_fails_closed PASSED [ 66%]
+tests/phase5_14_5_1/test_real_manifest_failure.py::test_unreadable_manifest_fails_closed PASSED [100%]
+
+============================== 3 passed in 0.42s ==============================
+
+--------------------------------------------------------------------------------
+STEP 39: RUN TEST_FINAL_APPROVAL_CONSISTENCY.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1/test_final_approval_consistency.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:44:47+05:30
+Completed At: 2026-11-18T18:44:52+05:30
+Created At: 2026-11-18T18:44:47+05:30
+Completed At: 2026-11-18T18:44:52+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/phase5_14_5_1/test_final_approval_consistency.py::test_end_to_end_full_governance_gate_approved PASSED [ 20%]
+tests/phase5_14_5_1/test_final_approval_consistency.py::test_canonical_dataset_hash_mismatch_blocks_freeze PASSED [ 40%]
+tests/phase5_14_5_1/test_final_approval_consistency.py::test_competition_report_hash_mismatch_blocks_freeze PASSED [ 60%]
+tests/phase5_14_5_1/test_final_approval_consistency.py::test_failing_unit_tests_block_freeze PASSED [ 80%]
+tests/phase5_14_5_1/test_final_approval_consistency.py::test_immutable_assets_intact_cryptographically PASSED [100%]
+
+============================== 5 passed in 1.98s ==============================
+
+--------------------------------------------------------------------------------
+STEP 40: RUN ALL PHASE 5.14.5.1 TESTS
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5_1 -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:45:04+05:30
+Completed At: 2026-11-18T18:45:08+05:30
+Created At: 2026-11-18T18:45:04+05:30
+Completed At: 2026-11-18T18:45:08+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 47 items
+
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_canonical_statistical_evidence_full_records_pass PASSED [  2%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_bootstrap_mean_only_fails PASSED [  4%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_bootstrap_standard_error_only_fails PASSED [  6%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_observed_effect_only_fails PASSED [  8%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_ci_lower_endpoint_only_fails PASSED [ 10%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_ci_upper_endpoint_only_fails PASSED [ 12%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_raw_p_value_only_fails PASSED [ 14%]
+tests/phase5_14_5_1/test_bootstrap_numeric_verification.py::test_perturb_holm_adjusted_p_only_fails PASSED [ 17%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_canonical_baseline_passes_all_checks PASSED [ 19%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_missing_rank_field_fails PASSED [ 21%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_change_rank_3_to_rank_4_fails PASSED [ 23%]
+tests/phase5_14_5_1/test_explicit_selection_fields.py::test_duplicate_rank_fails PASSED [ 25%]
+tests/phase5_14_5_1/test_e
+<truncated 1883 bytes>
+py::test_derive_classification_positive_significant PASSED [ 63%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_negative_significant PASSED [ 65%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_p_value PASSED [ 68%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_ci_zero_crossing PASSED [ 70%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_canonical_distribution_is_strictly_6_0_2 PASSED [ 72%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_2026_bowler_comparisons_strictly_non_significant PASSED [ 74%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_altered_p_value_triggers_classification_inconsistency_failure PASSED [ 76%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_bare_passed_substring_fails PASSED [ 78%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_logging_prose_containing_passed_fails PASSED [ 80%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_empty_stdout_fails PASSED [ 82%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_whitespace_only_stdout_fails PASSED [ 85%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_truncated_summary_fails PASSED [ 87%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_missing_duration_fails PASSED [ 89%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_duplicate_conflicting_summary_lines_fails PASSED [ 91%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_nonzero_exit_code_with_passing_summary_fails PASSED [ 93%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_succeeds PASSED [ 95%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_with_skipped_tests PASSED [ 97%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_inconsistent_totals_fails PASSED [100%]
+
+============================= 47 passed in 1.37s ==============================
+
+--------------------------------------------------------------------------------
+STEP 41: RUN TESTS FOR 5.14.5 AND 5.14.5.1
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5 tests/phase5_14_5_1 -v
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:45:12+05:30
+Completed At: 2026-11-18T18:45:15+05:30
+Created At: 2026-11-18T18:45:12+05:30
+Completed At: 2026-11-18T18:45:15+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 81 items / 1 error
+
+=================================== ERRORS ====================================
+___ ERROR collecting tests/phase5_14_5_1/test_final_approval_consistency.py ___
+import file mismatch:
+imported module 'test_final_approval_consistency' has this __file__ attribute:
+  C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\tests\phase5_14_5\test_final_approval_consistency.py
+which is not the same as the test file we want to collect:
+  C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\tests\phase5_14_5_1\test_final_approval_consistency.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=========================== short test summary info ===========================
+ERROR tests/phase5_14_5_1/test_final_approval_consistency.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.57s ===============================
+
+--------------------------------------------------------------------------------
+STEP 42: CHECK __INIT__.PY IN TEST FOLDERS
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from pathlib import Path
+print('5_14_5 __init__:', Path('tests/phase5_14_5/__init__.py').exists())
+print('5_14_5_1 __init__:', Path('tests/phase5_14_5_1/__init__.py').exists())
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:45:21+05:30
+Completed At: 2026-11-18T18:45:22+05:30
+Created At: 2026-11-18T18:45:21+05:30
+Completed At: 2026-11-18T18:45:22+05:30
+Command exited with code 0.
+
+Command output:
+5_14_5 __init__: False
+5_14_5_1 __init__: False
+
+--------------------------------------------------------------------------------
+STEP 43: RUN BOTH TEST SUITES
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_5 tests/phase5_14_5_1 -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:45:37+05:30
+Completed At: 2026-11-18T18:45:44+05:30
+Created At: 2026-11-18T18:45:37+05:30
+Completed At: 2026-11-18T18:45:44+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 86 items
+
+tests/phase5_14_5/test_final_approval_consistency.py::test_full_governance_gate_end_to_end_approval PASSED [  1%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_hash_mismatch_blocks_freeze_approval PASSED [  2%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_failing_unit_tests_block_freeze_approval PASSED [  3%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_json_and_markdown_verdicts_agree_on_generation_and_status PASSED [  4%]
+tests/phase5_14_5/test_final_approval_consistency.py::test_immutable_assets_cryptographically_verified PASSED [  5%]
+tests/phase5_14_5/test_publication_recovery.py::test_initial_publication_creates_valid_authoritative_freeze PASSED [  6%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage1_failure_invalidates_previously_approved_deployment PASSED [  8%]
+tests/phase5_14_5/test_publication_recovery.py::test_stage2_failure_invalidates_previously_approved_deployment PASSED [  9%]
+tests/phase5_14_5/test_publication_recovery.py::test_manifest_commit_failure_invalidates_authoritative_state PASSED [ 10%]
+tests/phase5_14_5/test_publication_recovery.py::test_failed_rerun_overwrites_previous_approval_with_not_approved PASSED [ 11%]
+tests/phase5_14_5/test_publication_recovery.py::test_temporary_files_cleaned_up_under_all_failure_modes PASSED [ 12%]
+tests/phase5_14_5/test_selection_verificatio
+<truncated 6106 bytes>
+py::test_derive_classification_positive_significant PASSED [ 80%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_negative_significant PASSED [ 81%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_p_value PASSED [ 82%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_derive_classification_non_significant_due_to_ci_zero_crossing PASSED [ 83%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_canonical_distribution_is_strictly_6_0_2 PASSED [ 84%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_2026_bowler_comparisons_strictly_non_significant PASSED [ 86%]
+tests/phase5_14_5_1/test_statistical_classification.py::test_altered_p_value_triggers_classification_inconsistency_failure PASSED [ 87%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_bare_passed_substring_fails PASSED [ 88%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_logging_prose_containing_passed_fails PASSED [ 89%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_empty_stdout_fails PASSED [ 90%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_whitespace_only_stdout_fails PASSED [ 91%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_truncated_summary_fails PASSED [ 93%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_missing_duration_fails PASSED [ 94%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_duplicate_conflicting_summary_lines_fails PASSED [ 95%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_nonzero_exit_code_with_passing_summary_fails PASSED [ 96%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_succeeds PASSED [ 97%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_valid_complete_pytest_summary_with_skipped_tests PASSED [ 98%]
+tests/phase5_14_5_1/test_strict_pytest_parser.py::test_inconsistent_totals_fails PASSED [100%]
+
+============================= 86 passed in 4.81s ==============================
+
+--------------------------------------------------------------------------------
+STEP 44: EXECUTE REPOSITORY TESTS VIA AUTHORITATIVE GATE
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from research.phase5_14_5.authoritative_gate import execute_repository_tests
+res = execute_repository_tests(timeout_seconds=120)
+print('status:', res['status'])
+print('is_passed:', res['is_passed'])
+print('tests_passed:', res['tests_passed'])
+print('tests_failed:', res['tests_failed'])
+print('tests_errors:', res['tests_errors'])
+print('duration:', res['duration_seconds'])
+print('tail:\n', res['stdout_tail'])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:46:02+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16864
+Task Description: python -c "
+from research.phase5_14_5.authoritative_gate import execute_repository_tests
+res = execute_repository_tests(timeout_seconds=120)
+print('status:', res['status'])
+print('is_passed:', res['is_passed'])
+print('tests_passed:', res['tests_passed'])
+print('tests_failed:', res['tests_failed'])
+print('tests_errors:', res['tests_errors'])
+print('duration:', res['duration_seconds'])
+print('tail:\n', res['stdout_tail'])
+"
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16864.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 45: TEST PYTEST WITH PYTHONPATH IN ENV
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import os, sys, subprocess
+from pathlib import Path
+
+ROOT_DIR = Path.cwd()
+env = os.environ.copy()
+env['PYTHONPATH'] = str(ROOT_DIR) + os.pathsep + env.get('PYTHONPATH', '')
+
+cmd = [sys.executable, '-m', 'pytest', 'tests/phase5_14_4/test_governance_gate.py', '-q']
+proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env)
+print('returncode:', proc.returncode)
+print('stdout:', proc.stdout[-200:])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:46:46+05:30
+Completed At: 2026-11-18T18:46:50+05:30
+Created At: 2026-11-18T18:46:46+05:30
+Completed At: 2026-11-18T18:46:50+05:30
+Command exited with code 0.
+
+Command output:
+returncode: 2
+stdout: == short test summary info ===========================
+ERROR tests/phase5_14_4/test_governance_gate.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.28s
+
+--------------------------------------------------------------------------------
+STEP 46: CHECK TEST_GOVERNANCE_GATE.PY FAILURE
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_4/test_governance_gate.py
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:46:55+05:30
+Completed At: 2026-11-18T18:46:58+05:30
+Created At: 2026-11-18T18:46:55+05:30
+Completed At: 2026-11-18T18:46:58+05:30
+Command exited with code 1.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_________ ERROR collecting tests/phase5_14_4/test_governance_gate.py __________
+ImportError while importing test module 'C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\tests\phase5_14_4\test_governance_gate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+..\..\..\..\anaconda\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\phase5_14_4\test_governance_gate.py:35: in <module>
+    from research.phase5_14_4.hardened_gate import (
+E   ModuleNotFoundError: No module named 'research.phase5_14_4'
+=========================== short test summary info ===========================
+ERROR tests/phase5_14_4/test_governance_gate.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.25s ===============================
+
+--------------------------------------------------------------------------------
+STEP 47: CHECK RESEARCH __INIT__.PY
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from pathlib import Path
+print('research __init__:', Path('research/__init__.py').exists())
+print('research/phase5_14_4 __init__:', Path('research/phase5_14_4/__init__.py').exists())
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:02+05:30
+Completed At: 2026-11-18T18:47:04+05:30
+Created At: 2026-11-18T18:47:02+05:30
+Completed At: 2026-11-18T18:47:04+05:30
+Command exited with code 0.
+
+Command output:
+research __init__: False
+research/phase5_14_4 __init__: False
+
+--------------------------------------------------------------------------------
+STEP 48: CHECK IF HARDENED_GATE.PY EXISTS
+--------------------------------------------------------------------------------
+Command:
+python -c "
+from pathlib import Path
+print('hardened_gate.py exists:', Path('research/phase5_14_4/hardened_gate.py').exists())
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:14+05:30
+Completed At: 2026-11-18T18:47:15+05:30
+Created At: 2026-11-18T18:47:14+05:30
+Completed At: 2026-11-18T18:47:15+05:30
+Command exited with code 0.
+
+Command output:
+hardened_gate.py exists: False
+
+--------------------------------------------------------------------------------
+STEP 49: LIST RESEARCH/PHASE5_14_4
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem research\phase5_14_4"
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:47:22+05:30
+Completed At: 2026-11-18T18:47:24+05:30
+Created At: 2026-11-18T18:47:22+05:30
+Completed At: 2026-11-18T18:47:24+05:30
+Command exited with code 1.
+
+Command output:
+Get-ChildItem : Cannot find path 'C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_4' because 
+it does not exist.
+At line:1 char:1
++ Get-ChildItem research\phase5_14_4
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\rithv\...rch\phase5_14_4:String) [Get-ChildItem], ItemNotFound 
+   Exception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+--------------------------------------------------------------------------------
+STEP 50: LIST RESEARCH DIRECTORIES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem research -Directory | Select-Object Name"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:28+05:30
+Completed At: 2026-11-18T18:47:30+05:30
+Created At: 2026-11-18T18:47:28+05:30
+Completed At: 2026-11-18T18:47:30+05:30
+Command exited with code 0.
+
+Command output:
+
+Name                        
+----                        
+phase5                      
+phase5_10                   
+phase5_11                   
+phase5_12                   
+phase5_13                   
+phase5_14                   
+phase5_14_1                 
+phase5_14_2                 
+phase5_14_3                 
+phase5_14_5                 
+phase5_14_5_1               
+R1_1_1_TARGETED_VERIFICATION
+R1_1_METHODOLOGY_AUDIT      
+R1_DLI_VALIDATION
+
+--------------------------------------------------------------------------------
+STEP 51: CHECK SUBPROCESS_VALIDATION_RESULTS.JSON
+--------------------------------------------------------------------------------
+Command:
+python -c "
+with open('research/phase5_14_5/subprocess_validation_results.json', 'r') as f:
+    import json
+    d = json.load(f)
+    print(d)
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:35+05:30
+Completed At: 2026-11-18T18:47:37+05:30
+Created At: 2026-11-18T18:47:35+05:30
+Completed At: 2026-11-18T18:47:37+05:30
+Command exited with code 0.
+
+Command output:
+{'status': 'PASSED', 'is_passed': True, 'parse_success': True, 'exit_code': 0, 'tests_collected': 171, 'tests_passed': 171, 'tests_failed': 0, 'tests_errors': 0, 'tests_skipped': 0, 'allow_skipped': True, 'duration_seconds': 25.08, 'stdout_tail': '........................................................................ [ 42%]\n........................................................................ [ 84%]\n...........................                                              [100%]\n171 passed in 25.08s', 'stderr': '', 'error': None}
+
+--------------------------------------------------------------------------------
+STEP 52: LIST TESTS DIRECTORIES
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem tests -Directory | Select-Object Name"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:42+05:30
+Completed At: 2026-11-18T18:47:43+05:30
+Created At: 2026-11-18T18:47:42+05:30
+Completed At: 2026-11-18T18:47:43+05:30
+Command exited with code 0.
+
+Command output:
+
+Name                        
+----                        
+cspm                        
+m4_pilot                    
+m5_5b_1                     
+m5_5b_2                     
+m5_5b_3                     
+m5_5b_4                     
+m5_5b_4_1                   
+m5_5b_4_2                   
+m5_5b_4_3                   
+m5_5b_4_3_1                 
+m5_5b_4_3_2                 
+m5_5b_4_3_3                 
+m5_5b_4_3_4                 
+m5_5b_4_3_5                 
+m5_5b_4_3_6                 
+m5_5b_4_3_7                 
+m5_5b_4_3_8                 
+m5_enrichment               
+m5_state                    
+m5_validation               
+m5_validation_audit         
+phase5_12                   
+phase5_13                   
+phase5_14                   
+phase5_14_1                 
+phase5_14_2                 
+phase5_14_3                 
+phase5_14_4                 
+phase5_14_5                 
+phase5_14_5_1               
+r1_1_1_targeted_verification
+r1_1_methodology_audit      
+r1_dli_research
+
+--------------------------------------------------------------------------------
+STEP 53: LIST TESTS/PHASE5_14_4
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem tests\phase5_14_4"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:48+05:30
+Completed At: 2026-11-18T18:47:51+05:30
+Created At: 2026-11-18T18:47:48+05:30
+Completed At: 2026-11-18T18:47:51+05:30
+Command exited with code 0.
+
+Command output:
+
+
+    Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\tests\phase5_14_4
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----        18-11-2026     17:22                __pycache__                                                          
+-a----        18-11-2026     17:21          17811 test_governance_gate.py
+
+--------------------------------------------------------------------------------
+STEP 54: FIND HARDENED_GATE.PY
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem -Recurse -Filter 'hardened_gate.py' | Select-Object FullName"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:47:56+05:30
+Completed At: 2026-11-18T18:48:00+05:30
+Created At: 2026-11-18T18:47:56+05:30
+Completed At: 2026-11-18T18:48:00+05:30
+Command exited with code 0.
+
+Command output:
+
+FullName                                                                                              
+--------                                                                                              
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_3\hardened_gate.py            
+C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\phase5_14_4\hardened_gate.py
+
+--------------------------------------------------------------------------------
+STEP 55: CHECK EACH TEST TARGET INDEPENDENTLY
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import subprocess, sys
+
+targets = [
+    'tests/m5_5b_4_3_8',
+    'tests/cspm',
+    'tests/phase5_12',
+    'tests/phase5_13',
+    'tests/phase5_14',
+    'tests/phase5_14_1',
+    'tests/phase5_14_2',
+    'tests/phase5_14_3',
+    'tests/phase5_14_4',
+    'tests/phase5_14_5',
+    'tests/phase5_14_5_1',
+]
+
+for t in targets:
+    res = subprocess.run([sys.executable, '-m', 'pytest', t, '-q'], capture_output=True, text=True)
+    last_line = res.stdout.strip().splitlines()[-1] if res.stdout.strip() else res.stderr.strip().splitlines()[-1]
+    print(f'{t:30}: exit={res.returncode} | {last_line}')
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:48:09+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16898
+Task Description: python -c "
+import subprocess, sys
+
+targets = [
+    'tests/m5_5b_4_3_8',
+    'tests/cspm',
+    'tests/phase5_12',
+    'tests/phase5_13',
+    'tests/phase5_14',
+    'tests/phase5_14_1',
+    'tests/phase5_14_2',
+    'tests/phase5_14_3',
+    'tests/phase5_14_4',
+    'tests/phase5_14_5',
+    'tests/phase5_14_5_1',
+]
+
+for t in targets:
+    res = subprocess.run([sys.executable, '-m', 'pytest', t, '-q'], capture_output=True, text=True)
+    last_line = res.stdout.strip().splitlines()[-1] if res.stdout.strip() else res.stderr.strip().splitlines()[-1]
+    print(f'{t:30}: exit={res.returncode} | {last_line}')
+"
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16898.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 56: CHECK GIT STATUS
+--------------------------------------------------------------------------------
+Command:
+git status
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:49:20+05:30
+Completed At: 2026-11-18T18:49:21+05:30
+Created At: 2026-11-18T18:49:20+05:30
+Completed At: 2026-11-18T18:49:21+05:30
+Command exited with code 0.
+
+Command output:
+warning: could not open directory 'Application Data/': Permission denied
+warning: could not open directory 'Cookies/': Permission denied
+warning: could not open directory 'Local Settings/': Permission denied
+warning: could not open directory 'My Documents/': Permission denied
+warning: could not open directory 'NetHood/': Permission denied
+warning: could not open directory 'PrintHood/': Permission denied
+warning: could not open directory 'Recent/': Permission denied
+warning: could not open directory 'SendTo/': Permission denied
+warning: could not open directory 'Start Menu/': Permission denied
+warning: could not open directory 'Templates/': Permission denied
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../../../-1.14-windows.xml
+	../../../../.VirtualBox/
+	../../../../.agents/
+	../../../../.amr/
+	../../../../.anaconda/
+	../../../../.antigravity-ide/
+	../../../../.arduinoIDE/
+	../../../../.bash_history
+	../../../../.browserclaw/
+	../../../../.cache/
+	../../../../.claude.json
+	../../../../.claude/
+	../../../../.codex/
+	../../../../.conda/
+	../../../../.config/
+	../../../../.continuum/
+	../../../../.copilot/
+	../../../../.docker/
+	../../../../.eclipse/
+	../../../../.gemini/
+	../../../../.gitconfig
+	../../../../.idlerc/
+	../../../../.ipynb_checkpoints/
+	../../../../.ipython/
+	../../../../.jupyter/
+	../../../../.lesshst
+	../../../../.lmstudio-home-pointer
+	../../../../.local/
+	../../../../.m2/
+	../../../../.matplotlib/
+	../../../../.node_repl_history
+	../../../../.npmrc
+	../../../../.p2/
+	../../../../.packettracer
+	../../../../.qtenvrc
+	../../../../.ssh/
+	../../../../.stm32cubeide/
+	../../../../.stm32cubemx/
+	../../../../.stmcube/
+	../../../../.stmcufinder/
+	../../../../.streamlit/
+	../../../../.sts4/
+	../../../../.vscode-shared/
+	../../../../.vscode/
+<truncated 675 bytes>
+../../PyCharmMiscProject/
+	../../../../RSNA_Knee_Abnormality.ipynb
+	../../../../STM32Cube/
+	../../../../STM32CubeIDE/
+	../../../../SVDdata.ipynb
+	../../../../SVDimage.ipynb
+	../../../../Salaries.csv
+	../../../../Salaries.csv (1).zip
+	../../../../Salaries.csv.zip
+	../../../../Salaries[1].csv
+	../../../../Saved Games/
+	../../../../Searches/
+	../../../../Section 1.ipynb
+	../../../../Untitled.ipynb
+	../../../../Untitled1.ipynb
+	../../../../Untitled10.ipynb
+	../../../../Untitled11.ipynb
+	../../../../Untitled12.ipynb
+	../../../../Untitled13.ipynb
+	../../../../Untitled14.ipynb
+	../../../../Untitled15.ipynb
+	../../../../Untitled16.ipynb
+	../../../../Untitled17.ipynb
+	../../../../Untitled18.ipynb
+	../../../../Untitled19.ipynb
+	../../../../Untitled2.ipynb
+	../../../../Untitled20.ipynb
+	../../../../Untitled21.ipynb
+	../../../../Untitled22.ipynb
+	../../../../Untitled23.ipynb
+	../../../../Untitled24.ipynb
+	../../../../Untitled25.ipynb
+	../../../../Untitled3.ipynb
+	../../../../Untitled4.ipynb
+	../../../../Untitled5.ipynb
+	../../../../Untitled6.ipynb
+	../../../../Untitled7.ipynb
+	../../../../Untitled8.ipynb
+	../../../../Untitled9.ipynb
+	../../../../Videos/
+	../../../../VirtualBox VMs/
+	../../../../WPS Cloud Files/
+	../../../../WPSDrive/
+	../../../../ai.jpeg
+	../../../../anaconda/
+	../../../../anaconda_projects/
+	../../../../battery-report.html
+	../../../../casestudy34.ipynb
+	../../../../class-1
+	../../../../class-1.ipynb
+	../../../../eclipse-workspace/
+	../../../../eclipse/
+	../../../../exp1.ipynb
+	../../../../exp2.ipynb
+	../../../../grayscale.ipynb
+	../../../../image18.webp
+	../../../../logic gates.circ
+	../../../../mean to iqr.ipynb
+	../../../../notebook_code.py
+	../../../../ntuser.dat.LOG1
+	../../../../ntuser.dat.LOG2
+	../../../../ntuser.ini
+	../../../../pcacolor.ipynb
+	../../../../pcaimage.ipynb
+	../../../../retail_dataset.csv
+	../../../../studentperformance-portugese-mat2(in).csv
+	../../../../synthetic_retail_dataset.csv
+	../../../../tfidf.ipynb
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+--------------------------------------------------------------------------------
+STEP 57: INSPECT RESEARCH/PHASE5_14_5/PHASE5_14_4
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Get-ChildItem research\phase5_14_5\phase5_14_4"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:49:33+05:30
+Completed At: 2026-11-18T18:49:35+05:30
+Created At: 2026-11-18T18:49:33+05:30
+Completed At: 2026-11-18T18:49:35+05:30
+Command exited with code 0.
+
+Command output:
+
+
+    Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ\research\phase5_14_5\phase5_14_4
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----        18-11-2026     17:22                __pycache__                                                          
+-a----        18-11-2026     17:22          51505 hardened_gate.py                                                     
+-a----        18-11-2026     17:23          12692 phase5_14_4_validation_summary.json                                  
+-a----        18-11-2026     17:24          17143 PHASE_5_14_4_AUDIT_REPORT.md                                         
+-a----        18-11-2026     17:23           5672 PHASE_5_14_4_FINAL_VERDICT.md
+
+--------------------------------------------------------------------------------
+STEP 58: SEARCH FOR MOVE COMMANDS IN TRANSCRIPT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 16400 <= d.get('step_index', 0) <= 16640:
+            content = d.get('content', '')
+            if 'phase5_14_4' in content and 'Move' in content or 'move' in content:
+                print(d['step_index'], content[:200])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:49:50+05:30
+Completed At: 2026-11-18T18:49:51+05:30
+Created At: 2026-11-18T18:49:50+05:30
+Completed At: 2026-11-18T18:49:51+05:30
+Command exited with code 0.
+
+No output from the command.
+
+--------------------------------------------------------------------------------
+STEP 59: CHECK COMMANDS BETWEEN 16500 AND 16640
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 16500 <= d.get('step_index', 0) <= 16640:
+            tc = d.get('tool_calls', [])
+            for call in tc:
+                if call.get('name') == 'run_command':
+                    cmd = call.get('args', {}).get('CommandLine', '')
+                    if 'zip' in cmd.lower() or 'move' in cmd.lower() or 'phase' in cmd.lower():
+                        print(d['step_index'], cmd[:150])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:02+05:30
+Completed At: 2026-11-18T18:50:04+05:30
+Created At: 2026-11-18T18:50:02+05:30
+Completed At: 2026-11-18T18:50:04+05:30
+Command exited with code 0.
+
+Command output:
+16503 powershell -Command "Select-String -Path research/phase5_11/*.py, research/phase5_12/*.py, research/phase5_13/*.py -Pattern '1.645', 'lb90', 'ub90' | 
+16509 python -c "
+import json
+with open('research/phase5_11/prospective_rankings.json') as f:
+    d = json.load(f)
+print('BATTERS:')
+for i, b in enumerate(d
+16511 powershell -Command "python -c \"import json; d = json.load(open('research/phase5_11/prospective_rankings.json')); print('BATTERS:'); [print(f'{i+1}. 
+16513 python -c "import json; d = json.load(open('research/phase5_11/prospective_rankings.json')); [print(i+1, b.get('player_id'), b.get('name'), '|', b.get
+16517 python -c "
+import json
+with open('research/phase5_14_1/corrected_statistical_interpretation.json') as f:
+    d = json.load(f)
+for c in d['comparisons
+16519 python -c "
+from src.m5_5b_4_3_8.epistemic_context_engine_b4_3_8 import ContextualPlayerBaselineRecordB438
+
+# Test batter record
+rec_b = ContextualPla
+16521 powershell -Command "New-Item -ItemType Directory -Force -Path research/phase5_14_5, tests/phase5_14_5"
+16543 python -m pytest tests/phase5_14_5/ -v
+16553 python -c "
+from src.m5_5b_4_3_8.epistemic_context_engine_b4_3_8 import ContextualPlayerBaselineRecordB438
+import math
+
+rec = ContextualPlayerBaseline
+16561 python -m pytest tests/phase5_14_5/ -v
+16565 python research/phase5_14_5/authoritative_gate.py
+16582 python research/phase5_14_5/authoritative_gate.py
+16595 powershell -Command "Get-ChildItem research/phase5_14_5 | Select-Object Name, Length"
+16606 python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests/phase5_
+16621 powershell -Command "git status research/phase5_14_5 tests/phase5_14_5"
+16629 powershell -Command "Test-Path research/phase5_14_5/authoritative_gate.py, research/phase5_14_5/authoritative_gate_manifest.json, research/phase5_14_5
+16633 python -c "
+import os
+import zipfile
+import hashlib
+from pathlib import Path
+
+files_to_pack = [
+    'research/phase5_14_5/authoritative_gate.py',
+    
+16635 python -c "
+import tempfile
+import zipfile
+import hashlib
+from pathlib import Path
+
+zip_path = Path('RR_ScoutIQ_Phase_5_14_5_Review_Package.zip')
+
+wit
+16637 powershell -Command "Get-Item RR_ScoutIQ_Phase_5_14_5_Review_Package.zip | Select-Object FullName, Length, LastWriteTime; Get-FileHash -Algorithm SHA2
+
+--------------------------------------------------------------------------------
+STEP 60: CHECK STEP 16606 COMMAND
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if d.get('step_index') == 16606:
+            for c in d.get('tool_calls', []):
+                print(c.get('args', {}).get('CommandLine'))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:09+05:30
+Completed At: 2026-11-18T18:50:11+05:30
+Created At: 2026-11-18T18:50:09+05:30
+Completed At: 2026-11-18T18:50:11+05:30
+Command exited with code 0.
+
+Command output:
+python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests/phase5_14_3/ tests/phase5_14_4/ tests/phase5_14_5/ -q
+
+--------------------------------------------------------------------------------
+STEP 61: CHECK STEP 16607 OUTPUT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if d.get('step_index') == 16607:
+            print(d.get('content'))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:18+05:30
+Completed At: 2026-11-18T18:50:19+05:30
+Created At: 2026-11-18T18:50:18+05:30
+Completed At: 2026-11-18T18:50:19+05:30
+Command exited with code 0.
+
+Command output:
+Created At: 2026-11-18T18:00:43+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Task Description: python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests/phase5_14_3/ tests/phase5_14_4/ tests/phase5_14_5/ -q
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+...........................
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 62: CHECK TASK-16607 RESULT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 'task-16607' in d.get('content', ''):
+            print(d['step_index'], d['content'][:500])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:24+05:30
+Completed At: 2026-11-18T18:50:26+05:30
+Created At: 2026-11-18T18:50:24+05:30
+Completed At: 2026-11-18T18:50:26+05:30
+Command exited with code 0.
+
+Command output:
+16607 Created At: 2026-11-18T18:00:43+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Task Description: python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests/phase5_14_3/ tests/phase5_14_4/ tests/phase5_14_5/ -q
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607
+16609 Created At: 2026-11-18T18:00:58+05:30
+Completed At: 2026-11-18T18:00:59+05:30
+Created At: 2026-11-18T18:00:58+05:30
+Completed At: 2026-11-18T18:00:59+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+............................
+Last progress: 2s ago
+
+16611 Created At: 2026-11-18T18:01:03+05:30
+Completed At: 2026-11-18T18:01:03+05:30
+Created At: 2026-11-18T18:01:03+05:30
+Completed At: 2026-11-18T18:01:03+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+......................................................
+Last progress: 2s ago
+
+16613 Created At: 2026-11-18T18:01:08+05:30
+Completed At: 2026-11-18T18:01:08+05:30
+Created At: 2026-11-18T18:01:08+05:30
+Completed At: 2026-11-18T18:01:08+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+......................................................
+<truncated 100 bytes>
+2026-11-18T18:01:13+05:30
+Completed At: 2026-11-18T18:01:13+05:30
+Created At: 2026-11-18T18:01:13+05:30
+Completed At: 2026-11-18T18:01:13+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+........................................................................ [ 42%]
+...................................................
+16617 Created At: 2026-11-18T18:01:17+05:30
+Completed At: 2026-11-18T18:01:17+05:30
+Created At: 2026-11-18T18:01:17+05:30
+Completed At: 2026-11-18T18:01:17+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Status: DONE
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+Log output:
+........................................................................ [ 42%]
+......................................................
+16618 The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-11-18T12:31:15Z sender=75228dec-7afc-411d-bc51-f501edccceec/task-16607 priority=MESSAGE_PRIORITY_HIGH content=Task id "75228dec-7afc-411d-bc51-f501edccceec/task-16607" finished with result:
+Command exited with code 0.
+
+Command output:
+........................................................................ [ 42%]
+16931 Created At: 2026-11-18T18:50:18+05:30
+Completed At: 2026-11-18T18:50:19+05:30
+Created At: 2026-11-18T18:50:18+05:30
+Completed At: 2026-11-18T18:50:19+05:30
+Command exited with code 0.
+
+Command output:
+Created At: 2026-11-18T18:00:43+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16607
+Task Description: python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests
+
+--------------------------------------------------------------------------------
+STEP 63: CHECK STEP 16618 CONTENT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if d.get('step_index') == 16618:
+            print(d['content'])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:30+05:30
+Completed At: 2026-11-18T18:50:32+05:30
+Created At: 2026-11-18T18:50:30+05:30
+Completed At: 2026-11-18T18:50:32+05:30
+Command exited with code 0.
+
+Command output:
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-11-18T12:31:15Z sender=75228dec-7afc-411d-bc51-f501edccceec/task-16607 priority=MESSAGE_PRIORITY_HIGH content=Task id "75228dec-7afc-411d-bc51-f501edccceec/task-16607" finished with result:
+Command exited with code 0.
+
+Command output:
+........................................................................ [ 42%]
+........................................................................ [ 84%]
+...........................                                              [100%]
+171 passed in 27.76s
+
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16607.log
+</SYSTEM_MESSAGE>
+
+--------------------------------------------------------------------------------
+STEP 64: CHECK STEPS 16618 TO 16642
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 16618 <= d.get('step_index', 0) <= 16642:
+            tc = d.get('tool_calls', [])
+            for call in tc:
+                if call.get('name') in ['run_command', 'write_file', 'edit_file']:
+                    print(d['step_index'], call.get('name'), call.get('args'))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:38+05:30
+Completed At: 2026-11-18T18:50:39+05:30
+The tool's output was truncated due to being too long. You can find the full output in a file at file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/steps/16937/output.txt.
+
+Here is a preview with the middle of the output truncated:
+Created At: 2026-11-18T18:50:38+05:30
+Completed At: 2026-11-18T18:50:39+05:30
+Command exited with code 0.
+
+Command output:
+16619 run_command {'CommandLine': 'powershell -Command "Get-FileHash -Algorithm SHA256 data/processed/m5_3/match_state_full.csv, FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md | Format-List Path, Hash"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Final verification of baseline asset hashes'}
+16621 run_command {'CommandLine': 'powershell -Command "git status research/phase5_14_5 tests/phase5_14_5"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Check git status of phase 5.14.5 files'}
+16629 run_command {'CommandLine': 'powershell -Command "Test-Path research/phase5_14_5/authoritative_gate.py, research/phase5_14_5/authoritative_gate_manifest.json, research/phase5_14_5/phase5_14_5_validation_summary.json, research/phase5_14_5/publication_recovery_results.json, research/phase5_14_5/subprocess_validation_results.json, research/phase5_14_5/selection_invariance_results.json, research/phase5_14_5/uncertainty_verification_results.json, research/phase5_14_5/statistical_precision_results.json, research/phase5_14_5/frozen_asset_hash_verification.json, research/phase5_14_5/PHASE_5_14_5_REPORT.md, research/phase5_14_5/PHASE_5_14_5_EXECUTIVE_VERDICT.md, tests/phase5_14_5/test_publication_recovery.py, tests/phase5_14_5/test_subprocess_runner.py, tests/phase5_14_5/test_selection_verification.py, tests/phase5_14_5/test_uncertainty_verification.py, tests/phase5_14_5/test_statistical_precision.py, tests/phase5_14_5/test_final_approval_consistency.py"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Check existence of all 17 base files'}
+16631 write_file {'Content': '=
+<truncated 6221 bytes>
+# Verification 3: Calculate SHA-256 of ZIP\nh = hashlib.sha256()\nwith open(zip_path, \'rb\') as f:\n    while chunk := f.read(65536):\n        h.update(chunk)\nzip_sha256 = h.hexdigest().lower()\nzip_size = zip_path.stat().st_size\n\nprint(f\'ZIP Size: {zip_size:,} bytes\')\nprint(f\'ZIP SHA-256: {zip_sha256}\')\n"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Create and verify review package ZIP'}
+16635 run_command {'CommandLine': 'python -c "\nimport tempfile\nimport zipfile\nimport hashlib\nfrom pathlib import Path\n\nzip_path = Path(\'RR_ScoutIQ_Phase_5_14_5_Review_Package.zip\')\n\nwith tempfile.TemporaryDirectory() as tmp_dir:\n    with zipfile.ZipFile(zip_path, \'r\') as zf:\n        zf.extractall(tmp_dir)\n    \n    extracted = list(Path(tmp_dir).rglob(\'*\'))\n    files = [f for f in extracted if f.is_file()]\n    print(f\'Successfully extracted {len(files)} files into temporary directory.\')\n    for f in sorted(files):\n        rel = f.relative_to(tmp_dir).as_posix()\n        orig = Path(rel)\n        h_ext = hashlib.sha256(f.read_bytes()).hexdigest()\n        h_orig = hashlib.sha256(orig.read_bytes()).hexdigest()\n        assert h_ext == h_orig, f\'Hash mismatch on {rel}\'\n        print(f\'  [OK] {rel} ({f.stat().st_size} bytes)\')\n\nprint(\'ALL 18 EXTRACTED FILES MATCH ORIGINAL HASHES EXACTLY.\')\n"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Test extraction of review package ZIP'}
+16637 run_command {'CommandLine': 'powershell -Command "Get-Item RR_ScoutIQ_Phase_5_14_5_Review_Package.zip | Select-Object FullName, Length, LastWriteTime; Get-FileHash -Algorithm SHA256 RR_ScoutIQ_Phase_5_14_5_Review_Package.zip | Format-List Path, Hash"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'PowerShell verification of review package ZIP'}
+16639 run_command {'CommandLine': 'powershell -Command "Get-FileHash -Algorithm SHA256 data/processed/m5_3/match_state_full.csv, FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md | Format-List Path, Hash"', 'WaitMsBeforeAsync': 5000, 'toolSummary': 'Check immutable baseline hashes'}
+
+--------------------------------------------------------------------------------
+STEP 65: CHECK TIMESTAMPS OF RESEARCH/PHASE5_14_5/PHASE5_14_4
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "(Get-Item research/phase5_14_5/phase5_14_4).CreationTime; (Get-Item research/phase5_14_5/phase5_14_4).LastWriteTime"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:50:57+05:30
+Completed At: 2026-11-18T18:50:59+05:30
+Created At: 2026-11-18T18:50:57+05:30
+Completed At: 2026-11-18T18:50:59+05:30
+Command exited with code 0.
+
+Command output:
+
+18 November 2026 17:18:18
+18 November 2026 17:24:56
+
+--------------------------------------------------------------------------------
+STEP 66: CHECK STEPS 16560 TO 16610
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 16560 <= d.get('step_index', 0) <= 16610:
+            tc = d.get('tool_calls', [])
+            for call in tc:
+                if call.get('name') == 'run_command':
+                    print(d['step_index'], call.get('args', {}).get('CommandLine'))
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:05+05:30
+Completed At: 2026-11-18T18:51:06+05:30
+Created At: 2026-11-18T18:51:05+05:30
+Completed At: 2026-11-18T18:51:06+05:30
+Command exited with code 0.
+
+Command output:
+16561 python -m pytest tests/phase5_14_5/ -v
+16565 python research/phase5_14_5/authoritative_gate.py
+16582 python research/phase5_14_5/authoritative_gate.py
+16595 powershell -Command "Get-ChildItem research/phase5_14_5 | Select-Object Name, Length"
+16606 python -m pytest tests/m5_5b_4_3_8/ tests/cspm/ tests/phase5_12/ tests/phase5_13/ tests/phase5_14/ tests/phase5_14_1/ tests/phase5_14_2/ tests/phase5_14_3/ tests/phase5_14_4/ tests/phase5_14_5/ -q
+
+--------------------------------------------------------------------------------
+STEP 67: CHECK STEP 16583 OUTPUT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if d.get('step_index') == 16583:
+            print(d.get('content')[:500])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:11+05:30
+Completed At: 2026-11-18T18:51:12+05:30
+Created At: 2026-11-18T18:51:11+05:30
+Completed At: 2026-11-18T18:51:12+05:30
+Command exited with code 0.
+
+Command output:
+Created At: 2026-11-18T17:58:38+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Task Description: python research/phase5_14_5/authoritative_gate.py
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short m
+
+--------------------------------------------------------------------------------
+STEP 68: CHECK TASK-16583 OUTPUT
+--------------------------------------------------------------------------------
+Command:
+python -c "
+import json
+with open(r'C:\Users\rithv\.gemini\antigravity\brain\75228dec-7afc-411d-bc51-f501edccceec\.system_generated\logs\transcript_full.jsonl', 'r', encoding='utf-8') as f:
+    for line in f:
+        d = json.loads(line)
+        if 'task-16583' in d.get('content', ''):
+            print(d['step_index'], d['content'])
+"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:16+05:30
+Completed At: 2026-11-18T18:51:18+05:30
+Created At: 2026-11-18T18:51:16+05:30
+Completed At: 2026-11-18T18:51:18+05:30
+Command exited with code 0.
+
+Command output:
+16583 Created At: 2026-11-18T17:58:38+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Task Description: python research/phase5_14_5/authoritative_gate.py
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+16585 Created At: 2026-11-18T17:58:53+05:30
+Completed At: 2026-11-18T17:58:53+05:30
+Created At: 2026-11-18T17:58:53+05:30
+Completed At: 2026-11-18T17:58:53+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+
+16587 Created At: 2026-11-18T17:58:58+05:30
+Completed At: 2026-11-18T17:58:58+05:30
+Created At: 2026-11-18T17:58:58+05:30
+Completed At: 2026-11-18T17:58:58+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+
+16589 Created At: 2026-11-18T17:59:02+05:30
+Completed At: 2026-11-18T17:59:02+05:30
+Created At: 2026-11-18T17:59:02+05:30
+Completed At: 2026-11-18T17:59:02+05:30
+Task: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Status: RUNNING
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+
+16591 Created At: 2026-11-18T17:59:06+05:30
+Completed At: 2026-11-18T17:59:06+05:30
+Created At: 2026-11-18T17
+<truncated 1476 bytes>
+AGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-11-18T12:29:08Z sender=75228dec-7afc-411d-bc51-f501edccceec/task-16583 priority=MESSAGE_PRIORITY_HIGH content=Task id "75228dec-7afc-411d-bc51-f501edccceec/task-16583" finished with result:
+Command exited with code 0.
+
+Command output:
+================================================================================
+PHASE 5.14.5: FINAL GOVERNANCE GATE HARDENING & FAIL-SAFE PUBLICATION
+================================================================================
+Final Verdict:       APPROVED FOR COMPETITION FREEZE
+Asset Integrity:     PASSED
+Audit Authorization: PASSED
+Is Approved:         True
+  - Regression Tests:       PASSED
+  - Statistical Precision:  PASSED
+  - Active Uncertainty:     PASSED
+  - Selection Invariance:   PASSED
+Publication Result:  Publication succeeded fail-safe.
+Generation ID:       gen_97f58bd70d4a
+Publication State:   APPROVED_FOR_COMPETITION_FREEZE
+Authoritative Gate:  Authoritative publication verified with 100% cryptographic precision.
+
+Log: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+</SYSTEM_MESSAGE>
+16945 Created At: 2026-11-18T18:51:11+05:30
+Completed At: 2026-11-18T18:51:12+05:30
+Created At: 2026-11-18T18:51:11+05:30
+Completed At: 2026-11-18T18:51:12+05:30
+Command exited with code 0.
+
+Command output:
+Created At: 2026-11-18T17:58:38+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16583
+Task Description: python research/phase5_14_5/authoritative_gate.py
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16583.log
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short m
+
+--------------------------------------------------------------------------------
+STEP 69: RESTORE RESEARCH/PHASE5_14_4 TO ITS ROOT LOCATION
+--------------------------------------------------------------------------------
+Command:
+powershell -Command "Move-Item research/phase5_14_5/phase5_14_4 research/phase5_14_4"
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:27+05:30
+Completed At: 2026-11-18T18:51:28+05:30
+Created At: 2026-11-18T18:51:27+05:30
+Completed At: 2026-11-18T18:51:28+05:30
+Command exited with code 0.
+
+No output from the command.
+
+--------------------------------------------------------------------------------
+STEP 70: RUN TESTS/PHASE5_14_4/TEST_GOVERNANCE_GATE.PY
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/phase5_14_4/test_governance_gate.py -v
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:33+05:30
+Completed At: 2026-11-18T18:51:37+05:30
+Created At: 2026-11-18T18:51:33+05:30
+Completed At: 2026-11-18T18:51:37+05:30
+Command exited with code 0.
+
+Command output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/phase5_14_4/test_governance_gate.py::test_regression_tests_must_actually_run_and_cannot_default_to_pass PASSED [  5%]
+tests/phase5_14_4/test_governance_gate.py::test_failing_pytest_run_blocks_audit_authorization PASSED [ 11%]
+tests/phase5_14_4/test_governance_gate.py::test_pytest_timeout_blocks_audit_authorization PASSED [ 16%]
+tests/phase5_14_4/test_governance_gate.py::test_missing_pytest_or_execution_error_blocks_audit_authorization PASSED [ 22%]
+tests/phase5_14_4/test_governance_gate.py::test_path_existence_oserror_caught_by_hash_gate PASSED [ 27%]
+tests/phase5_14_4/test_governance_gate.py::test_file_access_permission_error_caught_by_hash_gate PASSED [ 33%]
+tests/phase5_14_4/test_governance_gate.py::test_hash_mismatch_blocks_asset_integrity_and_authorization PASSED [ 38%]
+tests/phase5_14_4/test_governance_gate.py::test_mismatch_in_any_one_of_20_players_blocks_selection_invariance PASSED [ 44%]
+tests/phase5_14_4/test_governance_gate.py::test_player_rank_or_ordering_mismatch_blocks_selection_invariance PASSED [ 50%]
+tests/phase5_14_4/test_governance_gate.py::test_incorrect_statistical_classification_blocks_statistical_verification PASSED [ 55%]
+tests/phase5_14_4/test_governance_gate.py::test_incorrect_p_value_or_confidence_interval_blocks_statistical_verification PASSED [ 61%]
+tests/phase5_14_4/test_governance_gate.py::test_altered_variance_formula_or_floor_blocks_uncertainty_verification PASSED [ 66%]
+tests/phase5_14_4/test_governance_gate.py::test_transactional_first_stage_publication_failure_handled_safely PASSED [ 72%]
+tests/phase5_14_4/test_governance_gate.py::test_transactional_second_stage_publication_failure_handled_safely PASSED [ 77%]
+tests/phase5_14_4/test_governance_gate.py::test_stale_approval_prevention_after_failed_rerun PASSED [ 83%]
+tests/phase5_14_4/test_governance_gate.py::test_json_and_markdown_verdicts_remain_strictly_consistent PASSED [ 88%]
+tests/phase5_14_4/test_governance_gate.py::test_temporary_staging_files_cleaned_up_after_publication PASSED [ 94%]
+tests/phase5_14_4/test_governance_gate.py::test_frozen_production_assets_cryptographically_intact PASSED [100%]
+
+============================= 18 passed in 1.43s ==============================
+
+--------------------------------------------------------------------------------
+STEP 71: RUN FULL REGRESSION TEST SUITE
+--------------------------------------------------------------------------------
+Command:
+python -m pytest tests/m5_5b_4_3_8 tests/cspm tests/phase5_12 tests/phase5_13 tests/phase5_14 tests/phase5_14_1 tests/phase5_14_2 tests/phase5_14_3 tests/phase5_14_4 tests/phase5_14_5 tests/phase5_14_5_1 -q
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:51:41+05:30
+Tool is running as a background task with task id: 75228dec-7afc-411d-bc51-f501edccceec/task-16953
+Task Description: python -m pytest tests/m5_5b_4_3_8 tests/cspm tests/phase5_12 tests/phase5_13 tests/phase5_14 tests/phase5_14_1 tests/phase5_14_2 tests/phase5_14_3 tests/phase5_14_4 tests/phase5_14_5 tests/phase5_14_5_1 -q
+Task logs are available at: file:///C:/Users/rithv/.gemini/antigravity/brain/75228dec-7afc-411d-bc51-f501edccceec/.system_generated/tasks/task-16953.log
+Log output:
+...........................
+YOU MUST TAKE ONE OF THE FOLLOWING TWO ACTIONS: A) either proceed to other relevant work (if any) or, B) simply update the user with a short message (that you have launched the command and will wait for it to finish) and end the turn.
+ DO NOTHING ELSE.
+
+--------------------------------------------------------------------------------
+STEP 72: GENERATE VALIDATION JSON DELIVERABLES
+--------------------------------------------------------------------------------
+Command:
+"python -c \"\nimport json\nfrom pathlib import Path\nfrom research.phase5_14_5.authoritative_gate import (\n    evaluate_full_governance_gate,\n    evaluate_asset_integrity,\n    evaluate_selection_invariance,\n    evaluate_statistical_precision,\n    evaluate_active_uncertainty_calculation,\n    parse_pytest_terminal_output,\n    derive_statistical_classification,\n    publish_artifacts_fail_safe,\n    verify_authoritative_publication,\n    DEFAULT_CANON_PATH,\n    DEFAULT_REPORT_PATH,\n    EXPECTED_CANON_HASH,\n    EXPECTED_REPORT_HASH,\n    compute_sha256_safe,\n)\n\nout_dir = Path('research/phase5_14_5_1')\nout_dir.mkdir(parents=True, exist_ok=True)\n\n# 1. Frozen asset verification\nasset_eval = evaluate_asset_integrity()\nwith open(out_dir / 'frozen_asset_hash_verification.json', 'w', encoding='utf-8') as f:\n    json.dump(asset_eval, f, indent=2)\n\n# 2. Pytest parser validation\nparser_summary = {\n    'audit_phase': 'Phase 5.14.5.1 — Final Verification Corrections',\n    'component': 'Strict Pytest Terminal Summary Parser (Fix A)',\n    'specification': {\n        'regex_pattern': r'^(?:=+\\s*)?(?:(?:(?:\\d+)\\s+(?:passed|failed|errors?|skipped|xfailed|xpassed))(?:,\\s*|\\s+)?)+\\s+in\\s+([\\d\\.]+)s(?:\\s*=+)?$',\n        'mandatory_requirements': [\n            'Genuine terminal summary line format with boundary anchors',\n            'Mandatory execution duration (in <duration>s)',\n            'Successful process exit code (exit_code == 0)',\n            'Internal count consistency (reported collected == sum of parts)',\n            'Rejection of bare count substrings (\\\"1 passed\\\") without genuine summary',\n            'Rejection of ordinary logging prose containing count substrings',\n            'Rejection of duplicate conflicting summary lines',\n            'Strict policy on skipped tests when allow_skipped=False',\n            'Fail-closed behavior on empty, whitespace-only, or malformed outputs'\n        ]\n    },\n    'tests_executed_count': 11,\n    'tests_passed_count': 11,\n    'st
+<truncated 7374 bytes>
+
+Exit Code: 1
+
+Terminal Output:
+Created At: 2026-11-18T18:52:47+05:30
+Completed At: 2026-11-18T18:52:49+05:30
+Created At: 2026-11-18T18:52:47+05:30
+Completed At: 2026-11-18T18:52:49+05:30
+Command exited with code 1.
+
+Command output:
+  File "<string>", line 40
+    'Rejection of bare count substrings (" 1 passed\)
+    ^
+SyntaxError: unterminated string literal (detected at line 40)
+
+--------------------------------------------------------------------------------
+STEP 73: RUN ARTIFACT GENERATOR
+--------------------------------------------------------------------------------
+Command:
+python research/phase5_14_5_1/generate_phase5_14_5_1_artifacts.py
+
+Exit Code: 0
+
+Terminal Output:
+Created At: 2026-11-18T18:53:14+05:30
+Completed At: 2026-11-18T18:53:17+05:30
+Created At: 2026-11-18T18:53:14+05:30
+Completed At: 2026-11-18T18:53:17+05:30
+Command exited with code 0.
+
+Command output:
+All 7 validation JSON deliverables generated successfully in research/phase5_14_5_1/.

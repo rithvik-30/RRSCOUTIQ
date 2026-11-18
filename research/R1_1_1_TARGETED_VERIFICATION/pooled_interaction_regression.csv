@@ -1,0 +1,10 @@
+variable_name,coefficient_beta,standardized_beta,se_classical_ols,t_stat_classical_ols,p_val_classical_ols,se_white_robust,se_match_clustered,t_stat_match_clustered,p_val_match_clustered,clustered_ci95_low,clustered_ci95_high,se_cluster_inflation_ratio,sample_size_n,cluster_count_g,common_effect_summary
+Intercept,0.22211,0.0,0.01727,12.861,< 0.0001,0.018025,0.040737,5.452,< 0.0001,0.14214,0.30208,2.36,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+W_hand,0.02018,0.0763,0.001434,14.077,< 0.0001,0.001474,0.003557,5.674,< 0.0001,0.0132,0.02716,2.48,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+B_rem,-0.0027,-0.159,0.000117,-23.038,< 0.0001,0.000115,0.00026,-10.387,< 0.0001,-0.00321,-0.00219,2.22,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+is_PP,0.08252,0.0712,0.005666,14.565,< 0.0001,0.005236,0.011348,7.272,< 0.0001,0.06024,0.1048,2.0,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+is_Death,0.08722,0.0614,0.005648,15.442,< 0.0001,0.005976,0.012467,6.996,< 0.0001,0.06275,0.1117,2.21,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+Rate,-0.00097,-0.0069,0.000647,-1.496,0.13461,0.000681,0.001471,-0.658,0.51097,-0.00386,0.00192,2.28,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+is_Chase,0.00157,0.0014,0.008342,0.188,0.85077,0.008674,0.020566,0.076,0.93919,-0.0388,0.04194,2.47,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+Approved_DLI,0.05948,0.083,0.006161,9.654,< 0.0001,0.006643,0.014592,4.076,< 0.0001,0.03083,0.08812,2.37,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)
+DLI_x_Chase,0.00346,0.0067,0.005964,0.579,0.56236,0.006563,0.014302,0.242,0.80916,-0.02462,0.03153,2.4,159225,744,Pooled DLI is an empirically justified common-effect summary (interaction p = 0.81)

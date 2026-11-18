@@ -1,0 +1,196 @@
+{
+  "status": "PASSED",
+  "is_passed": true,
+  "failures_count": 0,
+  "failures": [],
+  "tolerances_used": {
+    "effect": {
+      "atol": 1e-06,
+      "rtol": 1e-05
+    },
+    "ci": {
+      "atol": 1e-06,
+      "rtol": 1e-05
+    },
+    "p_value": {
+      "atol": 1e-06,
+      "rtol": 1e-05
+    }
+  },
+  "classification_summary": {
+    "statistically_significant": 6,
+    "directional": 0,
+    "non_significant": 2,
+    "total": 8
+  },
+  "comparisons": [
+    {
+      "comparison_id": "2025_batters_vs_league",
+      "rank": 1,
+      "observed_effect": 5.887779696959559,
+      "effect_match": true,
+      "ci_95": [
+        4.256537037938807,
+        7.573480642216514
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 9.999000099990002e-05,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2025_batters_vs_non_selected",
+      "rank": 2,
+      "observed_effect": 4.252698224051219,
+      "effect_match": true,
+      "ci_95": [
+        2.314405536822934,
+        6.212597211720216
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 9.999000099990002e-05,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2026_batters_vs_league",
+      "rank": 3,
+      "observed_effect": 5.616737921673074,
+      "effect_match": true,
+      "ci_95": [
+        3.235995500341689,
+        7.990126185401914
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 9.999000099990002e-05,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2026_batters_vs_non_selected",
+      "rank": 4,
+      "observed_effect": 4.929745720900929,
+      "effect_match": true,
+      "ci_95": [
+        2.2628541189411395,
+        7.597947373134792
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 0.0004999500049995,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.0024997500249975,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2025_bowlers_vs_non_selected",
+      "rank": 5,
+      "observed_effect": -0.6822819831736417,
+      "effect_match": true,
+      "ci_95": [
+        -1.1581249239611464,
+        -0.19058735071908783
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 0.007099290070992901,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.028397160283971604,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2025_bowlers_vs_league",
+      "rank": 6,
+      "observed_effect": -0.5195131458070605,
+      "effect_match": true,
+      "ci_95": [
+        -0.9114398552385304,
+        -0.10466503308733653
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": false,
+      "raw_p_value": 0.011698830116988301,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.035096490350964904,
+      "holm_p_match": true,
+      "classification": "STATISTICALLY_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2026_bowlers_vs_league",
+      "rank": 7,
+      "observed_effect": -0.5323433636106163,
+      "effect_match": true,
+      "ci_95": [
+        -1.0617675774955293,
+        0.0422884240285861
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": true,
+      "raw_p_value": 0.057194280571942806,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.11438856114388561,
+      "holm_p_match": true,
+      "classification": "NON_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    },
+    {
+      "comparison_id": "2026_bowlers_vs_non_selected",
+      "rank": 8,
+      "observed_effect": -0.559332084762838,
+      "effect_match": true,
+      "ci_95": [
+        -1.1934702511302775,
+        0.13475467404400215
+      ],
+      "ci_low_match": true,
+      "ci_high_match": true,
+      "ci_contains_estimate": true,
+      "ci_crosses_zero": true,
+      "raw_p_value": 0.10158984101589841,
+      "raw_p_match": true,
+      "holm_adjusted_p": 0.11438856114388561,
+      "holm_p_match": true,
+      "classification": "NON_SIGNIFICANT",
+      "classification_match": true,
+      "all_tolerances_satisfied": true
+    }
+  ]
+}

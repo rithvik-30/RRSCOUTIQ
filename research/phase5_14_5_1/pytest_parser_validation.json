@@ -1,0 +1,21 @@
+{
+  "audit_phase": "Phase 5.14.5.1 \u2014 Final Verification Corrections",
+  "component": "Strict Pytest Terminal Summary Parser (Fix A)",
+  "specification": {
+    "regex_pattern": "^(?:=+\\s*)?(?:(?:(?:\\d+)\\s+(?:passed|failed|errors?|skipped|xfailed|xpassed))(?:,\\s*|\\s+)?)+\\s+in\\s+([\\d\\.]+)s(?:\\s*=+)?$",
+    "mandatory_requirements": [
+      "Genuine terminal summary line format with boundary anchors",
+      "Mandatory execution duration (in <duration>s)",
+      "Successful process exit code (exit_code == 0)",
+      "Internal count consistency (reported collected == sum of parts)",
+      "Rejection of bare count substrings ('1 passed') without genuine summary",
+      "Rejection of ordinary logging prose containing count substrings",
+      "Rejection of duplicate conflicting summary lines",
+      "Strict policy on skipped tests when allow_skipped=False",
+      "Fail-closed behavior on empty, whitespace-only, or malformed outputs"
+    ]
+  },
+  "tests_executed_count": 11,
+  "tests_passed_count": 11,
+  "status": "PASSED"
+}

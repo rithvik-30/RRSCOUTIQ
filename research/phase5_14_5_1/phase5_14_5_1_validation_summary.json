@@ -1,0 +1,1191 @@
+{
+  "audit_metadata": {
+    "project": "RR ScoutIQ \u2014 Rajasthan Royals IPL 2027 Auction Strategy Hackathon",
+    "phase": "Phase 5.14.5.1 \u2014 Final Verification Corrections",
+    "date": "2026-11-18",
+    "final_verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "master_decision_rule": "ASSET_INTEGRITY & STRICT_PYTEST_PARSER & FULL_TEST_SUITE & EXPLICIT_SELECTION & UNCERTAINTY_QUANTIFICATION & BOOTSTRAP_EVIDENCE & STATISTICAL_DERIVATION & FAIL_SAFE_COMMIT"
+  },
+  "remediated_defects": {
+    "Fix A (Strict Pytest Terminal Summary Parser)": "RESOLVED (11/11 tests passing)",
+    "Fix B (Explicit Rank & Detailed Role Verification)": "RESOLVED (13/13 tests passing, 20/20 players)",
+    "Fix C (Verify Bootstrap Mean & Standard Error)": "RESOLVED (8/8 tests passing, unrounded atol=1e-6, rtol=1e-5)",
+    "Fix D (Derive Classification from Statistical Evidence)": "RESOLVED (7/7 tests passing, exact 6/0/2 distribution)",
+    "Fix E (Real Manifest Replacement Failure Test)": "RESOLVED (3/3 tests passing, monkeypatched os.replace)"
+  },
+  "repository_regression_suite": {
+    "total_suites": 11,
+    "total_tests_passed": 218,
+    "total_tests_failed": 0,
+    "total_tests_errors": 0,
+    "duration_seconds": 28.86,
+    "status": "PASSED"
+  },
+  "asset_integrity": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "canonical_dataset": {
+      "path": "data\\processed\\m5_3\\match_state_full.csv",
+      "accessible": true,
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true,
+      "error": null
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "accessible": true,
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true,
+      "error": null
+    }
+  },
+  "selection_invariance": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "verified_fields": [
+      "player_id",
+      "name",
+      "rank",
+      "role",
+      "detailed_role",
+      "ordering",
+      "uniqueness"
+    ],
+    "total_players_verified": 20,
+    "batters": [
+      {
+        "expected_rank": 1,
+        "actual_rank": 1,
+        "rank_match": true,
+        "expected_id": 1699,
+        "actual_id": 1699,
+        "id_match": true,
+        "expected_name": "Suryakumar Yadav",
+        "actual_name": "Suryakumar Yadav",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Batter",
+        "actual_detailed_role": "Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 2,
+        "actual_rank": 2,
+        "rank_match": true,
+        "expected_id": 2367,
+        "actual_id": 2367,
+        "id_match": true,
+        "expected_name": "Travis Head",
+        "actual_name": "Travis Head",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Top-Order Batter",
+        "actual_detailed_role": "Top-Order Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 3,
+        "actual_rank": 3,
+        "rank_match": true,
+        "expected_id": 6819,
+        "actual_id": 6819,
+        "id_match": true,
+        "expected_name": "Yashasvi Jaiswal",
+        "actual_name": "Yashasvi Jaiswal",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Top-Order Batter",
+        "actual_detailed_role": "Top-Order Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 4,
+        "actual_rank": 4,
+        "rank_match": true,
+        "expected_id": 2258,
+        "actual_id": 2258,
+        "id_match": true,
+        "expected_name": "Sanju Samson",
+        "actual_name": "Sanju Samson",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Wicketkeeper-Batter",
+        "actual_detailed_role": "Wicketkeeper-Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 5,
+        "actual_rank": 5,
+        "rank_match": true,
+        "expected_id": 6281,
+        "actual_id": 6281,
+        "id_match": true,
+        "expected_name": "Abhishek Sharma",
+        "actual_name": "Abhishek Sharma",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "All-Rounder",
+        "actual_detailed_role": "All-Rounder",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 6,
+        "actual_rank": 6,
+        "rank_match": true,
+        "expected_id": 1318,
+        "actual_id": 1318,
+        "id_match": true,
+        "expected_name": "Andre Russell",
+        "actual_name": "Andre Russell",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "All-Rounder / Finisher",
+        "actual_detailed_role": "All-Rounder / Finisher",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 7,
+        "actual_rank": 7,
+        "rank_match": true,
+        "expected_id": 5553,
+        "actual_id": 5553,
+        "id_match": true,
+        "expected_name": "Phil Salt",
+        "actual_name": "Phil Salt",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Wicketkeeper-Batter",
+        "actual_detailed_role": "Wicketkeeper-Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 8,
+        "actual_rank": 8,
+        "rank_match": true,
+        "expected_id": 838,
+        "actual_id": 838,
+        "id_match": true,
+        "expected_name": "Glenn Maxwell",
+        "actual_name": "Glenn Maxwell",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "All-Rounder",
+        "actual_detailed_role": "All-Rounder",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 9,
+        "actual_rank": 9,
+        "rank_match": true,
+        "expected_id": 813,
+        "actual_id": 813,
+        "id_match": true,
+        "expected_name": "Jos Buttler",
+        "actual_name": "Jos Buttler",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Wicketkeeper-Batter",
+        "actual_detailed_role": "Wicketkeeper-Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 10,
+        "actual_rank": 10,
+        "rank_match": true,
+        "expected_id": 6059,
+        "actual_id": 6059,
+        "id_match": true,
+        "expected_name": "Ruturaj Gaikwad",
+        "actual_name": "Ruturaj Gaikwad",
+        "name_match": true,
+        "expected_role": "Batter",
+        "actual_role": "Batter",
+        "role_match": true,
+        "expected_detailed_role": "Top-Order Batter",
+        "actual_detailed_role": "Top-Order Batter",
+        "detailed_role_match": true,
+        "order_match": true
+      }
+    ],
+    "bowlers": [
+      {
+        "expected_rank": 1,
+        "actual_rank": 1,
+        "rank_match": true,
+        "expected_id": 781,
+        "actual_id": 781,
+        "id_match": true,
+        "expected_name": "Sunil Narine",
+        "actual_name": "Sunil Narine",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Mystery Spinner",
+        "actual_detailed_role": "Mystery Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 2,
+        "actual_rank": 2,
+        "rank_match": true,
+        "expected_id": 4101,
+        "actual_id": 4101,
+        "id_match": true,
+        "expected_name": "Mitchell Santner",
+        "actual_name": "Mitchell Santner",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Left-Arm Spinner",
+        "actual_detailed_role": "Left-Arm Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 3,
+        "actual_rank": 3,
+        "rank_match": true,
+        "expected_id": 2933,
+        "actual_id": 2933,
+        "id_match": true,
+        "expected_name": "Jasprit Bumrah",
+        "actual_name": "Jasprit Bumrah",
+        "name_match": true,
+        "expected_role": "Bowler",
+        "actual_role": "Bowler",
+        "role_match": true,
+        "expected_detailed_role": "Fast Bowler",
+        "actual_detailed_role": "Fast Bowler",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 4,
+        "actual_rank": 4,
+        "rank_match": true,
+        "expected_id": 4722,
+        "actual_id": 4722,
+        "id_match": true,
+        "expected_name": "Rashid Khan",
+        "actual_name": "Rashid Khan",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Leg Spinner",
+        "actual_detailed_role": "Leg Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 5,
+        "actual_rank": 5,
+        "rank_match": true,
+        "expected_id": 7503,
+        "actual_id": 7503,
+        "id_match": true,
+        "expected_name": "Ravi Bishnoi",
+        "actual_name": "Ravi Bishnoi",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Leg Spinner",
+        "actual_detailed_role": "Leg Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 6,
+        "actual_rank": 6,
+        "rank_match": true,
+        "expected_id": 2876,
+        "actual_id": 2876,
+        "id_match": true,
+        "expected_name": "Axar Patel",
+        "actual_name": "Axar Patel",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Left-Arm Spinner",
+        "actual_detailed_role": "Left-Arm Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 7,
+        "actual_rank": 7,
+        "rank_match": true,
+        "expected_id": 8661,
+        "actual_id": 8661,
+        "id_match": true,
+        "expected_name": "Matheesha Pathirana",
+        "actual_name": "Matheesha Pathirana",
+        "name_match": true,
+        "expected_role": "Bowler",
+        "actual_role": "Bowler",
+        "role_match": true,
+        "expected_detailed_role": "Fast Bowler (Death)",
+        "actual_detailed_role": "Fast Bowler (Death)",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 8,
+        "actual_rank": 8,
+        "rank_match": true,
+        "expected_id": 152,
+        "actual_id": 152,
+        "id_match": true,
+        "expected_name": "Ravindra Jadeja",
+        "actual_name": "Ravindra Jadeja",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Left-Arm Spinner",
+        "actual_detailed_role": "Left-Arm Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 9,
+        "actual_rank": 9,
+        "rank_match": true,
+        "expected_id": 3644,
+        "actual_id": 3644,
+        "id_match": true,
+        "expected_name": "Kuldeep Yadav",
+        "actual_name": "Kuldeep Yadav",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Left-Arm Wrist Spinner",
+        "actual_detailed_role": "Left-Arm Wrist Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      },
+      {
+        "expected_rank": 10,
+        "actual_rank": 10,
+        "rank_match": true,
+        "expected_id": 19316,
+        "actual_id": 19316,
+        "id_match": true,
+        "expected_name": "Maheesh Theekshana",
+        "actual_name": "Maheesh Theekshana",
+        "name_match": true,
+        "expected_role": "All-Rounder",
+        "actual_role": "All-Rounder",
+        "role_match": true,
+        "expected_detailed_role": "Mystery Spinner",
+        "actual_detailed_role": "Mystery Spinner",
+        "detailed_role_match": true,
+        "order_match": true
+      }
+    ]
+  },
+  "statistical_precision": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "tolerances_used": {
+      "effect": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "ci": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "p_value": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      }
+    },
+    "classification_summary": {
+      "statistically_significant": 6,
+      "directional": 0,
+      "non_significant": 2,
+      "total": 8
+    },
+    "comparisons": [
+      {
+        "comparison_id": "2025_batters_vs_league",
+        "rank": 1,
+        "observed_effect": 5.887779696959559,
+        "bootstrap_mean": 5.873077284709423,
+        "bootstrap_standard_error": 0.8483954766317012,
+        "ci_95": [
+          4.256537037938807,
+          7.573480642216514
+        ],
+        "raw_p_value": 9.999000099990002e-05,
+        "holm_adjusted_p": 0.0007999200079992001,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": 5.887779696959559,
+            "actual_value": 5.887779696959559,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": 5.873077284709423,
+            "actual_value": 5.873077284709423,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.8483954766317012,
+            "actual_value": 0.8483954766317012,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": 4.256537037938807,
+            "actual_value": 4.256537037938807,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 7.573480642216514,
+            "actual_value": 7.573480642216514,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 9.999000099990002e-05,
+            "actual_value": 9.999000099990002e-05,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.0007999200079992001,
+            "actual_value": 0.0007999200079992001,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2025_batters_vs_non_selected",
+        "rank": 2,
+        "observed_effect": 4.252698224051219,
+        "bootstrap_mean": 4.242605347384451,
+        "bootstrap_standard_error": 0.9910386281450905,
+        "ci_95": [
+          2.314405536822934,
+          6.212597211720216
+        ],
+        "raw_p_value": 9.999000099990002e-05,
+        "holm_adjusted_p": 0.0007999200079992001,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": 4.252698224051219,
+            "actual_value": 4.252698224051219,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": 4.242605347384451,
+            "actual_value": 4.242605347384451,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.9910386281450905,
+            "actual_value": 0.9910386281450905,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": 2.314405536822934,
+            "actual_value": 2.314405536822934,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 6.212597211720216,
+            "actual_value": 6.212597211720216,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 9.999000099990002e-05,
+            "actual_value": 9.999000099990002e-05,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.0007999200079992001,
+            "actual_value": 0.0007999200079992001,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2026_batters_vs_league",
+        "rank": 3,
+        "observed_effect": 5.616737921673074,
+        "bootstrap_mean": 5.605216224206902,
+        "bootstrap_standard_error": 1.1998594461814487,
+        "ci_95": [
+          3.235995500341689,
+          7.990126185401914
+        ],
+        "raw_p_value": 9.999000099990002e-05,
+        "holm_adjusted_p": 0.0007999200079992001,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": 5.616737921673074,
+            "actual_value": 5.616737921673074,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": 5.605216224206902,
+            "actual_value": 5.605216224206902,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 1.1998594461814487,
+            "actual_value": 1.1998594461814487,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": 3.235995500341689,
+            "actual_value": 3.235995500341689,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 7.990126185401914,
+            "actual_value": 7.990126185401914,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 9.999000099990002e-05,
+            "actual_value": 9.999000099990002e-05,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.0007999200079992001,
+            "actual_value": 0.0007999200079992001,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2026_batters_vs_non_selected",
+        "rank": 4,
+        "observed_effect": 4.929745720900929,
+        "bootstrap_mean": 4.92413289302769,
+        "bootstrap_standard_error": 1.346861763875961,
+        "ci_95": [
+          2.2628541189411395,
+          7.597947373134792
+        ],
+        "raw_p_value": 0.0004999500049995,
+        "holm_adjusted_p": 0.0024997500249975,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": 4.929745720900929,
+            "actual_value": 4.929745720900929,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": 4.92413289302769,
+            "actual_value": 4.92413289302769,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 1.346861763875961,
+            "actual_value": 1.346861763875961,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": 2.2628541189411395,
+            "actual_value": 2.2628541189411395,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 7.597947373134792,
+            "actual_value": 7.597947373134792,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 0.0004999500049995,
+            "actual_value": 0.0004999500049995,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.0024997500249975,
+            "actual_value": 0.0024997500249975,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2025_bowlers_vs_non_selected",
+        "rank": 5,
+        "observed_effect": -0.6822819831736417,
+        "bootstrap_mean": -0.6761384914458578,
+        "bootstrap_standard_error": 0.24888676461715617,
+        "ci_95": [
+          -1.1581249239611464,
+          -0.19058735071908783
+        ],
+        "raw_p_value": 0.007099290070992901,
+        "holm_adjusted_p": 0.028397160283971604,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": -0.6822819831736417,
+            "actual_value": -0.6822819831736417,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": -0.6761384914458578,
+            "actual_value": -0.6761384914458578,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.24888676461715617,
+            "actual_value": 0.24888676461715617,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": -1.1581249239611464,
+            "actual_value": -1.1581249239611464,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": -0.19058735071908783,
+            "actual_value": -0.19058735071908783,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 0.007099290070992901,
+            "actual_value": 0.007099290070992901,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.028397160283971604,
+            "actual_value": 0.028397160283971604,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2025_bowlers_vs_league",
+        "rank": 6,
+        "observed_effect": -0.5195131458070605,
+        "bootstrap_mean": -0.5156659921883694,
+        "bootstrap_standard_error": 0.20458823036092433,
+        "ci_95": [
+          -0.9114398552385304,
+          -0.10466503308733653
+        ],
+        "raw_p_value": 0.011698830116988301,
+        "holm_adjusted_p": 0.035096490350964904,
+        "classification": "STATISTICALLY_SIGNIFICANT",
+        "recorded_classification": "STATISTICALLY_SIGNIFICANT",
+        "derived_classification": "STATISTICALLY_SIGNIFICANT",
+        "expected_classification": "STATISTICALLY_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": false,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": -0.5195131458070605,
+            "actual_value": -0.5195131458070605,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": -0.5156659921883694,
+            "actual_value": -0.5156659921883694,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.20458823036092433,
+            "actual_value": 0.20458823036092433,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": -0.9114398552385304,
+            "actual_value": -0.9114398552385304,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": -0.10466503308733653,
+            "actual_value": -0.10466503308733653,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 0.011698830116988301,
+            "actual_value": 0.011698830116988301,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.035096490350964904,
+            "actual_value": 0.035096490350964904,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2026_bowlers_vs_league",
+        "rank": 7,
+        "observed_effect": -0.5323433636106163,
+        "bootstrap_mean": -0.5287195045461991,
+        "bootstrap_standard_error": 0.2821921551819656,
+        "ci_95": [
+          -1.0617675774955293,
+          0.0422884240285861
+        ],
+        "raw_p_value": 0.057194280571942806,
+        "holm_adjusted_p": 0.11438856114388561,
+        "classification": "NON_SIGNIFICANT",
+        "recorded_classification": "NON_SIGNIFICANT",
+        "derived_classification": "NON_SIGNIFICANT",
+        "expected_classification": "NON_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": true,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": -0.5323433636106163,
+            "actual_value": -0.5323433636106163,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": -0.5287195045461991,
+            "actual_value": -0.5287195045461991,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.2821921551819656,
+            "actual_value": 0.2821921551819656,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": -1.0617675774955293,
+            "actual_value": -1.0617675774955293,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 0.0422884240285861,
+            "actual_value": 0.0422884240285861,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 0.057194280571942806,
+            "actual_value": 0.057194280571942806,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.11438856114388561,
+            "actual_value": 0.11438856114388561,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      },
+      {
+        "comparison_id": "2026_bowlers_vs_non_selected",
+        "rank": 8,
+        "observed_effect": -0.559332084762838,
+        "bootstrap_mean": -0.5526985987994036,
+        "bootstrap_standard_error": 0.3428747765109274,
+        "ci_95": [
+          -1.1934702511302775,
+          0.13475467404400215
+        ],
+        "raw_p_value": 0.10158984101589841,
+        "holm_adjusted_p": 0.11438856114388561,
+        "classification": "NON_SIGNIFICANT",
+        "recorded_classification": "NON_SIGNIFICANT",
+        "derived_classification": "NON_SIGNIFICANT",
+        "expected_classification": "NON_SIGNIFICANT",
+        "ci_contains_estimate": true,
+        "ci_crosses_zero": true,
+        "field_evaluations": {
+          "observed_effect": {
+            "expected_value": -0.559332084762838,
+            "actual_value": -0.559332084762838,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_mean": {
+            "expected_value": -0.5526985987994036,
+            "actual_value": -0.5526985987994036,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "bootstrap_standard_error": {
+            "expected_value": 0.3428747765109274,
+            "actual_value": 0.3428747765109274,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_low": {
+            "expected_value": -1.1934702511302775,
+            "actual_value": -1.1934702511302775,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "ci_95_high": {
+            "expected_value": 0.13475467404400215,
+            "actual_value": 0.13475467404400215,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "raw_p_value": {
+            "expected_value": 0.10158984101589841,
+            "actual_value": 0.10158984101589841,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          },
+          "holm_adjusted_p": {
+            "expected_value": 0.11438856114388561,
+            "actual_value": 0.11438856114388561,
+            "absolute_difference": 0.0,
+            "relative_difference": 0.0,
+            "applied_atol": 1e-06,
+            "applied_rtol": 1e-05,
+            "pass_fail_status": "PASSED"
+          }
+        },
+        "classification_match": true,
+        "all_tolerances_satisfied": true
+      }
+    ]
+  },
+  "uncertainty_verification": {
+    "status": "PASSED",
+    "is_passed": true,
+    "active_execution_path_verified": true,
+    "failures_count": 0,
+    "failures": [],
+    "numerical_tests": {
+      "normal_positive_variance_batter": {
+        "passed": true,
+        "latent_posterior_variance": 0.001011111111111111,
+        "latent_se": 0.03179797338056486,
+        "shrinkage_weight": 0.5185185185185185
+      },
+      "normal_positive_variance_bowler": {
+        "passed": true,
+        "latent_posterior_variance": 0.3903555163954252,
+        "latent_se": 0.6247843759213455,
+        "shrinkage_weight": 0.1607062644690923
+      },
+      "variance_below_floor_activation": {
+        "passed": true,
+        "latent_posterior_variance": 1.5999987809656167e-09,
+        "latent_se": 0.0001,
+        "expected_latent_se": 0.0001
+      },
+      "credible_bound_multiplier_and_directionality": {
+        "passed": true,
+        "multiplier": 1.645,
+        "batter_direction": "LOWER_BOUND (mu - 1.645*se)",
+        "bowler_direction": "UPPER_BOUND (mu + 1.645*se)",
+        "batter_test_lb90": 0.013313414345000003,
+        "bowler_test_ub90": 0.37023341330000004
+      },
+      "negative_variance_guard": {
+        "passed": true,
+        "sqrt_max_negative": 0.0001
+      }
+    },
+    "active_engine_class": "src.m5_5b_4_3_8.epistemic_context_engine_b4_3_8.ContextualPlayerBaselineRecordB438",
+    "formula_documentation": {
+      "posterior_variance": "Var(theta_i | Y_{i,c}, mu_LPMO) = (1.0 - shrinkage_weight) * tau2_total",
+      "latent_se": "latent_se = sqrt(max(1e-8, latent_posterior_variance))",
+      "floor_value": 1e-08,
+      "z_multiplier": 1.645,
+      "coverage_interpretation": "One-sided 95% credible bound; conservative endpoint of central two-sided 90% credible interval.",
+      "conditioning_qualification": "Conditional on Gaussian empirical-Bayes conjugate model and LPMO plug-in estimates."
+    }
+  }
+}

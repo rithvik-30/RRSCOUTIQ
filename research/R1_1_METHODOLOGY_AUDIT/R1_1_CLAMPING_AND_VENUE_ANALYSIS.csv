@@ -1,0 +1,12 @@
+category_level,group_name,match_count,delivery_count,mean_dli,std_dli,chase_deliveries,chase_clamped_count,chase_clamped_pct,setting_deliveries,setting_clamped_count,setting_clamped_pct,tier1_pct,tier2_pct,tier3_pct,tier4_pct,high_leverage_pct
+Scoring Environment,Low-Scoring (<155),185,39959,1.3837,0.763,18095,148,0.82,21859,1019,4.66,25.6,36.61,24.74,13.05,37.79
+Scoring Environment,Medium-Scoring (155-175),173,40967,1.4862,0.7528,19469,571,2.93,21494,145,0.67,11.32,46.12,31.55,11.01,42.56
+Scoring Environment,High-Scoring (>175),386,94750,1.6881,0.9329,45978,3340,7.26,48755,98,0.2,9.61,33.84,41.35,15.2,56.55
+Top Verified Venue (ID: 3.0),Venue ID 3.0 (India),50,12043,1.5488,0.8216,5775,252,4.36,6268,56,0.89,13.09,37.06,38.46,11.38,49.85
+Top Verified Venue (ID: 49.0),Venue ID 49.0 (India),37,8846,1.6103,0.8901,4214,246,5.84,4632,50,1.08,12.43,35.71,37.08,14.78,51.85
+Top Verified Venue (ID: 8.0),Venue ID 8.0 (India),34,7906,1.5787,0.8193,3742,153,4.09,4164,28,0.67,11.88,35.54,39.83,12.75,52.58
+Top Verified Venue (ID: 1.0),Venue ID 1.0 (India),32,7743,1.5336,0.8575,3734,170,4.55,4009,70,1.75,16.13,37.3,33.41,13.16,46.57
+Top Verified Venue (ID: 3272.0),Venue ID 3272.0 (India),30,7118,1.4541,0.717,3382,86,2.54,3732,26,0.7,13.71,44.28,32.65,9.36,42.01
+Top Verified Venue (ID: 10.0),Venue ID 10.0 (India),29,6963,1.6535,0.9415,3332,230,6.9,3631,61,1.68,11.66,35.72,36.51,16.11,52.62
+Top Verified Venue (ID: 7.0),Venue ID 7.0 (India),28,6766,1.6011,0.8819,3253,187,5.75,3503,48,1.37,12.89,35.25,38.75,13.11,51.86
+Top Verified Venue (ID: 42.0),Venue ID 42.0 (United Arab Emirates),25,5939,1.5774,0.8637,2870,158,5.51,3062,62,2.02,11.69,41.47,32.45,14.4,46.84

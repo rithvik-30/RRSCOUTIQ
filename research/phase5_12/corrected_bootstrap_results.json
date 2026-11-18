@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "bootstrap_replications": 10000,
+    "random_seed": 42,
+    "monte_carlo_resolution": 9.999000099990002e-05,
+    "resampling_unit": "Complete Match ID (Match-Clustered)",
+    "centering_method": "Shift under Null (theta_null* = theta* - theta_obs)",
+    "p_value_formula": "(1 + count(|theta_null*| >= |theta_obs|)) / (B + 1)"
+  },
+  "eight_primary_comparisons": [
+    {
+      "metric_name": "2025 Batter SR vs League",
+      "observed_effect": 21.79212734866391,
+      "ci_95": [
+        14.114907801063246,
+        29.62736012578623
+      ],
+      "two_sided_p_value": 9.999000099990002e-05,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2025 Batter SR vs Eligible Non-Selected",
+      "observed_effect": 12.00248683956633,
+      "ci_95": [
+        3.1680095436589637,
+        20.87009323457018
+      ],
+      "two_sided_p_value": 0.007699230076992301,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2025 Bowler Econ vs League",
+      "observed_effect": -0.5195131458070605,
+      "ci_95": [
+        -0.9114398552385304,
+        -0.10466503308733653
+      ],
+      "two_sided_p_value": 0.011698830116988301,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2025 Bowler Econ vs Eligible Non-Selected",
+      "observed_effect": -0.6822819831736417,
+      "ci_95": [
+        -1.1581249239611464,
+        -0.19058735071908783
+      ],
+      "two_sided_p_value": 0.007099290070992901,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Batter SR vs League",
+      "observed_effect": 20.3833631664817,
+      "ci_95": [
+        8.643160269300871,
+        32.02050631925524
+      ],
+      "two_sided_p_value": 0.0007999200079992001,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Batter SR vs Eligible Non-Selected",
+      "observed_effect": 14.513615693202013,
+      "ci_95": [
+        1.675425318983656,
+        27.396466850657525
+      ],
+      "two_sided_p_value": 0.027997200279972004,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Bowler Econ vs League",
+      "observed_effect": -0.5323433636106163,
+      "ci_95": [
+        -1.0617675774955293,
+        0.0422884240285861
+      ],
+      "two_sided_p_value": 0.057194280571942806,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": false,
+      "p_rejects_at_05": false,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Bowler Econ vs Eligible Non-Selected",
+      "observed_effect": -0.559332084762838,
+      "ci_95": [
+        -1.1934702511302775,
+        0.13475467404400215
+      ],
+      "two_sided_p_value": 0.10158984101589841,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": false,
+      "p_rejects_at_05": false,
+      "mutually_consistent": true
+    }
+  ],
+  "dual_metric_boundary_comparisons": [
+    {
+      "metric_name": "2025 Batter Bnd% vs League",
+      "observed_effect": 5.887779696959559,
+      "ci_95": [
+        4.256537037938807,
+        7.573480642216514
+      ],
+      "two_sided_p_value": 9.999000099990002e-05,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2025 Batter Bnd% vs Eligible Non-Selected",
+      "observed_effect": 4.252698224051219,
+      "ci_95": [
+        2.314405536822934,
+        6.212597211720216
+      ],
+      "two_sided_p_value": 9.999000099990002e-05,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Batter Bnd% vs League",
+      "observed_effect": 5.616737921673074,
+      "ci_95": [
+        3.235995500341689,
+        7.990126185401914
+      ],
+      "two_sided_p_value": 9.999000099990002e-05,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    },
+    {
+      "metric_name": "2026 Batter Bnd% vs Eligible Non-Selected",
+      "observed_effect": 4.929745720900929,
+      "ci_95": [
+        2.2628541189411395,
+        7.597947373134792
+      ],
+      "two_sided_p_value": 0.0004999500049995,
+      "null_centered": true,
+      "plus_one_corrected": true,
+      "ci_excludes_zero": true,
+      "p_rejects_at_05": true,
+      "mutually_consistent": true
+    }
+  ]
+}

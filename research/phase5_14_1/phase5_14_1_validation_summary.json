@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "audit_phase": "Phase 5.14.1 \u2014 Final Statistical Interpretation & Freeze-Gate Correction",
+    "timestamp": "2026-11-18",
+    "verdict": "APPROVED FOR COMPETITION FREEZE",
+    "gate_policy": "STRICT_FAIL_CLOSED"
+  },
+  "hash_gate": {
+    "canonical_dataset": {
+      "path": "data/processed/m5_3/match_state_full.csv",
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true
+    },
+    "hashes_intact": true,
+    "gate_verdict": "APPROVED FOR COMPETITION FREEZE"
+  },
+  "statistical_classification_summary": {
+    "statistically_significant_post_holm": 6,
+    "directional_post_holm": 0,
+    "non_significant": 2,
+    "exact_counts_verified": true
+  },
+  "reporting_corrections": {
+    "individual_significance_attribution_removed": true,
+    "non_significant_2026_bowlers_corrected": true,
+    "run_extrapolation_removed": true,
+    "credible_bound_terminology_clarified": true,
+    "fail_closed_hash_gate_implemented": true
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "total_hypotheses_tested": 8,
+    "family_wise_error_rate_target": 0.05,
+    "adjustment_procedure": "Holm-Bonferroni with cumulative maximum monotonicity enforcement",
+    "monotonicity_verified": true,
+    "summary_counts": {
+      "statistically_significant_post_holm": 6,
+      "directional_evidence_post_holm": 0,
+      "non_significant": 2
+    }
+  },
+  "ranked_comparisons": [
+    {
+      "rank": 1,
+      "comparison_id": "2025_batters_vs_league",
+      "season": 2025,
+      "discipline": "batter",
+      "benchmark": "league",
+      "metric": "boundary_rate_pct_diff",
+      "observed_effect": 5.887779696959559,
+      "ci_95": [
+        4.256537037938807,
+        7.573480642216514
+      ],
+      "raw_p_value": 9.999000099990002e-05,
+      "multiplier": 8,
+      "step_adjusted_p": 0.0007999200079992001,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 2,
+      "comparison_id": "2025_batters_vs_non_selected",
+      "season": 2025,
+      "discipline": "batter",
+      "benchmark": "non_selected",
+      "metric": "boundary_rate_pct_diff",
+      "observed_effect": 4.252698224051219,
+      "ci_95": [
+        2.314405536822934,
+        6.212597211720216
+      ],
+      "raw_p_value": 9.999000099990002e-05,
+      "multiplier": 7,
+      "step_adjusted_p": 0.0006999300069993001,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 3,
+      "comparison_id": "2026_batters_vs_league",
+      "season": 2026,
+      "discipline": "batter",
+      "benchmark": "league",
+      "metric": "boundary_rate_pct_diff",
+      "observed_effect": 5.616737921673074,
+      "ci_95": [
+        3.235995500341689,
+        7.990126185401914
+      ],
+      "raw_p_value": 9.999000099990002e-05,
+      "multiplier": 6,
+      "step_adjusted_p": 0.0005999400059994001,
+      "holm_adjusted_p": 0.0007999200079992001,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 4,
+      "comparison_id": "2026_batters_vs_non_selected",
+      "season": 2026,
+      "discipline": "batter",
+      "benchmark": "non_selected",
+      "metric": "boundary_rate_pct_diff",
+      "observed_effect": 4.929745720900929,
+      "ci_95": [
+        2.2628541189411395,
+        7.597947373134792
+      ],
+      "raw_p_value": 0.0004999500049995,
+      "multiplier": 5,
+      "step_adjusted_p": 0.0024997500249975,
+      "holm_adjusted_p": 0.0024997500249975,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 5,
+      "comparison_id": "2025_bowlers_vs_non_selected",
+      "season": 2025,
+      "discipline": "bowler",
+      "benchmark": "non_selected",
+      "metric": "economy_rpo_diff",
+      "observed_effect": -0.6822819831736417,
+      "ci_95": [
+        -1.1581249239611464,
+        -0.19058735071908783
+      ],
+      "raw_p_value": 0.007099290070992901,
+      "multiplier": 4,
+      "step_adjusted_p": 0.028397160283971604,
+      "holm_adjusted_p": 0.028397160283971604,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 6,
+      "comparison_id": "2025_bowlers_vs_league",
+      "season": 2025,
+      "discipline": "bowler",
+      "benchmark": "league",
+      "metric": "economy_rpo_diff",
+      "observed_effect": -0.5195131458070605,
+      "ci_95": [
+        -0.9114398552385304,
+        -0.10466503308733653
+      ],
+      "raw_p_value": 0.011698830116988301,
+      "multiplier": 3,
+      "step_adjusted_p": 0.035096490350964904,
+      "holm_adjusted_p": 0.035096490350964904,
+      "raw_significant_05": true,
+      "holm_significant_05": true,
+      "inference_classification": "STATISTICALLY_SIGNIFICANT"
+    },
+    {
+      "rank": 7,
+      "comparison_id": "2026_bowlers_vs_league",
+      "season": 2026,
+      "discipline": "bowler",
+      "benchmark": "league",
+      "metric": "economy_rpo_diff",
+      "observed_effect": -0.5323433636106163,
+      "ci_95": [
+        -1.0617675774955293,
+        0.0422884240285861
+      ],
+      "raw_p_value": 0.057194280571942806,
+      "multiplier": 2,
+      "step_adjusted_p": 0.11438856114388561,
+      "holm_adjusted_p": 0.11438856114388561,
+      "raw_significant_05": false,
+      "holm_significant_05": false,
+      "inference_classification": "NON_SIGNIFICANT"
+    },
+    {
+      "rank": 8,
+      "comparison_id": "2026_bowlers_vs_non_selected",
+      "season": 2026,
+      "discipline": "bowler",
+      "benchmark": "non_selected",
+      "metric": "economy_rpo_diff",
+      "observed_effect": -0.559332084762838,
+      "ci_95": [
+        -1.1934702511302775,
+        0.13475467404400215
+      ],
+      "raw_p_value": 0.10158984101589841,
+      "multiplier": 1,
+      "step_adjusted_p": 0.10158984101589841,
+      "holm_adjusted_p": 0.11438856114388561,
+      "raw_significant_05": false,
+      "holm_significant_05": false,
+      "inference_classification": "NON_SIGNIFICANT"
+    }
+  ]
+}

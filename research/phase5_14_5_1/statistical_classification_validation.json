@@ -1,0 +1,40 @@
+{
+  "audit_phase": "Phase 5.14.5.1 \u2014 Final Verification Corrections",
+  "component": "Derived Statistical Classification (Fix D)",
+  "derivation_rule": {
+    "statistically_significant": "holm_adjusted_p < 0.05 AND CI excludes zero in observed effect direction",
+    "non_significant": "holm_adjusted_p >= 0.05 OR CI includes zero",
+    "directional_only": "0 (strictly unassigned absent separate formal statistical rule)"
+  },
+  "distribution": {
+    "statistically_significant": 6,
+    "directional": 0,
+    "non_significant": 2,
+    "total": 8
+  },
+  "non_significant_2026_bowlers": [
+    {
+      "comparison_id": "2026_bowlers_vs_league",
+      "holm_adjusted_p": 0.11438856114388561,
+      "ci_95": [
+        -1.0617675774955293,
+        0.0422884240285861
+      ],
+      "ci_crosses_zero": true,
+      "derived_classification": "NON_SIGNIFICANT"
+    },
+    {
+      "comparison_id": "2026_bowlers_vs_non_selected",
+      "holm_adjusted_p": 0.11438856114388561,
+      "ci_95": [
+        -1.1934702511302775,
+        0.13475467404400215
+      ],
+      "ci_crosses_zero": true,
+      "derived_classification": "NON_SIGNIFICANT"
+    }
+  ],
+  "tests_executed_count": 7,
+  "tests_passed_count": 7,
+  "status": "PASSED"
+}

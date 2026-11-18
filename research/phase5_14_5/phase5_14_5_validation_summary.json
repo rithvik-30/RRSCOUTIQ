@@ -1,0 +1,605 @@
+{
+  "metadata": {
+    "audit_phase": "Phase 5.14.5 \u2014 Final Governance Gate Hardening",
+    "generation_id": "gen_97f58bd70d4a",
+    "final_verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "publication_state": "VERIFIED_PRE_COMMIT",
+    "master_decision_rule": "ASSET_INTEGRITY & STATISTICAL_PRECISION & ACTIVE_UNCERTAINTY & SELECTION_INVARIANCE & FRESH_TESTS & AUTHORITATIVE_COMMIT"
+  },
+  "asset_integrity": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "canonical_dataset": {
+      "path": "data\\processed\\m5_3\\match_state_full.csv",
+      "accessible": true,
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true,
+      "error": null
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "accessible": true,
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true,
+      "error": null
+    }
+  },
+  "audit_authorization": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "checks": {
+      "asset_integrity_prerequisite": true,
+      "statistical_precision_verified": true,
+      "uncertainty_calculation_verified": true,
+      "selection_invariance_verified": true,
+      "regression_test_suite_passed": true
+    },
+    "sub_evaluations": {
+      "statistical_precision": {
+        "status": "PASSED",
+        "is_passed": true,
+        "failures_count": 0,
+        "failures": [],
+        "tolerances_used": {
+          "effect": {
+            "atol": 1e-06,
+            "rtol": 1e-05
+          },
+          "ci": {
+            "atol": 1e-06,
+            "rtol": 1e-05
+          },
+          "p_value": {
+            "atol": 1e-06,
+            "rtol": 1e-05
+          }
+        },
+        "classification_summary": {
+          "statistically_significant": 6,
+          "directional": 0,
+          "non_significant": 2,
+          "total": 8
+        },
+        "comparisons": [
+          {
+            "comparison_id": "2025_batters_vs_league",
+            "rank": 1,
+            "observed_effect": 5.887779696959559,
+            "effect_match": true,
+            "ci_95": [
+              4.256537037938807,
+              7.573480642216514
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 9.999000099990002e-05,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.0007999200079992001,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2025_batters_vs_non_selected",
+            "rank": 2,
+            "observed_effect": 4.252698224051219,
+            "effect_match": true,
+            "ci_95": [
+              2.314405536822934,
+              6.212597211720216
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 9.999000099990002e-05,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.0007999200079992001,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2026_batters_vs_league",
+            "rank": 3,
+            "observed_effect": 5.616737921673074,
+            "effect_match": true,
+            "ci_95": [
+              3.235995500341689,
+              7.990126185401914
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 9.999000099990002e-05,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.0007999200079992001,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2026_batters_vs_non_selected",
+            "rank": 4,
+            "observed_effect": 4.929745720900929,
+            "effect_match": true,
+            "ci_95": [
+              2.2628541189411395,
+              7.597947373134792
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 0.0004999500049995,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.0024997500249975,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2025_bowlers_vs_non_selected",
+            "rank": 5,
+            "observed_effect": -0.6822819831736417,
+            "effect_match": true,
+            "ci_95": [
+              -1.1581249239611464,
+              -0.19058735071908783
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 0.007099290070992901,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.028397160283971604,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2025_bowlers_vs_league",
+            "rank": 6,
+            "observed_effect": -0.5195131458070605,
+            "effect_match": true,
+            "ci_95": [
+              -0.9114398552385304,
+              -0.10466503308733653
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": false,
+            "raw_p_value": 0.011698830116988301,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.035096490350964904,
+            "holm_p_match": true,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2026_bowlers_vs_league",
+            "rank": 7,
+            "observed_effect": -0.5323433636106163,
+            "effect_match": true,
+            "ci_95": [
+              -1.0617675774955293,
+              0.0422884240285861
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": true,
+            "raw_p_value": 0.057194280571942806,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.11438856114388561,
+            "holm_p_match": true,
+            "classification": "NON_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          },
+          {
+            "comparison_id": "2026_bowlers_vs_non_selected",
+            "rank": 8,
+            "observed_effect": -0.559332084762838,
+            "effect_match": true,
+            "ci_95": [
+              -1.1934702511302775,
+              0.13475467404400215
+            ],
+            "ci_low_match": true,
+            "ci_high_match": true,
+            "ci_contains_estimate": true,
+            "ci_crosses_zero": true,
+            "raw_p_value": 0.10158984101589841,
+            "raw_p_match": true,
+            "holm_adjusted_p": 0.11438856114388561,
+            "holm_p_match": true,
+            "classification": "NON_SIGNIFICANT",
+            "classification_match": true,
+            "all_tolerances_satisfied": true
+          }
+        ]
+      },
+      "uncertainty_calculation": {
+        "status": "PASSED",
+        "is_passed": true,
+        "active_execution_path_verified": true,
+        "failures_count": 0,
+        "failures": [],
+        "numerical_tests": {
+          "normal_positive_variance_batter": {
+            "passed": true,
+            "latent_posterior_variance": 0.001011111111111111,
+            "latent_se": 0.03179797338056486,
+            "shrinkage_weight": 0.5185185185185185
+          },
+          "normal_positive_variance_bowler": {
+            "passed": true,
+            "latent_posterior_variance": 0.3903555163954252,
+            "latent_se": 0.6247843759213455,
+            "shrinkage_weight": 0.1607062644690923
+          },
+          "variance_below_floor_activation": {
+            "passed": true,
+            "latent_posterior_variance": 1.5999987809656167e-09,
+            "latent_se": 0.0001,
+            "expected_latent_se": 0.0001
+          },
+          "credible_bound_multiplier_and_directionality": {
+            "passed": true,
+            "multiplier": 1.645,
+            "batter_direction": "LOWER_BOUND (mu - 1.645*se)",
+            "bowler_direction": "UPPER_BOUND (mu + 1.645*se)",
+            "batter_test_lb90": 0.013313414345000003,
+            "bowler_test_ub90": 0.37023341330000004
+          },
+          "negative_variance_guard": {
+            "passed": true,
+            "sqrt_max_negative": 0.0001
+          }
+        },
+        "active_engine_class": "src.m5_5b_4_3_8.epistemic_context_engine_b4_3_8.ContextualPlayerBaselineRecordB438",
+        "formula_documentation": {
+          "posterior_variance": "Var(theta_i | Y_{i,c}, mu_LPMO) = (1.0 - shrinkage_weight) * tau2_total",
+          "latent_se": "latent_se = sqrt(max(1e-8, latent_posterior_variance))",
+          "floor_value": 1e-08,
+          "z_multiplier": 1.645,
+          "coverage_interpretation": "One-sided 95% credible bound; conservative endpoint of central two-sided 90% credible interval.",
+          "conditioning_qualification": "Conditional on Gaussian empirical-Bayes conjugate model and LPMO plug-in estimates."
+        }
+      },
+      "selection_invariance": {
+        "status": "PASSED",
+        "is_passed": true,
+        "failures_count": 0,
+        "failures": [],
+        "verified_fields": [
+          "player_id",
+          "name",
+          "rank",
+          "role",
+          "ordering"
+        ],
+        "total_players_verified": 20,
+        "batters": [
+          {
+            "expected_rank": 1,
+            "actual_rank": 1,
+            "rank_match": true,
+            "expected_id": 1699,
+            "actual_id": 1699,
+            "id_match": true,
+            "expected_name": "Suryakumar Yadav",
+            "actual_name": "Suryakumar Yadav",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 2,
+            "actual_rank": 2,
+            "rank_match": true,
+            "expected_id": 2367,
+            "actual_id": 2367,
+            "id_match": true,
+            "expected_name": "Travis Head",
+            "actual_name": "Travis Head",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 3,
+            "actual_rank": 3,
+            "rank_match": true,
+            "expected_id": 6819,
+            "actual_id": 6819,
+            "id_match": true,
+            "expected_name": "Yashasvi Jaiswal",
+            "actual_name": "Yashasvi Jaiswal",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 4,
+            "actual_rank": 4,
+            "rank_match": true,
+            "expected_id": 2258,
+            "actual_id": 2258,
+            "id_match": true,
+            "expected_name": "Sanju Samson",
+            "actual_name": "Sanju Samson",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 5,
+            "actual_rank": 5,
+            "rank_match": true,
+            "expected_id": 6281,
+            "actual_id": 6281,
+            "id_match": true,
+            "expected_name": "Abhishek Sharma",
+            "actual_name": "Abhishek Sharma",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 6,
+            "actual_rank": 6,
+            "rank_match": true,
+            "expected_id": 1318,
+            "actual_id": 1318,
+            "id_match": true,
+            "expected_name": "Andre Russell",
+            "actual_name": "Andre Russell",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 7,
+            "actual_rank": 7,
+            "rank_match": true,
+            "expected_id": 5553,
+            "actual_id": 5553,
+            "id_match": true,
+            "expected_name": "Phil Salt",
+            "actual_name": "Phil Salt",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 8,
+            "actual_rank": 8,
+            "rank_match": true,
+            "expected_id": 838,
+            "actual_id": 838,
+            "id_match": true,
+            "expected_name": "Glenn Maxwell",
+            "actual_name": "Glenn Maxwell",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 9,
+            "actual_rank": 9,
+            "rank_match": true,
+            "expected_id": 813,
+            "actual_id": 813,
+            "id_match": true,
+            "expected_name": "Jos Buttler",
+            "actual_name": "Jos Buttler",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          },
+          {
+            "expected_rank": 10,
+            "actual_rank": 10,
+            "rank_match": true,
+            "expected_id": 6059,
+            "actual_id": 6059,
+            "id_match": true,
+            "expected_name": "Ruturaj Gaikwad",
+            "actual_name": "Ruturaj Gaikwad",
+            "name_match": true,
+            "expected_role": "Batter",
+            "actual_role": "Batter",
+            "role_match": true
+          }
+        ],
+        "bowlers": [
+          {
+            "expected_rank": 1,
+            "actual_rank": 1,
+            "rank_match": true,
+            "expected_id": 781,
+            "actual_id": 781,
+            "id_match": true,
+            "expected_name": "Sunil Narine",
+            "actual_name": "Sunil Narine",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 2,
+            "actual_rank": 2,
+            "rank_match": true,
+            "expected_id": 4101,
+            "actual_id": 4101,
+            "id_match": true,
+            "expected_name": "Mitchell Santner",
+            "actual_name": "Mitchell Santner",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 3,
+            "actual_rank": 3,
+            "rank_match": true,
+            "expected_id": 2933,
+            "actual_id": 2933,
+            "id_match": true,
+            "expected_name": "Jasprit Bumrah",
+            "actual_name": "Jasprit Bumrah",
+            "name_match": true,
+            "expected_role": "Bowler",
+            "actual_role": "Bowler",
+            "role_match": true
+          },
+          {
+            "expected_rank": 4,
+            "actual_rank": 4,
+            "rank_match": true,
+            "expected_id": 4722,
+            "actual_id": 4722,
+            "id_match": true,
+            "expected_name": "Rashid Khan",
+            "actual_name": "Rashid Khan",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 5,
+            "actual_rank": 5,
+            "rank_match": true,
+            "expected_id": 7503,
+            "actual_id": 7503,
+            "id_match": true,
+            "expected_name": "Ravi Bishnoi",
+            "actual_name": "Ravi Bishnoi",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 6,
+            "actual_rank": 6,
+            "rank_match": true,
+            "expected_id": 2876,
+            "actual_id": 2876,
+            "id_match": true,
+            "expected_name": "Axar Patel",
+            "actual_name": "Axar Patel",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 7,
+            "actual_rank": 7,
+            "rank_match": true,
+            "expected_id": 8661,
+            "actual_id": 8661,
+            "id_match": true,
+            "expected_name": "Matheesha Pathirana",
+            "actual_name": "Matheesha Pathirana",
+            "name_match": true,
+            "expected_role": "Bowler",
+            "actual_role": "Bowler",
+            "role_match": true
+          },
+          {
+            "expected_rank": 8,
+            "actual_rank": 8,
+            "rank_match": true,
+            "expected_id": 152,
+            "actual_id": 152,
+            "id_match": true,
+            "expected_name": "Ravindra Jadeja",
+            "actual_name": "Ravindra Jadeja",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 9,
+            "actual_rank": 9,
+            "rank_match": true,
+            "expected_id": 3644,
+            "actual_id": 3644,
+            "id_match": true,
+            "expected_name": "Kuldeep Yadav",
+            "actual_name": "Kuldeep Yadav",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          },
+          {
+            "expected_rank": 10,
+            "actual_rank": 10,
+            "rank_match": true,
+            "expected_id": 19316,
+            "actual_id": 19316,
+            "id_match": true,
+            "expected_name": "Maheesh Theekshana",
+            "actual_name": "Maheesh Theekshana",
+            "name_match": true,
+            "expected_role": "All-Rounder",
+            "actual_role": "All-Rounder",
+            "role_match": true
+          }
+        ]
+      },
+      "regression_test_execution": {
+        "status": "PASSED",
+        "is_passed": true,
+        "parse_success": true,
+        "exit_code": 0,
+        "tests_collected": 171,
+        "tests_passed": 171,
+        "tests_failed": 0,
+        "tests_errors": 0,
+        "tests_skipped": 0,
+        "allow_skipped": true,
+        "duration_seconds": 25.08,
+        "stdout_tail": "........................................................................ [ 42%]\n........................................................................ [ 84%]\n...........................                                              [100%]\n171 passed in 25.08s",
+        "stderr": "",
+        "error": null
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "active_generation_id": "gen_97f58bd70d4a",
+  "publication_state": "APPROVED_FOR_COMPETITION_FREEZE",
+  "final_verdict": "APPROVED FOR COMPETITION FREEZE",
+  "is_approved": true,
+  "summary_artifact_path": "research\\phase5_14_5\\phase5_14_5_validation_summary.json",
+  "verdict_artifact_path": "research\\phase5_14_5\\PHASE_5_14_5_FINAL_VERDICT.md",
+  "summary_sha256": "e43805cd9480c8eabab8fe3a1b6ac4a43605ed0401fed8faa20793fbdbf28af9",
+  "verdict_sha256": "3cc3e33ba386eba7c01844b6ade586338bd4e4843c0297e5061338c3c9fa632e",
+  "master_governance_passed": true,
+  "timestamp": "2026-11-18"
+}

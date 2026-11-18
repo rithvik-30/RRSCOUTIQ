@@ -1,0 +1,129 @@
+================================================================================
+RR ScoutIQ — Rajasthan Royals IPL 2027 Auction Strategy Hackathon
+PHASE 5.14.5.2 AUDIT & REMEDIATION EXECUTION LOG (UPDATED)
+Date: 2026-11-18
+================================================================================
+
+COMMAND 1: Execute Phase 5.14.5.2 Deliverables Generator
+Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+Command: python research/phase5_14_5_2/generate_phase5_14_5_2_artifacts.py
+Exit Code: 0
+Verbatim Output:
+Validation JSON deliverables generated successfully in research/phase5_14_5_2/.
+
+--------------------------------------------------------------------------------
+
+COMMAND 2: Run Phase 5.14.5.2 Stale Approval & Restart Test Suite
+Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+Command: pytest tests/phase5_14_5_2/test_stale_approval_double_failure.py -v
+Exit Code: 0
+Verbatim Output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_stale_approval_double_failure_fails_closed PASSED [ 20%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_journal_write_failure_before_publication_aborts PASSED [ 40%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_journal_write_failure_during_recovery_fresh_process_fails_closed PASSED [ 60%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_corrupt_journal_after_restart_returns_unverifiable PASSED [ 80%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_successful_recovery_after_failed_attempt PASSED [100%]
+
+============================== 5 passed in 2.35s ==============================
+
+--------------------------------------------------------------------------------
+
+COMMAND 3: Run Phase 5.14.5.2 Dedicated Test Suite
+Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+Command: pytest tests/phase5_14_5_2/ -v
+Exit Code: 0
+Verbatim Output:
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 30 items
+
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_verifies_committed_state PASSED [  3%]
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_fails_on_missing_manifest PASSED [  6%]
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_fails_on_corrupted_manifest PASSED [ 10%]
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_fails_on_summary_hash_tampering PASSED [ 13%]
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_fails_on_verdict_hash_tampering PASSED [ 16%]
+tests/phase5_14_5_2/test_final_authoritative_reader.py::test_reader_fails_on_generation_id_mismatch PASSED [ 20%]
+tests/phase5_14_5_2/test_publication_recovery.py::test_recovery_after_stage1_failure PASSED [ 23%]
+tests/phase5_14_5_2/test_publication_recovery.py::test_recovery_after_stage2_failure PASSED [ 26%]
+tests/phase5_14_5_2/test_publication_recovery.py::test_recovery_after_manifest_commit_failure PASSED [ 30%]
+tests/phase5_14_5_2/test_publication_recovery.py::test_recovery_cleans_up_all_temp_files PASSED [ 33%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_stale_approval_double_failure_fails_closed PASSED [ 36%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_journal_write_failure_before_publication_aborts PASSED [ 40%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_journal_write_failure_during_recovery_fresh_process_fails_closed PASSED [ 43%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_corrupt_journal_after_restart_returns_unverifiable PASSED [ 46%]
+tests/phase5_14_5_2/test_stale_approval_double_failure.py::test_successful_recovery_after_failed_attempt PASSED [ 50%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_bare_passed_count_fails PASSED [ 53%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_log_messages_with_passed_phrase_fails PASSED [ 56%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_empty_stdout_fails PASSED [ 60%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_whitespace_only_stdout_fails PASSED [ 63%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_truncated_summary_fails PASSED [ 66%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_summary_followed_by_error_message_fails PASSED [ 70%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_summary_followed_by_unfinished_progress_fails PASSED [ 73%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_two_identical_summaries_fails PASSED [ 76%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_two_conflicting_summaries_fails PASSED [ 80%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_zero_second_duration_fails PASSED [ 83%]
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_missing_or_invalid_duration_fails PASSED [ 86%]
+tests/phase5_14_5_2/test_nonzero_exit_code_fails PASSED [ 90%]
+tests/phase5_14_5_2/test_valid_complete_pytest_summary_passes PASSED [ 93%]
+tests/phase5_14_5_2/test_skipped_tests_policy PASSED [ 96%]
+tests/phase5_14_5_2/test_inconsistent_item_count_fails PASSED [100%]
+
+============================= 30 passed in 9.26s ==============================
+
+--------------------------------------------------------------------------------
+
+COMMAND 4: Run Combined Governance Suite (Phase 5.14.5 + 5.14.5.1 + 5.14.5.2)
+Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+Command: pytest tests/phase5_14_5/ tests/phase5_14_5_1/ tests/phase5_14_5_2/ -v
+Exit Code: 0
+Verbatim Output (Summary):
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 116 items
+
+tests/phase5_14_5/test_final_approval_consistency.py::test_full_governance_gate_end_to_end_approval PASSED [  0%]
+...
+tests/phase5_14_5_2/test_terminal_summary_finality.py::test_inconsistent_item_count_fails PASSED [100%]
+
+============================ 116 passed in 14.77s =============================
+
+--------------------------------------------------------------------------------
+
+COMMAND 5: Run Full Repository Regression Suite
+Directory: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+Command: pytest tests/ -v
+Exit Code: 0
+Verbatim Output (Summary):
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0 -- C:\Users\rithv\anaconda\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rithv\OneDrive\Documents\Desktop\RR_ScoutIQ
+plugins: anyio-4.10.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 647 items
+
+tests/cspm/test_chase_probability.py::test_chase_boundary_conditions PASSED [  0%]
+...
+tests/r1_dli_research/test_dli_empirical_validity.py::test_clamping_saturation_bounds PASSED [100%]
+
+================ 647 passed, 29 warnings in 451.89s (0:07:31) =================
+
+================================================================================
+ALL VERIFICATIONS COMPLETED SUCCESSFULLY WITH ZERO ERRORS.
+================================================================================

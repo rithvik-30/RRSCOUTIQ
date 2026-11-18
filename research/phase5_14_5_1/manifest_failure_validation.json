@@ -1,0 +1,32 @@
+{
+  "audit_phase": "Phase 5.14.5.1 \u2014 Final Verification Corrections",
+  "component": "Real Manifest Replacement Failure & Recovery (Fix E)",
+  "mechanism": {
+    "atomic_commit_target": "authoritative_gate_manifest.json",
+    "failure_injection_point": "Actual os.replace() operation on authoritative manifest",
+    "invalidation_behavior": "Single atomic manifest replacement or unlinking fallback",
+    "temporary_file_hygiene": "All .tmp staging files unlinked in finally / error handlers"
+  },
+  "scenarios_tested": [
+    {
+      "scenario": "Real os.replace failure during manifest commit on seeded approved state",
+      "result": "Caught, publication state set to PUBLICATION_FAILED, old approval invalidated",
+      "stale_approval_prevented": true,
+      "temporary_files_cleaned": true,
+      "recovery_on_subsequent_run": true
+    },
+    {
+      "scenario": "Missing authoritative manifest",
+      "result": "verify_authoritative_publication() fails closed (missing)",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Corrupted / unreadable authoritative manifest",
+      "result": "verify_authoritative_publication() fails closed (JSON decode error trapped)",
+      "status": "PASSED"
+    }
+  ],
+  "tests_executed_count": 3,
+  "tests_passed_count": 3,
+  "status": "PASSED"
+}

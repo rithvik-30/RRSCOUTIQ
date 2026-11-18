@@ -1,0 +1,91 @@
+{
+  "audit_phase": "Phase 5.14.5.2 \u2014 Final Terminal Validation & Stale Approval Safety",
+  "component": "Strict Pytest Terminal Summary Finality Parser (Fix A)",
+  "enforced_specifications": {
+    "summary_position": "Terminal non-empty line of stdout (index == len(lines) - 1)",
+    "summary_uniqueness": "Exactly one valid summary line across stdout (len(matched) == 1)",
+    "duration_rule": "duration > 0.0s (strictly positive non-zero execution time)",
+    "exit_code_rule": "exit_code == 0 required; non-zero exit code immediately triggers failure",
+    "trailing_output_rejection": "Any non-empty trailing output (tracebacks, errors, prose, warnings) causes immediate failure"
+  },
+  "adversarial_scenarios_tested": [
+    {
+      "scenario": "Post-summary error message ('ERROR: process terminated after summary')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Post-summary traceback ('Traceback (most recent call last)...')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Post-summary warning output ('RuntimeWarning: invalid value...')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Post-summary trailing prose ('Summary completed successfully.')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Duplicate identical summary lines ('25 passed in 2.30s' x 2)",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Conflicting summary lines ('25 passed in 2.30s' and '20 passed, 5 failed')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Triple summary lines across execution log",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Summary line embedded in middle of logging output",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Zero-second reported duration ('in 0.00s')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Missing or malformed duration ('in s', 'in fast')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Non-zero process exit code with passing summary format",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Skipped tests policy violation when allow_skipped=False",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Inconsistent item counts (passed + failed != total)",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Bare substring in traceback ('1 passed')",
+      "result": "REJECTED",
+      "status": "PASSED"
+    },
+    {
+      "scenario": "Valid complete terminal summary at final line with duration > 0 and exit_code 0",
+      "result": "ACCEPTED",
+      "status": "PASSED"
+    }
+  ],
+  "tests_executed_count": 15,
+  "tests_passed_count": 15,
+  "status": "PASSED"
+}

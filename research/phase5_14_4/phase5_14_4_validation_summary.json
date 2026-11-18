@@ -1,0 +1,377 @@
+{
+  "metadata": {
+    "audit_phase": "Phase 5.14.4 \u2014 Independent Verification & Fail-Closed Governance Hardening",
+    "timestamp": "2026-11-18",
+    "tx_id": "380d28c361c4",
+    "final_verdict": "APPROVED FOR COMPETITION FREEZE",
+    "is_approved": true,
+    "master_governance_rule": "ASSET_INTEGRITY & STATISTICAL_VERIFICATION & UNCERTAINTY_VERIFICATION & SELECTION_INVARIANCE & FRESH_REGRESSION_TEST_PASS & PUBLICATION_CONSISTENCY"
+  },
+  "asset_integrity": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "canonical_dataset": {
+      "path": "data\\processed\\m5_3\\match_state_full.csv",
+      "accessible": true,
+      "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+      "match": true,
+      "error": null
+    },
+    "competition_report": {
+      "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+      "accessible": true,
+      "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+      "match": true,
+      "error": null
+    }
+  },
+  "audit_authorization": {
+    "status": "PASSED",
+    "is_passed": true,
+    "failures_count": 0,
+    "failures": [],
+    "checks": {
+      "asset_integrity_prerequisite": true,
+      "statistical_evidence_verified": true,
+      "uncertainty_quantification_verified": true,
+      "selection_invariance_verified": true,
+      "regression_test_suite_passed": true
+    },
+    "sub_evaluations": {
+      "statistical_evidence": {
+        "status": "PASSED",
+        "is_passed": true,
+        "failures_count": 0,
+        "failures": [],
+        "classification_counts": {
+          "statistically_significant_post_holm": 6,
+          "directional_raw_significant_post_holm_non_significant": 0,
+          "non_significant": 2,
+          "total_comparisons": 8
+        },
+        "comparisons": [
+          {
+            "comparison_id": "2025_batters_vs_league",
+            "rank": 1,
+            "observed_effect_rounded": 5.89,
+            "ci_95": "[4.26, 7.57]",
+            "raw_p": 0.0001,
+            "holm_p": 0.0008,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2025_batters_vs_non_selected",
+            "rank": 2,
+            "observed_effect_rounded": 4.25,
+            "ci_95": "[2.31, 6.21]",
+            "raw_p": 0.0001,
+            "holm_p": 0.0008,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2026_batters_vs_league",
+            "rank": 3,
+            "observed_effect_rounded": 5.62,
+            "ci_95": "[3.24, 7.99]",
+            "raw_p": 0.0001,
+            "holm_p": 0.0008,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2026_batters_vs_non_selected",
+            "rank": 4,
+            "observed_effect_rounded": 4.93,
+            "ci_95": "[2.26, 7.6]",
+            "raw_p": 0.0005,
+            "holm_p": 0.0025,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2025_bowlers_vs_non_selected",
+            "rank": 5,
+            "observed_effect_rounded": -0.68,
+            "ci_95": "[-1.16, -0.19]",
+            "raw_p": 0.0071,
+            "holm_p": 0.0284,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2025_bowlers_vs_league",
+            "rank": 6,
+            "observed_effect_rounded": -0.52,
+            "ci_95": "[-0.91, -0.1]",
+            "raw_p": 0.0117,
+            "holm_p": 0.0351,
+            "classification": "STATISTICALLY_SIGNIFICANT",
+            "ci_crosses_zero": false,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2026_bowlers_vs_league",
+            "rank": 7,
+            "observed_effect_rounded": -0.53,
+            "ci_95": "[-1.06, 0.04]",
+            "raw_p": 0.0572,
+            "holm_p": 0.1144,
+            "classification": "NON_SIGNIFICANT",
+            "ci_crosses_zero": true,
+            "matches_expected": true
+          },
+          {
+            "comparison_id": "2026_bowlers_vs_non_selected",
+            "rank": 8,
+            "observed_effect_rounded": -0.56,
+            "ci_95": "[-1.19, 0.13]",
+            "raw_p": 0.1016,
+            "holm_p": 0.1144,
+            "classification": "NON_SIGNIFICANT",
+            "ci_crosses_zero": true,
+            "matches_expected": true
+          }
+        ]
+      },
+      "uncertainty_quantification": {
+        "status": "PASSED",
+        "is_passed": true,
+        "failures_count": 0,
+        "failures": [],
+        "checks": {
+          "has_latent_posterior_variance_formula": true,
+          "has_numerical_variance_floor_1e8": true
+        },
+        "mathematical_specification": {
+          "formula_variance": "latent_posterior_variance = (1.0 - shrinkage_weight) * tau2_total",
+          "formula_se": "latent_se = sqrt(max(1e-8, latent_posterior_variance))",
+          "variance_floor": 1e-08,
+          "conditioning_assumptions": [
+            "Gaussian posterior theta_i | Y_{i, c}, mu_LPMO ~ N(shrunk_estimate, latent_se^2)",
+            "Empirical Bayes plug-in tau2_player and tau2_total estimated via LPMO",
+            "Observation variance V_{i, c} incorporates binomial/normal sampling and cluster HHI"
+          ],
+          "credible_bound_interpretation": "One-sided 95% credible bound (z = 1.645), conservative endpoint of central 90% credible interval."
+        }
+      },
+      "selection_invariance": {
+        "status": "PASSED",
+        "is_passed": true,
+        "failures_count": 0,
+        "failures": [],
+        "total_players_checked": 20,
+        "batters_all_matched": true,
+        "bowlers_all_matched": true,
+        "batters_manifest": [
+          {
+            "rank": 1,
+            "expected_id": 1699,
+            "actual_id": 1699,
+            "expected_name": "Suryakumar Yadav",
+            "actual_name": "Suryakumar Yadav",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 2,
+            "expected_id": 2367,
+            "actual_id": 2367,
+            "expected_name": "Travis Head",
+            "actual_name": "Travis Head",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 3,
+            "expected_id": 6819,
+            "actual_id": 6819,
+            "expected_name": "Yashasvi Jaiswal",
+            "actual_name": "Yashasvi Jaiswal",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 4,
+            "expected_id": 2258,
+            "actual_id": 2258,
+            "expected_name": "Sanju Samson",
+            "actual_name": "Sanju Samson",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 5,
+            "expected_id": 6281,
+            "actual_id": 6281,
+            "expected_name": "Abhishek Sharma",
+            "actual_name": "Abhishek Sharma",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 6,
+            "expected_id": 1318,
+            "actual_id": 1318,
+            "expected_name": "Andre Russell",
+            "actual_name": "Andre Russell",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 7,
+            "expected_id": 5553,
+            "actual_id": 5553,
+            "expected_name": "Phil Salt",
+            "actual_name": "Phil Salt",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 8,
+            "expected_id": 838,
+            "actual_id": 838,
+            "expected_name": "Glenn Maxwell",
+            "actual_name": "Glenn Maxwell",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 9,
+            "expected_id": 813,
+            "actual_id": 813,
+            "expected_name": "Jos Buttler",
+            "actual_name": "Jos Buttler",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 10,
+            "expected_id": 6059,
+            "actual_id": 6059,
+            "expected_name": "Ruturaj Gaikwad",
+            "actual_name": "Ruturaj Gaikwad",
+            "id_match": true,
+            "name_match": true
+          }
+        ],
+        "bowlers_manifest": [
+          {
+            "rank": 1,
+            "expected_id": 781,
+            "actual_id": 781,
+            "expected_name": "Sunil Narine",
+            "actual_name": "Sunil Narine",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 2,
+            "expected_id": 4101,
+            "actual_id": 4101,
+            "expected_name": "Mitchell Santner",
+            "actual_name": "Mitchell Santner",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 3,
+            "expected_id": 2933,
+            "actual_id": 2933,
+            "expected_name": "Jasprit Bumrah",
+            "actual_name": "Jasprit Bumrah",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 4,
+            "expected_id": 4722,
+            "actual_id": 4722,
+            "expected_name": "Rashid Khan",
+            "actual_name": "Rashid Khan",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 5,
+            "expected_id": 7503,
+            "actual_id": 7503,
+            "expected_name": "Ravi Bishnoi",
+            "actual_name": "Ravi Bishnoi",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 6,
+            "expected_id": 2876,
+            "actual_id": 2876,
+            "expected_name": "Axar Patel",
+            "actual_name": "Axar Patel",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 7,
+            "expected_id": 8661,
+            "actual_id": 8661,
+            "expected_name": "Matheesha Pathirana",
+            "actual_name": "Matheesha Pathirana",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 8,
+            "expected_id": 152,
+            "actual_id": 152,
+            "expected_name": "Ravindra Jadeja",
+            "actual_name": "Ravindra Jadeja",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 9,
+            "expected_id": 3644,
+            "actual_id": 3644,
+            "expected_name": "Kuldeep Yadav",
+            "actual_name": "Kuldeep Yadav",
+            "id_match": true,
+            "name_match": true
+          },
+          {
+            "rank": 10,
+            "expected_id": 19316,
+            "actual_id": 19316,
+            "expected_name": "Maheesh Theekshana",
+            "actual_name": "Maheesh Theekshana",
+            "id_match": true,
+            "name_match": true
+          }
+        ]
+      },
+      "regression_test_execution": {
+        "status": "PASSED",
+        "is_passed": true,
+        "exit_code": 0,
+        "tests_collected": 132,
+        "tests_passed": 132,
+        "tests_failed": 0,
+        "tests_errors": 0,
+        "tests_skipped": 0,
+        "duration_seconds": 47.12,
+        "stdout_tail": "........................................................................ [ 54%]\n............................................................             [100%]\n132 passed in 47.12s",
+        "stderr": "",
+        "error": null
+      }
+    }
+  }
+}

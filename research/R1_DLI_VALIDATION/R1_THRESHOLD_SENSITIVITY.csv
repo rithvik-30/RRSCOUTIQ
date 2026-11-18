@@ -1,0 +1,7 @@
+candidate_name,t1_t2_cutoff,t2_t3_cutoff,t3_t4_cutoff,tier1_pct,tier2_pct,tier3_pct,tier4_pct,tier1_win_rate,tier2_win_rate,tier3_win_rate,tier4_win_rate,win_rate_spread_t1_minus_t4,tier1_wkt_hazard,tier2_wkt_hazard,tier3_wkt_hazard,tier4_wkt_hazard,wkt_hazard_ratio_t4_to_t1,win_rate_strictly_monotonic,wkt_hazard_strictly_monotonic
+Approved M3 Baseline,0.9,1.35,2.25,13.52,38.57,35.53,12.37,95.52,69.58,34.45,6.34,89.19,0.267,0.272,0.359,0.561,2.1,True,True
+Candidate A (Narrowed: -0.05 / -0.05 / -0.10),0.85,1.3,2.15,10.21,38.0,37.51,14.28,96.7,72.99,37.54,7.25,89.45,0.267,0.269,0.346,0.553,2.07,True,True
+Candidate B (Widened: +0.05 / +0.05 / +0.10),0.95,1.4,2.35,17.58,38.08,33.37,10.97,93.89,66.22,31.68,5.52,88.38,0.266,0.275,0.368,0.58,2.18,True,True
+Candidate C (Conservative Low: 0.80 / 1.25 / 2.00),0.8,1.25,2.0,7.3,37.04,38.24,17.43,97.73,75.93,41.02,9.13,88.6,0.259,0.267,0.334,0.53,2.05,True,True
+Candidate D (Aggressive High: 1.00 / 1.50 / 2.50),1.0,1.5,2.5,21.94,40.52,28.35,9.18,92.81,61.1,26.09,4.68,88.13,0.264,0.28,0.396,0.591,2.24,True,True
+Candidate E (Exploratory Historical Draft: 0.70 / 1.30 / 2.00),0.7,1.3,2.0,2.55,45.66,34.36,17.43,98.85,75.51,39.21,9.13,89.72,0.269,0.268,0.338,0.53,1.97,True,False

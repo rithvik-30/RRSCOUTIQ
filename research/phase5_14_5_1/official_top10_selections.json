@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "title": "Authoritative Frozen Official Top 10 Selections",
+    "phase": "Phase 5.14.5.1",
+    "description": "Explicit rank, ID, name, broad role, and detailed role for official Top 10 Batters and Bowlers",
+    "verification_mode": "EXPLICIT_FIELDS_REQUIRED_NO_FALLBACK"
+  },
+  "top10_batters": [
+    {"rank": 1, "player_id": 1699, "name": "Suryakumar Yadav", "role": "Batter", "detailed_role": "Batter"},
+    {"rank": 2, "player_id": 2367, "name": "Travis Head", "role": "Batter", "detailed_role": "Top-Order Batter"},
+    {"rank": 3, "player_id": 6819, "name": "Yashasvi Jaiswal", "role": "Batter", "detailed_role": "Top-Order Batter"},
+    {"rank": 4, "player_id": 2258, "name": "Sanju Samson", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+    {"rank": 5, "player_id": 6281, "name": "Abhishek Sharma", "role": "All-Rounder", "detailed_role": "All-Rounder"},
+    {"rank": 6, "player_id": 1318, "name": "Andre Russell", "role": "All-Rounder", "detailed_role": "All-Rounder / Finisher"},
+    {"rank": 7, "player_id": 5553, "name": "Phil Salt", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+    {"rank": 8, "player_id": 838, "name": "Glenn Maxwell", "role": "All-Rounder", "detailed_role": "All-Rounder"},
+    {"rank": 9, "player_id": 813, "name": "Jos Buttler", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+    {"rank": 10, "player_id": 6059, "name": "Ruturaj Gaikwad", "role": "Batter", "detailed_role": "Top-Order Batter"}
+  ],
+  "top10_bowlers": [
+    {"rank": 1, "player_id": 781, "name": "Sunil Narine", "role": "All-Rounder", "detailed_role": "Mystery Spinner"},
+    {"rank": 2, "player_id": 4101, "name": "Mitchell Santner", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+    {"rank": 3, "player_id": 2933, "name": "Jasprit Bumrah", "role": "Bowler", "detailed_role": "Fast Bowler"},
+    {"rank": 4, "player_id": 4722, "name": "Rashid Khan", "role": "All-Rounder", "detailed_role": "Leg Spinner"},
+    {"rank": 5, "player_id": 7503, "name": "Ravi Bishnoi", "role": "All-Rounder", "detailed_role": "Leg Spinner"},
+    {"rank": 6, "player_id": 2876, "name": "Axar Patel", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+    {"rank": 7, "player_id": 8661, "name": "Matheesha Pathirana", "role": "Bowler", "detailed_role": "Fast Bowler (Death)"},
+    {"rank": 8, "player_id": 152, "name": "Ravindra Jadeja", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+    {"rank": 9, "player_id": 3644, "name": "Kuldeep Yadav", "role": "All-Rounder", "detailed_role": "Left-Arm Wrist Spinner"},
+    {"rank": 10, "player_id": 19316, "name": "Maheesh Theekshana", "role": "All-Rounder", "detailed_role": "Mystery Spinner"}
+  ],
+  "window_a": {
+    "top10_batters": [
+      {"rank": 1, "player_id": 1699, "name": "Suryakumar Yadav", "role": "Batter", "detailed_role": "Batter"},
+      {"rank": 2, "player_id": 2367, "name": "Travis Head", "role": "Batter", "detailed_role": "Top-Order Batter"},
+      {"rank": 3, "player_id": 6819, "name": "Yashasvi Jaiswal", "role": "Batter", "detailed_role": "Top-Order Batter"},
+      {"rank": 4, "player_id": 2258, "name": "Sanju Samson", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+      {"rank": 5, "player_id": 6281, "name": "Abhishek Sharma", "role": "All-Rounder", "detailed_role": "All-Rounder"},
+      {"rank": 6, "player_id": 1318, "name": "Andre Russell", "role": "All-Rounder", "detailed_role": "All-Rounder / Finisher"},
+      {"rank": 7, "player_id": 5553, "name": "Phil Salt", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+      {"rank": 8, "player_id": 838, "name": "Glenn Maxwell", "role": "All-Rounder", "detailed_role": "All-Rounder"},
+      {"rank": 9, "player_id": 813, "name": "Jos Buttler", "role": "Batter", "detailed_role": "Wicketkeeper-Batter"},
+      {"rank": 10, "player_id": 6059, "name": "Ruturaj Gaikwad", "role": "Batter", "detailed_role": "Top-Order Batter"}
+    ],
+    "top10_bowlers": [
+      {"rank": 1, "player_id": 781, "name": "Sunil Narine", "role": "All-Rounder", "detailed_role": "Mystery Spinner"},
+      {"rank": 2, "player_id": 4101, "name": "Mitchell Santner", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+      {"rank": 3, "player_id": 2933, "name": "Jasprit Bumrah", "role": "Bowler", "detailed_role": "Fast Bowler"},
+      {"rank": 4, "player_id": 4722, "name": "Rashid Khan", "role": "All-Rounder", "detailed_role": "Leg Spinner"},
+      {"rank": 5, "player_id": 7503, "name": "Ravi Bishnoi", "role": "All-Rounder", "detailed_role": "Leg Spinner"},
+      {"rank": 6, "player_id": 2876, "name": "Axar Patel", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+      {"rank": 7, "player_id": 8661, "name": "Matheesha Pathirana", "role": "Bowler", "detailed_role": "Fast Bowler (Death)"},
+      {"rank": 8, "player_id": 152, "name": "Ravindra Jadeja", "role": "All-Rounder", "detailed_role": "Left-Arm Spinner"},
+      {"rank": 9, "player_id": 3644, "name": "Kuldeep Yadav", "role": "All-Rounder", "detailed_role": "Left-Arm Wrist Spinner"},
+      {"rank": 10, "player_id": 19316, "name": "Maheesh Theekshana", "role": "All-Rounder", "detailed_role": "Mystery Spinner"}
+    ]
+  }
+}

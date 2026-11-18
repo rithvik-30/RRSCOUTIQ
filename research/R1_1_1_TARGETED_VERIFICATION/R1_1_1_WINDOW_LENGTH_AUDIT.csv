@@ -1,0 +1,12 @@
+window_length_k,legal_delivery_count,pct_of_valid_legal,treatment_in_r1,exposure_multiplier,pressure_tier,exact_6_deliveries,partial_3_5_deliveries,combined_ge_3_deliveries,exact_6_runs_mean,combined_runs_mean,delta_runs_exact_minus_comb,exact_6_wkts_mean,combined_wkts_mean,delta_wkts_exact_minus_comb,partial_3_5_runs_mean,partial_3_5_wkts_mean,exact_6_dot_pct,combined_dot_pct,exact_6_bnd_pct,combined_bnd_pct
+0.0,1484.0,0.883,Truncated Runway (Excluded in R1),N/A,,,,,,,,,,,,,,,,
+1.0,1481.0,0.881,Truncated Runway (Excluded in R1),6 / 1,,,,,,,,,,,,,,,,
+2.0,1481.0,0.881,Truncated Runway (Excluded in R1),6 / 2,,,,,,,,,,,,,,,,
+3.0,1479.0,0.88,Partial Window (Evaluated in R1),6 / 3,,,,,,,,,,,,,,,,
+4.0,1478.0,0.879,Partial Window (Evaluated in R1),6 / 4,,,,,,,,,,,,,,,,
+5.0,1476.0,0.878,Partial Window (Evaluated in R1),6 / 5,,,,,,,,,,,,,,,,
+6.0,159225.0,94.718,Complete Window,6 / 6,,,,,,,,,,,,,,,,
+,,,,,Tier 1: Low,21435.0,698.0,22133.0,8.643,8.797,-0.154,0.269,0.268,0.001,13.531,0.23,41.33,40.76,20.54,20.99
+,,,,,Tier 2: Medium,62928.0,202.0,63130.0,8.69,8.711,-0.021,0.273,0.273,-0.0,15.283,0.323,34.79,34.74,18.47,18.53
+,,,,,Tier 3: High,56847.0,1296.0,58143.0,9.239,9.334,-0.096,0.35,0.36,-0.01,13.525,0.816,31.54,31.37,18.93,19.21
+,,,,,Tier 4: Extreme,18015.0,2237.0,20252.0,9.317,9.344,-0.027,0.483,0.564,-0.082,9.559,1.223,34.64,35.33,19.09,19.22

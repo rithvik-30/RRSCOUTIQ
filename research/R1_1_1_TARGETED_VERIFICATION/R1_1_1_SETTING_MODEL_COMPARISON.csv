@@ -1,0 +1,21 @@
+model_specification,outcome_metric,out_of_sample_r2,out_of_sample_rmse,out_of_sample_mae,roc_auc,brier_score,log_loss
+Spec A: Phase & Progression Only,Fwd 6 Legal Balls Runs,0.03167,4.8086,3.8285,,,
+"Spec B: Phase, Progression & Wickets Remaining",Fwd 6 Legal Balls Runs,0.0736,4.7034,3.7387,,,
+"Spec C: Phase, Progression, Wickets & CRR (Full Raw State)",Fwd 6 Legal Balls Runs,0.08225,4.6814,3.721,,,
+Spec D: Approved Setting DLI Alone,Fwd 6 Legal Balls Runs,-0.0003,4.8874,3.8815,,,
+Spec E: Full Raw State + Setting DLI,Fwd 6 Legal Balls Runs,0.08235,4.6811,3.7209,,,
+Spec A: Phase & Progression Only,Fwd 6 Legal Balls Wickets,0.02802,0.5337,0.4447,,,
+"Spec B: Phase, Progression & Wickets Remaining",Fwd 6 Legal Balls Wickets,0.02893,0.5334,0.4442,,,
+"Spec C: Phase, Progression, Wickets & CRR (Full Raw State)",Fwd 6 Legal Balls Wickets,0.02871,0.5335,0.4443,,,
+Spec D: Approved Setting DLI Alone,Fwd 6 Legal Balls Wickets,0.01458,0.5374,0.4502,,,
+Spec E: Full Raw State + Setting DLI,Fwd 6 Legal Balls Wickets,0.02915,0.5334,0.444,,,
+Spec A: Phase & Progression Only,Fwd 6 Legal Balls Dot %,0.07849,21.0168,17.1448,,,
+"Spec B: Phase, Progression & Wickets Remaining",Fwd 6 Legal Balls Dot %,0.11399,20.6079,16.7994,,,
+"Spec C: Phase, Progression, Wickets & CRR (Full Raw State)",Fwd 6 Legal Balls Dot %,0.11744,20.5678,16.7508,,,
+Spec D: Approved Setting DLI Alone,Fwd 6 Legal Balls Dot %,0.00712,21.8155,17.3537,,,
+Spec E: Full Raw State + Setting DLI,Fwd 6 Legal Balls Dot %,0.11821,20.5588,16.7569,,,
+Spec A: Phase & Progression Only,Wicket Occurrence (P(Wkts >= 1)),,,,0.5771,0.1989,0.5864
+"Spec B: Phase, Progression & Wickets Remaining",Wicket Occurrence (P(Wkts >= 1)),,,,0.5802,0.1987,0.5859
+"Spec C: Phase, Progression, Wickets & CRR (Full Raw State)",Wicket Occurrence (P(Wkts >= 1)),,,,0.5797,0.1988,0.586
+Spec D: Approved Setting DLI Alone,Wicket Occurrence (P(Wkts >= 1)),,,,0.5629,0.2009,0.5908
+Spec E: Full Raw State + Setting DLI,Wicket Occurrence (P(Wkts >= 1)),,,,0.5826,0.1986,0.5857

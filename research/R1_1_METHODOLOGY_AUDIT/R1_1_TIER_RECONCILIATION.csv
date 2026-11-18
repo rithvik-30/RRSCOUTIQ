@@ -1,0 +1,4 @@
+population_cohort,delivery_count,denominator_definition,tier1_count,tier1_pct,tier2_count,tier2_pct,tier3_count,tier3_pct,tier4_count,tier4_pct,reconciliation_status
+Population 1: Full Valid Match-State (Investigation A),175676,"All valid DLI deliveries (179,837 total - 4,161 DLS/shortened exclusions)",23971,13.65,65587,37.33,61990,35.29,24128,13.73,"EXACT RECONCILED MATCH (175,676)"
+Population 2: Forward Outcome Eligible (Investigation C & D),163658,Valid DLI deliveries with >= 3 subsequent legal balls in same innings,22133,13.52,63130,38.57,58143,35.53,20252,12.37,"EXACT RECONCILED MATCH (163,658)"
+Difference: Omitted Terminal & Non-Legal Deliveries,12018,Omitted: (1) Wides/No-balls + (2) Final 2 deliveries of innings runway,1838,15.29,2457,20.44,3847,32.01,3876,32.25,"EXACT RECONCILED MATCH (12,018)"

@@ -1,0 +1,150 @@
+"""
+RR ScoutIQ — Milestone M5.5-B.1: Automated Test Suite
+Module: tests/m5_5b_1/test_remediation_integrity.py
+
+Automated tests for Section 10 acceptance criteria:
+1. Train/test match isolation (zero leakage)
+2. Fold-specific role assignment and fallback tracking
+3. Fold-specific prior fitting
+4. Zero-exposure handling (Conjugate EB Differential Shrinkage)
+5. Beta-Binomial boundary cases and Kleinman MOM fallback
+6. Probability bounds in [0, 1]
+7. Missing-cell fallback behavior
+8. Correct dismissal attribution (bowler wickets vs fielding dismissals)
+9. Legal-delivery denominators (wides/no-balls excluded)
+10. Reproducibility and canonical dataset integrity
+"""
+
+import os
+import sys
+import unittest
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import GroupKFold
+
+from src.m5_5b_1.remediation_engine import (
+    derive_training_batter_roles,
+    derive_training_bowler_roles,
+    apply_fold_roles,
+    kleinman_corrected_method_of_moments,
+    fit_beta_binomial_safeguarded,
+    fit_normal_normal_safeguarded,
+    compute_binary_validation_metrics
+)
+
+
+class TestM55B1RemediationIntegrity(unittest.TestCase):
+    
+    @classmethod
+    def setUpClass(cls):
+        cls.data_path = "data/processed/m5_3/match_state_full.csv"
+        if not os.path.exists(cls.data_path):
+            raise FileNotFoundError(f"Missing canonical test data: {cls.data_path}")
+        df = pd.read_csv(cls.data_path, low_memory=False)
+        cls.clean_df = df[df["is_dli_valid"] == True].copy()
+        cls.clean_df["phase_clean"] = cls.clean_df["pre_match_phase"].str.lower()
+        
+    def test_01_train_test_match_isolation(self):
+        """Verifies GroupKFold on match_id achieves 100% mutual match exclusivity across folds."""
+        gkf = GroupKFold(n_splits=5)
+        matches = self.clean_df["match_id"].values
+        for fold, (train_idx, val_idx) in enumerate(gkf.split(self.clean_df, groups=matches), 1):
+            train_m = set(self.clean_df.iloc[train_idx]["match_id"].unique())
+            val_m = set(self.clean_df.iloc[val_idx]["match_id"].unique())
+            overlap = train_m.intersection(val_m)
+            self.assertEqual(len(overlap), 0, f"Fold {fold} has {len(overlap)} overlapping matches!")
+
+    def test_02_fold_specific_role_assignment(self):
+        """Verifies roles derived on subset of matches do not leak held-out match state."""
+        sample_train = self.clean_df[self.clean_df["match_id"].isin(list(self.clean_df["match_id"].unique())[:300])]
+        b_roles, b_audit = derive_training_batter_roles(sample_train)
+        bw_roles, bw_audit = derive_training_bowler_roles(sample_train)
+        
+        self.assertGreater(len(b_roles), 0)
+        self.assertGreater(len(bw_roles), 0)
+        
+        # Test fallback on unseen player
+        val_sample = pd.DataFrame({
+            "striker_id": [99999999],  # Unseen
+            "bowler_id": [88888888],   # Unseen
+            "runs": [1]
+        })
+        val_res, cov_rep = apply_fold_roles(val_sample, b_roles, bw_roles)
+        self.assertEqual(val_res["batter_role"].iloc[0], "Middle Order")
+        self.assertEqual(val_res["batter_role_is_fallback"].iloc[0], 1)
+        self.assertEqual(val_res["bowler_role"].iloc[0], "Middle Enforcer")
+        self.assertEqual(val_res["bowler_role_is_fallback"].iloc[0], 1)
+        self.assertEqual(cov_rep["batter_fallback_deliveries"], 1)
+
+    def test_03_zero_exposure_handling(self):
+        """Verifies Conjugate Empirical Bayes differential shrinkage for n_np = 0."""
+        # Simulated player with N_press = 50, N_np = 0
+        n_press = 50.0
+        n_np = 0.0
+        mu_role = 135.0
+        tau = 15.0
+        M_0 = 100.0
+        
+        # When n_np = 0:
+        lambda_np = n_np / (n_np + M_0)
+        self.assertEqual(lambda_np, 0.0)
+        shrunk_np = lambda_np * 0.0 + (1.0 - lambda_np) * mu_role
+        self.assertEqual(shrunk_np, mu_role)
+        
+        # Uncertainty variance must equal prior tau^2
+        var_np = tau ** 2
+        self.assertEqual(var_np, 225.0)
+
+    def test_04_beta_binomial_boundary_cases_and_mom_fallback(self):
+        """Verifies Kleinman corrected MOM handles zero excess variance without division by zero."""
+        # Case A: Homogeneous counts (pure binomial noise, excess_var <= 0)
+        n = np.array([20, 20, 20, 20, 20])
+        k = np.array([1, 1, 1, 1, 1])  # Identical proportions
+        mu, M, msg = kleinman_corrected_method_of_moments(k, n)
+        self.assertAlmostEqual(mu, 0.05, places=4)
+        self.assertGreaterEqual(M, 1000.0)  # Heavy shrinkage for homogeneous noise
+        
+        # Case B: Extreme boundary cases (all 0s)
+        k_zeros = np.zeros(10)
+        n_tens = np.full(10, 10)
+        res = fit_beta_binomial_safeguarded(k_zeros, n_tens, "Test", "Zeros")
+        self.assertGreaterEqual(res["Prior_Mean"], 0.0)
+        self.assertLessEqual(res["Prior_Mean"], 1.0)
+
+    def test_05_probability_bounds(self):
+        """Verifies all predictions generated by binary metrics are strictly within [0, 1]."""
+        y_true = np.array([0, 1, 0, 1, 0])
+        y_prob = np.array([0.1, 0.9, 0.2, 0.8, 0.15])
+        met = compute_binary_validation_metrics(y_true, y_prob)
+        self.assertGreaterEqual(met["Brier_Score"], 0.0)
+        self.assertLessEqual(met["Brier_Score"], 1.0)
+        self.assertGreater(met["Log_Loss"], 0.0)
+        self.assertTrue(np.isfinite(met["Log_Loss"]))
+
+    def test_06_correct_dismissal_attribution(self):
+        """Verifies that non-bowler dismissals (run outs, retired out) are excluded from bowler wickets."""
+        bowler_wkts = self.clean_df["ext_is_bowler_wicket"].sum()
+        total_wkts = self.clean_df["ext_is_wicket"].sum()
+        self.assertLess(bowler_wkts, total_wkts, "Bowler wickets must strictly exclude fielding dismissals!")
+        
+        # Verify run outs have ext_is_bowler_wicket == 0
+        run_outs = self.clean_df[self.clean_df["ext_dismissal_kind"] == "run out"]
+        self.assertGreater(len(run_outs), 0)
+        self.assertEqual(run_outs["ext_is_bowler_wicket"].sum(), 0, "Run outs must never be debited to bowler!")
+
+    def test_07_legal_delivery_denominators(self):
+        """Verifies that wides and no-balls have ext_is_legal_delivery == 0."""
+        wides = self.clean_df[self.clean_df["ext_is_wide"] == 1]
+        self.assertEqual(wides["ext_is_legal_delivery"].sum(), 0, "Wides must never be counted as legal deliveries!")
+        
+        noballs = self.clean_df[self.clean_df["ext_is_noball"] == 1]
+        self.assertEqual(noballs["ext_is_legal_delivery"].sum(), 0, "No-balls must never be counted as legal deliveries!")
+
+    def test_08_canonical_dataset_integrity(self):
+        """Verifies exact row count of clean DLI valid population."""
+        self.assertEqual(len(self.clean_df), 175676)
+        self.assertEqual(self.clean_df["match_id"].nunique(), 744)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,22 @@
+{
+  "status": "PASSED",
+  "is_passed": true,
+  "failures_count": 0,
+  "failures": [],
+  "canonical_dataset": {
+    "path": "data\\processed\\m5_3\\match_state_full.csv",
+    "accessible": true,
+    "expected_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+    "actual_sha256": "ce7e9a2fd2b8487e2e0bfebff5b7b44fe39d63ee7b5b1fbc35c5e07238e2d9e4",
+    "match": true,
+    "error": null
+  },
+  "competition_report": {
+    "path": "FINAL_RR_SCOUTIQ_COMPETITION_REPORT.md",
+    "accessible": true,
+    "expected_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+    "actual_sha256": "0e0a11f87622dbeed44c3d918f37c5c9de2f2be8b22ac180099b5add1b882a1d",
+    "match": true,
+    "error": null
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "gen_id": "gen_97f58bd70d4a",
+  "output_dir": "research\\phase5_14_5",
+  "publication_state": "APPROVED_FOR_COMPETITION_FREEZE",
+  "manifest_path": "research\\phase5_14_5\\authoritative_gate_manifest.json",
+  "summary_path": "research\\phase5_14_5\\phase5_14_5_validation_summary.json",
+  "verdict_path": "research\\phase5_14_5\\PHASE_5_14_5_FINAL_VERDICT.md",
+  "summary_sha256": "e43805cd9480c8eabab8fe3a1b6ac4a43605ed0401fed8faa20793fbdbf28af9",
+  "verdict_sha256": "3cc3e33ba386eba7c01844b6ade586338bd4e4843c0297e5061338c3c9fa632e",
+  "error": null
+}

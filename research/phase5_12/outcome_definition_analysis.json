@@ -1,0 +1,82 @@
+{
+  "macro_pressure_runs": {
+    "total_runs": 205230,
+    "boundary_runs": 128412,
+    "running_runs": 76818,
+    "boundary_run_percentage": 62.56979973688057
+  },
+  "player_level_correlation": {
+    "player_count": 370,
+    "pearson_r": 0.9320847555594791,
+    "p_value": 2.2902449732345427e-164,
+    "r_squared": 0.8687819915463739,
+    "regression_slope": 4.346917171996368,
+    "regression_intercept": 58.02516057534193
+  },
+  "prospective_evaluations": {
+    "window_a": {
+      "test_year": 2025,
+      "top10": {
+        "balls": 2881,
+        "runs": 4723,
+        "boundaries": 713,
+        "sr": 163.9361332870531,
+        "bnd_pct": 24.74835126692121
+      },
+      "league": {
+        "balls": 32332,
+        "runs": 45958,
+        "boundaries": 6098,
+        "sr": 142.1440059383892,
+        "bnd_pct": 18.86057156996165
+      },
+      "nonsel": {
+        "balls": 10007,
+        "runs": 15204,
+        "boundaries": 2051,
+        "sr": 151.93364644748678,
+        "bnd_pct": 20.49565304286999
+      },
+      "edge_vs_league": {
+        "sr_edge": 21.79212734866391,
+        "bnd_pct_edge": 5.887779696959559
+      },
+      "edge_vs_nonsel": {
+        "sr_edge": 12.00248683956633,
+        "bnd_pct_edge": 4.252698224051219
+      }
+    },
+    "window_b": {
+      "test_year": 2026,
+      "top10": {
+        "balls": 1820,
+        "runs": 3121,
+        "boundaries": 479,
+        "sr": 171.48351648351647,
+        "bnd_pct": 26.31868131868132
+      },
+      "league": {
+        "balls": 24133,
+        "runs": 36465,
+        "boundaries": 4996,
+        "sr": 151.10015331703477,
+        "bnd_pct": 20.701943397008247
+      },
+      "nonsel": {
+        "balls": 11894,
+        "runs": 18670,
+        "boundaries": 2544,
+        "sr": 156.96990079031445,
+        "bnd_pct": 21.388935597780392
+      },
+      "edge_vs_league": {
+        "sr_edge": 20.3833631664817,
+        "bnd_pct_edge": 5.616737921673074
+      },
+      "edge_vs_nonsel": {
+        "sr_edge": 14.513615693202013,
+        "bnd_pct_edge": 4.929745720900929
+      }
+    }
+  }
+}
